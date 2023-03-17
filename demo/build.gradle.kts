@@ -64,10 +64,10 @@ dependencies {
     // ------------------------
 
     implementation(project(":ComposeDebugDrawer:Core"))
-    implementation(project(":ComposeDebugDrawer:Infos:Build"))
-    implementation(project(":ComposeDebugDrawer:Infos:Device"))
-    implementation(project(":ComposeDebugDrawer:Plugin:Lumberjack"))
-    implementation(project(":ComposeDebugDrawer:Plugin:MaterialPreferences"))
+    implementation(project(":ComposeDebugDrawer:Modules:BuildInfos"))
+    implementation(project(":ComposeDebugDrawer:Modules:DeviceInfos"))
+    implementation(project(":ComposeDebugDrawer:Plugins:Lumberjack"))
+    implementation(project(":ComposeDebugDrawer:Plugins:MaterialPreferences"))
 
     // preferences via delegates
     implementation(deps.materialpreferences)

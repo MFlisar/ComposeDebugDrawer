@@ -55,15 +55,15 @@ dependencyResolutionManagement {
 include(":ComposeDebugDrawer:Core")
 project(":ComposeDebugDrawer:Core").projectDir = file("library/core")
 
-include(":ComposeDebugDrawer:Infos:Build")
-project(":ComposeDebugDrawer:Infos:Build").projectDir = file("library/infos-build")
-include(":ComposeDebugDrawer:Infos:Device")
-project(":ComposeDebugDrawer:Infos:Device").projectDir = file("library/infos-device")
+include(":ComposeDebugDrawer:Modules:BuildInfos")
+project(":ComposeDebugDrawer:Modules:BuildInfos").projectDir = file("library/modules/buildinfos")
+include(":ComposeDebugDrawer:Modules:DeviceInfos")
+project(":ComposeDebugDrawer:Modules:DeviceInfos").projectDir = file("library/modules/deviceinfos")
 
-include(":ComposeDebugDrawer:Plugin:Lumberjack")
-project(":ComposeDebugDrawer:Plugin:Lumberjack").projectDir = file("library/plugin-lumberjack")
-include(":ComposeDebugDrawer:Plugin:MaterialPreferences")
-project(":ComposeDebugDrawer:Plugin:MaterialPreferences").projectDir = file("library/plugin-material-preferences")
+include(":ComposeDebugDrawer:Plugins:Lumberjack")
+project(":ComposeDebugDrawer:Plugins:Lumberjack").projectDir = file("library/plugins/lumberjack")
+include(":ComposeDebugDrawer:Plugins:MaterialPreferences")
+project(":ComposeDebugDrawer:Plugins:MaterialPreferences").projectDir = file("library/plugins/material-preferences")
 
 include(":demo")
 project(":demo").projectDir = file("demo")
