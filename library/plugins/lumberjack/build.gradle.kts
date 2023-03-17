@@ -56,8 +56,9 @@ dependencies {
 
     // Dependent on Compose BOM
     implementation(compose.material3)
-    implementation(compose.activity)
     implementation(compose.material.extendedicons)
+
+    implementation(compose.activity)
 
     // ------------------------
     // Libraries

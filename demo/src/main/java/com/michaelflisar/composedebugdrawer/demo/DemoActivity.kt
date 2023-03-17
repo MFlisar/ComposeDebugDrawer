@@ -24,8 +24,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.michaelflisar.composedebugdrawer.core.*
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoLogging
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoPrefs
-import com.michaelflisar.composedebugdrawer.infos.build.DebugDrawerBuildInfos
-import com.michaelflisar.composedebugdrawer.infos.device.DebugDrawerDeviceInfos
+import com.michaelflisar.composedebugdrawer.buildinfos.DebugDrawerBuildInfos
+import com.michaelflisar.composedebugdrawer.deviceinfos.DebugDrawerDeviceInfos
 import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberjack
 import com.michaelflisar.composedebugdrawer.plugin.materialpreferences.DebugDrawerSettingCheckbox
 import com.michaelflisar.composedebugdrawer.plugin.materialpreferences.DebugDrawerSettingDropdown

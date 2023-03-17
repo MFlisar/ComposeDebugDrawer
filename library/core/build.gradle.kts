@@ -57,6 +57,7 @@ dependencies {
 
     // Dependent on Compose BOM
     implementation(compose.material3)
+
     implementation(compose.activity)
 }
 

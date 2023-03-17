@@ -63,7 +63,7 @@ project(":ComposeDebugDrawer:Modules:DeviceInfos").projectDir = file("library/mo
 include(":ComposeDebugDrawer:Plugins:Lumberjack")
 project(":ComposeDebugDrawer:Plugins:Lumberjack").projectDir = file("library/plugins/lumberjack")
 include(":ComposeDebugDrawer:Plugins:MaterialPreferences")
-project(":ComposeDebugDrawer:Plugins:MaterialPreferences").projectDir = file("library/plugins/material-preferences")
+project(":ComposeDebugDrawer:Plugins:MaterialPreferences").projectDir = file("library/plugins/materialpreferences")
 
 include(":demo")
 project(":demo").projectDir = file("demo")

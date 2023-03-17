@@ -5,7 +5,7 @@
 
 This library offers you a simple easily expandable debug drawer.
 
-Made for **compose M3** based on compose BOm version **2023.01.00**.
+Made for **Compose M3** based on compose BOM version **2023.01.00**.
 
 ### Gradle (via [JitPack.io](https://jitpack.io/))
 
