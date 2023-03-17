@@ -3,7 +3,9 @@
 [![Release](https://jitpack.io/v/MFlisar/ComposeDialogs.svg)](https://jitpack.io/#MFlisar/ComposeDebugDrawer)
 ![License](https://img.shields.io/github/license/MFlisar/ComposeDebugDrawer)
 
-This library offers you a simple easily expandable debug drawer
+This library offers you a simple easily expandable debug drawer.
+
+Made for **compose M3** based on compose BOm version **2023.01.00**.
 
 ### Gradle (via [JitPack.io](https://jitpack.io/))
 

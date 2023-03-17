@@ -45,6 +45,7 @@ object DebugDrawerDefaults {
 // Drawer
 // -------------
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Stable
 data class DebugDrawerState(
     val drawerState: DrawerState,
@@ -78,6 +79,7 @@ data class DebugDrawerState(
         !collapsible || expandedIds.value.contains(id)
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun rememberDebugDrawerState(
     initialValue: DrawerValue = DrawerValue.Closed,
@@ -92,6 +94,7 @@ fun rememberDebugDrawerState(
     return DebugDrawerState(drawerState, expandSingleOnly, expandedIds)
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DebugDrawer(
     enabled: Boolean = true,

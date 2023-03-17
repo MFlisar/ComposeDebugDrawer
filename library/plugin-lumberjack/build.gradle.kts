@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-parcelize")
     id("maven-publish")
 }
 
@@ -47,17 +46,17 @@ dependencies {
     // ------------------------
 
     implementation(libs.kotlin)
-    implementation(libs.kotlin.coroutines)
 
     // ------------------------
     // AndroidX / Google / Goolge
     // ------------------------
 
-    implementation(compose.compiler)
-    implementation(compose.ui)
-    implementation(compose.activity)
-    implementation(compose.material)
+    // Compose BOM
+    implementation(platform(compose.bom))
+
+    // Dependent on Compose BOM
     implementation(compose.material3)
+    implementation(compose.activity)
     implementation(compose.material.extendedicons)
 
     // ------------------------

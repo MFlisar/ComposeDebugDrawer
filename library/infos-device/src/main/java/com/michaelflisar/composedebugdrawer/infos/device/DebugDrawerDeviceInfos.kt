@@ -5,6 +5,7 @@ import android.util.DisplayMetrics
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PhoneAndroid
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -14,6 +15,7 @@ import com.michaelflisar.composedebugdrawer.core.DebugDrawerInfo
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerRegion
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerState
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DebugDrawerDeviceInfos(
     icon: ImageVector? = Icons.Default.PhoneAndroid,

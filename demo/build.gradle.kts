@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-parcelize")
 }
 
 android {
@@ -52,20 +51,13 @@ dependencies {
     // AndroidX
     // ------------------------
 
-    implementation(androidx.core)
-    implementation(androidx.lifecycle)
+    // Compose BOM
+    implementation(platform(compose.bom))
 
-    implementation(compose.compiler)
-    implementation(compose.ui)
-    implementation(compose.ui.tooling.preview)
-    implementation(compose.lifecycle)
-    implementation(compose.activity)
-    implementation(compose.material)
+    // Dependent on Compose BOM
     implementation(compose.material3)
-    implementation(compose.theme.adapter)
-    implementation(compose.theme.adapter.core)
+    implementation(compose.activity)
     implementation(compose.material.extendedicons)
-    implementation(compose.bottomsheet.dialog)
 
     // ------------------------
     // Libraries

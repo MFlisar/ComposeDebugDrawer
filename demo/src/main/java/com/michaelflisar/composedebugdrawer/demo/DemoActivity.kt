@@ -37,6 +37,7 @@ import kotlinx.coroutines.launch
 
 class DemoActivity : ComponentActivity() {
 
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -108,7 +109,7 @@ class DemoActivity : ComponentActivity() {
             Column {
                 TopAppBar(
                     title = { Text(stringResource(R.string.app_name)) },
-                    colors = TopAppBarDefaults.topAppBarColors(
+                    colors = TopAppBarDefaults.smallTopAppBarColors(
                         containerColor = MaterialTheme.colorScheme.primary,
                         titleContentColor = MaterialTheme.colorScheme.onPrimary
                     )

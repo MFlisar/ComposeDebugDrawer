@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -16,6 +17,7 @@ import com.michaelflisar.lumberjack.L
 import com.michaelflisar.lumberjack.sendFeedback
 import com.michaelflisar.lumberjack.showLog
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DebugDrawerLumberjack(
     setup: FileLoggingSetup,
