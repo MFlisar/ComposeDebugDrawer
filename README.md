@@ -40,16 +40,16 @@ It works as simple as following:
 // wrap your app content inside the drawer like following
  val drawerState = rememberDebugDrawerState()
 ComposeAppTheme  {
-	DebugDrawer(
-		enabled = BuildConfig.DEBUG, // if disabled the drawer will not be created at all, in this case inside a release build...
-		drawerState = drawerState,
-		drawerContent = {
-			// drawer content
-		},
-		content = {
-			// your wrapped app content
-		}
-	)
+    DebugDrawer(
+        enabled = BuildConfig.DEBUG, // if disabled the drawer will not be created at all, in this case inside a release build...
+        drawerState = drawerState,
+        drawerContent = {
+            // drawer content
+        },
+        content = {
+            // your wrapped app content
+        }
+    )
 }
 ```
 
@@ -59,56 +59,56 @@ Example of drawer content:
 @Composable
 private fun Drawer(drawerState: DebugDrawerState) {
     DebugDrawerBuildInfos(drawerState)
-	DebugDrawerActions(drawerState)
-	DebugDrawerDeviceInfos(drawerState)
-	
-	// lumberjack module for logs
-	DebugDrawerLumberjack(
-		drawerState = drawerState,
-		setup = DemoLogging.fileLoggingSetup,
-		mailReceiver = "feedback@gmail.com"
-	)
-	
-	// material preferences module for delegate based preferences (another library of mine)
-	DebugDrawerRegion(
-		icon = Icons.Default.ColorLens,
-		label = "Demo Preferences",
-		drawerState = drawerState
-	) {
-		DebugDrawerDivider(info = "Boolean")
-		DebugDrawerSettingCheckbox(setting = DemoPrefs.devBoolean1)
-		DebugDrawerSettingCheckbox(setting = DemoPrefs.devBoolean2)
-		DebugDrawerDivider(info = "Enum")
-		DebugDrawerSettingDropdown(setting = DemoPrefs.devStyle,items = DemoPrefs.UIStyle.values())
-	}
-	
-	// manual checkboxes, dropdowns, infos
-	DebugDrawerRegion(
-		icon = Icons.Default.Info,
-		label = "Manual",
-		drawerState = drawerState
-	) {
-	    // Checkbox
-		var test1 by remember { mutableStateOf(false) }
-		DebugDrawerCheckbox(
-			label = "Checkbox",
-			description = "Some debug flag",
-			checked = test1
-		) {
-			test1 = it
-		}
-		
-		// Button
-		DebugDrawerButton(
-			icon = Icons.Default.BugReport, 
-			label = "Button (Filled)"
-		) {
-			// on click
-		}
+    DebugDrawerActions(drawerState)
+    DebugDrawerDeviceInfos(drawerState)
+    
+    // lumberjack module for logs
+    DebugDrawerLumberjack(
+        drawerState = drawerState,
+        setup = DemoLogging.fileLoggingSetup,
+        mailReceiver = "feedback@gmail.com"
+    )
+    
+    // material preferences module for delegate based preferences (another library of mine)
+    DebugDrawerRegion(
+        icon = Icons.Default.ColorLens,
+        label = "Demo Preferences",
+        drawerState = drawerState
+    ) {
+        DebugDrawerDivider(info = "Boolean")
+        DebugDrawerSettingCheckbox(setting = DemoPrefs.devBoolean1)
+        DebugDrawerSettingCheckbox(setting = DemoPrefs.devBoolean2)
+        DebugDrawerDivider(info = "Enum")
+        DebugDrawerSettingDropdown(setting = DemoPrefs.devStyle,items = DemoPrefs.UIStyle.values())
+    }
+    
+    // manual checkboxes, dropdowns, infos
+    DebugDrawerRegion(
+        icon = Icons.Default.Info,
+        label = "Manual",
+        drawerState = drawerState
+    ) {
+        // Checkbox
+        var test1 by remember { mutableStateOf(false) }
+        DebugDrawerCheckbox(
+            label = "Checkbox",
+            description = "Some debug flag",
+            checked = test1
+        ) {
+            test1 = it
+        }
+        
+        // Button
+        DebugDrawerButton(
+            icon = Icons.Default.BugReport, 
+            label = "Button (Filled)"
+        ) {
+            // on click
+        }
 
-		// Info
-		DebugDrawerInfo(title = "Custom Info", info = "Value of custom info...")
-	}
+        // Info
+        DebugDrawerInfo(title = "Custom Info", info = "Value of custom info...")
+    }
 }
 ```
 
