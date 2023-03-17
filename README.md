@@ -28,7 +28,7 @@ dependencies {
   
   // plugins for other libraries
   implementation "com.github.MFlisar.ComposeDebugDrawer:plugin-lumberjack:<LATEST-VERSION>"
-  implementation "com.github.MFlisar.ComposeDebugDrawer:plugin-material-preferences:<LATEST-VERSION>"
+  implementation "com.github.MFlisar.ComposeDebugDrawer:plugin-materialpreferences:<LATEST-VERSION>"
 }
 ```
 
