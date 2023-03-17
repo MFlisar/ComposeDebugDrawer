@@ -18,15 +18,15 @@ repositories {
 dependencies {
 
   // core module
-  implementation "com.github.MFlisar:ComposeDebugDrawer:core:<LATEST-VERSION>"
+  implementation "com.github.MFlisar.ComposeDebugDrawer:core:<LATEST-VERSION>"
   
   // modules
-  implementation "com.github.MFlisar:ComposeDebugDrawer:infos-build:<LATEST-VERSION>"
-  implementation "com.github.MFlisar:ComposeDebugDrawer:infos-device:<LATEST-VERSION>"
+  implementation "com.github.MFlisar.ComposeDebugDrawer:infos-build:<LATEST-VERSION>"
+  implementation "com.github.MFlisar.ComposeDebugDrawer:infos-device:<LATEST-VERSION>"
   
   // plugins for other libraries
-  implementation "com.github.MFlisar:ComposeDebugDrawer:plugin-lumberjack:<LATEST-VERSION>"
-  implementation "com.github.MFlisar:ComposeDebugDrawer:plugin-material-preferences:<LATEST-VERSION>"
+  implementation "com.github.MFlisar.ComposeDebugDrawer:plugin-lumberjack:<LATEST-VERSION>"
+  implementation "com.github.MFlisar.ComposeDebugDrawer:plugin-material-preferences:<LATEST-VERSION>"
 }
 ```
 
