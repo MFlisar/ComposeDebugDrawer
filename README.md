@@ -120,10 +120,6 @@ private fun Drawer(drawerState: DebugDrawerState) {
 | ![Demo](screenshots/demo5.jpg?raw=true "Demo") | ![Demo](screenshots/demo6.jpg?raw=true "Demo") | ![Demo](screenshots/demo7.jpg?raw=true "Demo") |  |
 | ![Demo](screenshots/demo-theme-1.jpg?raw=true "Demo") | ![Demo](screenshots/demo-theme-2.jpg?raw=true "Demo") | ![Demo](screenshots/demo-theme-3.jpg?raw=true "Demo") | |
 
-### Settings and advanced usage
-
-
-
 ### Existing moduels
 
 * build infos
