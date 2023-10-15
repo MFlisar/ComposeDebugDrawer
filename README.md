@@ -1,6 +1,6 @@
 ### About
 
-[![Release](https://jitpack.io/v/MFlisar/ComposeDialogs.svg)](https://jitpack.io/#MFlisar/ComposeDebugDrawer)
+[![Release](https://jitpack.io/v/MFlisar/ComposeDebugDrawer.svg)](https://jitpack.io/#MFlisar/ComposeDebugDrawer)
 ![License](https://img.shields.io/github/license/MFlisar/ComposeDebugDrawer)
 
 This library offers you a simple easily expandable debug drawer.
@@ -27,6 +27,7 @@ repositories {
 ```
 
 2. add the compile statement to your module's `build.gradle`:
+
 ```groovy
 dependencies {
 
@@ -44,6 +45,8 @@ dependencies {
   implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-materialpreferences:$debugDrawer")
 }
 ```
+
+The latest release can be found [here](https://github.com/MFlisar/ComposeDebugDrawer/releases/latest)
 
 ### Example
 
