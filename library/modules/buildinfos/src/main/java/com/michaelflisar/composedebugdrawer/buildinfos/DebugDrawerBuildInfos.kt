@@ -5,7 +5,6 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -59,11 +58,11 @@ fun DebugDrawerBuildInfos(
         collapsible = collapsible,
         drawerState = drawerState
     ) {
-        DebugDrawerInfo("Version Code", version)
-        DebugDrawerInfo("Version Name", versionName)
-        DebugDrawerInfo("Package Name", packageName)
-        DebugDrawerInfo("Debuggable", debuggable)
-        DebugDrawerInfo("Debug", debug)
+        DebugDrawerInfo(title = "Version Code", info = version)
+        DebugDrawerInfo(title = "Version Name", info = versionName)
+        DebugDrawerInfo(title = "Package Name", info = packageName)
+        DebugDrawerInfo(title = "Debuggable", info = debuggable)
+        DebugDrawerInfo(title = "Debug", info = debug)
         content()
     }
 }

@@ -6,8 +6,11 @@ import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
-import androidx.compose.foundation.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.*
@@ -25,6 +28,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import com.michaelflisar.composedebugdrawer.core.composables.SegmentedButtons
+import com.michaelflisar.composedebugdrawer.core.composables.Spinner
 import kotlinx.coroutines.launch
 
 // -------------
@@ -79,7 +84,6 @@ data class DebugDrawerState(
         !collapsible || expandedIds.value.contains(id)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun rememberDebugDrawerState(
     initialValue: DrawerValue = DrawerValue.Closed,
@@ -87,14 +91,22 @@ fun rememberDebugDrawerState(
     confirmStateChange: (DrawerValue) -> Boolean = { true },
     initialExpandedIds: List<String> = emptyList()
 ): DebugDrawerState {
-    val drawerState = rememberSaveable(initialValue, confirmStateChange, saver = DrawerState.Saver(confirmStateChange)) {
+    val drawerState = rememberSaveable(
+        initialValue,
+        confirmStateChange,
+        saver = DrawerState.Saver(confirmStateChange)
+    ) {
         DrawerState(initialValue, confirmStateChange)
     }
-    val expandedIds = rememberSaveable(expandSingleOnly) { mutableStateOf(initialExpandedIds) }
+    val expandedIds = rememberSaveable { mutableStateOf(initialExpandedIds) }
+    LaunchedEffect(expandSingleOnly) {
+        if (expandSingleOnly && expandedIds.value.size > 1) {
+            expandedIds.value = emptyList()
+        }
+    }
     return DebugDrawerState(drawerState, expandSingleOnly, expandedIds)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DebugDrawer(
     enabled: Boolean = true,
@@ -139,7 +151,8 @@ fun DebugDrawer(
                                     maxWidth = DrawerDefaults.MaximumDrawerWidth
                                 )
                                 .padding(drawerContentPadding)
-                                .verticalScroll(rememberScrollState()),
+                                .verticalScroll(rememberScrollState())
+                                .animateContentSize(),
                             verticalArrangement = Arrangement.spacedBy(drawerItemSpacing)
                         ) {
                             drawerContent()
@@ -205,7 +218,7 @@ fun DebugDrawerRegion(
                         }
                     else Modifier
                 )
-                .padding(all = DebugDrawerDefaults.ITEM_PADDING),
+                .padding(vertical = DebugDrawerDefaults.ITEM_PADDING, horizontal = 8.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
@@ -251,11 +264,29 @@ fun DebugDrawerRegion(
         // Content
         AnimatedVisibilityExpand(visible = drawerState.isExpanded(id, collapsible)) {
             Column(
-                modifier = Modifier.padding(all = 8.dp),
+                modifier = Modifier.padding(all = DebugDrawerDefaults.ITEM_PADDING),
                 verticalArrangement = Arrangement.spacedBy(itemSpacing)
             ) {
                 content()
             }
+        }
+    }
+}
+
+@Composable
+fun AnimatedDebugDrawerSubRegion(
+    visible: Boolean,
+    itemSpacing: Dp = DebugDrawerDefaults.ITEM_SPACING,
+    content: @Composable ColumnScope.() -> Unit
+) {
+    AnimatedVisibilityExpand(visible = visible) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = DebugDrawerDefaults.ITEM_PADDING),
+            verticalArrangement = Arrangement.spacedBy(itemSpacing)
+        ) {
+            content()
         }
     }
 }
@@ -337,8 +368,6 @@ fun DebugDrawerCheckbox(
     }
 }
 
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun <T> DebugDrawerDropdown(
     modifier: Modifier = Modifier,
@@ -361,70 +390,74 @@ fun <T> DebugDrawerDropdown(
                 contentDescription = null
             )
         }
-        var expanded by remember { mutableStateOf(false) }
-        ExposedDropdownMenuBox(
+        val expanded = remember { mutableStateOf(false) }
+        Spinner(
             modifier = Modifier.weight(1f),
             expanded = expanded,
-            onExpandedChange = {
-                expanded = !expanded
-            }
-        ) {
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .focusable(false)
-                    .menuAnchor(),
-                readOnly = true,
-                enabled = true,
-                value = labelProvider(selected),
-                onValueChange = { },
-                label = { Text(text = label) },
-                trailingIcon = {
-                    ExposedDropdownMenuDefaults.TrailingIcon(expanded)
-                },
-                colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors()
+            label = label,
+            selected = selected,
+            items = items,
+            labelProvider = labelProvider,
+            iconProvider = iconProvider,
+            onItemSelected = onItemSelected
+        )
+    }
+}
+
+@Composable
+fun <T> DebugDrawerSegmentedButtons(
+    modifier: Modifier = Modifier,
+    icon: ImageVector? = null,
+    selected: MutableState<T>,
+    items: List<T>,
+    labelProvider: (item: T) -> String = { it.toString() }
+) {
+    DebugDrawerSegmentedButtons(modifier, icon, selected.value, items, labelProvider) {
+        selected.value = it
+    }
+}
+
+@Composable
+fun <T> DebugDrawerSegmentedButtons(
+    modifier: Modifier = Modifier,
+    icon: ImageVector? = null,
+    selected: T,
+    items: List<T>,
+    labelProvider: (item: T) -> String = { it.toString() },
+    onItemSelected: (item: T) -> Unit
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if (icon != null) {
+            Icon(
+                modifier = Modifier.padding(end = 4.dp),
+                imageVector = icon,
+                contentDescription = null
             )
-            ExposedDropdownMenu(
-                expanded = expanded,
-                onDismissRequest = {
-                    expanded = false
-                }
-            ) {
-                items.forEachIndexed { index, item ->
-                    DropdownMenuItem(
-                        onClick = {
-                            if (item != selected) {
-                                onItemSelected.invoke(item)
-                            }
-                            expanded = false
-                        },
-                        text = {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                if (iconProvider != null) {
-                                    Icon(
-                                        imageVector = iconProvider.invoke(item),
-                                        contentDescription = ""
-                                    )
-                                }
-                                Text(text = labelProvider(item))
-                            }
-                        }
-                    )
-                }
-            }
         }
+        val index by remember(selected) {
+            derivedStateOf { items.indexOf(selected) }
+        }
+        SegmentedButtons(
+            modifier = Modifier.weight(1f),
+            items = items.map { labelProvider(it) },
+            selectedIndex = index,
+            onItemSelected = { onItemSelected(items[it]) }
+        )
     }
 }
 
 
 @Composable
 fun DebugDrawerInfo(
+    modifier: Modifier = Modifier,
     title: String,
     info: String
 ) {
     Row(
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
@@ -443,13 +476,12 @@ fun DebugDrawerInfo(
 
 @Composable
 fun DebugDrawerDivider(
+    modifier: Modifier = Modifier.fillMaxWidth(),
     info: String
 ) {
     if (info.isEmpty()) {
         Divider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 4.dp),
+            modifier = modifier,
             color = MaterialTheme.colorScheme.outline
         )
     } else {

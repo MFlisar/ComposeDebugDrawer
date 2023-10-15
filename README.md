@@ -5,30 +5,43 @@
 
 This library offers you a simple easily expandable debug drawer.
 
-Made for **Compose M3** based on compose BOM version **2023.01.00**.
+Made for **Compose M3**.
+
+### Dependencies
+
+| Dependency |        Version |
+|:-------------------------------------------------------------------- |---------------:|
+| [Compose BOM](https://developer.android.com/jetpack/compose/bom/bom) |   `2023.10.00` |
+| Material3 | `1.1.2` |
+
+Compose Mappings for BOM file: [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping)
 
 ### Gradle (via [JitPack.io](https://jitpack.io/))
 
 1. add jitpack to your project's `build.gradle`:
+
 ```groovy
 repositories {
     maven { url "https://jitpack.io" }
 }
 ```
+
 2. add the compile statement to your module's `build.gradle`:
 ```groovy
 dependencies {
 
+  val debugDrawer = "<LATEST-VERSION>"
+
   // core module
-  implementation "com.github.MFlisar.ComposeDebugDrawer:core:<LATEST-VERSION>"
+  implementation("com.github.MFlisar.ComposeDebugDrawer:core:$debugDrawer")
   
   // modules
-  implementation "com.github.MFlisar.ComposeDebugDrawer:infos-build:<LATEST-VERSION>"
-  implementation "com.github.MFlisar.ComposeDebugDrawer:infos-device:<LATEST-VERSION>"
+  implementation("com.github.MFlisar.ComposeDebugDrawer:infos-build:$debugDrawer")
+  implementation("com.github.MFlisar.ComposeDebugDrawer:infos-device:$debugDrawer")
   
   // plugins for other libraries
-  implementation "com.github.MFlisar.ComposeDebugDrawer:plugin-lumberjack:<LATEST-VERSION>"
-  implementation "com.github.MFlisar.ComposeDebugDrawer:plugin-materialpreferences:<LATEST-VERSION>"
+  implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-lumberjack:$debugDrawer")
+  implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-materialpreferences:$debugDrawer")
 }
 ```
 
@@ -105,6 +118,26 @@ private fun Drawer(drawerState: DebugDrawerState) {
         ) {
             // on click
         }
+        
+        // Dropdown
+        val items = listOf("Entry 1", "Entry 2", "Entry 3")
+        var selected by remember { mutableStateOf(items[0]) }
+        DebugDrawerDropdown(
+            modifier = modifier,
+            label = "Items",
+            selected = selected,
+            items = items
+        ) {
+            selected = it
+        }
+        
+        // Sectioned Button
+        val items2 = listOf("L1", "L2", "L3")
+        val level = remember { mutableStateOf(items2[0]) }
+        DebugDrawerSegmentedButtons(
+            selected = level, 
+            items = items2
+        )
 
         // Info
         DebugDrawerInfo(title = "Custom Info", info = "Value of custom info...")

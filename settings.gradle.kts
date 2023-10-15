@@ -1,6 +1,3 @@
-//enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-enableFeaturePreview("VERSION_CATALOGS")
-
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
@@ -10,10 +7,10 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
 
-        val kotlin = "1.8.10"
-        val ksp = "1.8.10-1.0.9"
-        val coroutines = "1.6.4"
-        val gradle = "7.2.2"
+        val kotlin = "1.9.10"
+        val ksp = "1.9.10-1.0.13"
+        val coroutines = "1.7.3"
+        val gradle = "8.1.2"
         val maven = "2.0"
 
         // TOML Files
@@ -35,9 +32,9 @@ dependencyResolutionManagement {
             version("ksp", ksp)
         }
         create("app") {
-            version("compileSdk", "33")
+            version("compileSdk", "34")
             version("minSdk", "21")
-            version("targetSdk", "33")
+            version("targetSdk", "34")
         }
         create("libs") {
             // Kotlin

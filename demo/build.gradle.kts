@@ -5,6 +5,8 @@ plugins {
 
 android {
 
+    namespace = "com.michaelflisar.composedebugdrawer.demo"
+
     compileSdk = app.versions.compileSdk.get().toInt()
 
     buildFeatures {
@@ -63,11 +65,23 @@ dependencies {
     // Libraries
     // ------------------------
 
-    implementation(project(":ComposeDebugDrawer:Core"))
-    implementation(project(":ComposeDebugDrawer:Modules:BuildInfos"))
-    implementation(project(":ComposeDebugDrawer:Modules:DeviceInfos"))
-    implementation(project(":ComposeDebugDrawer:Plugins:Lumberjack"))
-    implementation(project(":ComposeDebugDrawer:Plugins:MaterialPreferences"))
+    val live = false
+    val debugDrawer = "0.1"
+
+    // release test
+    if (live) {
+        implementation("com.github.MFlisar.ComposeDebugDrawer:core:$debugDrawer")
+        implementation("com.github.MFlisar.ComposeDebugDrawer:infos-build:$debugDrawer")
+        implementation("com.github.MFlisar.ComposeDebugDrawer:infos-device:$debugDrawer")
+        implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-lumberjack:$debugDrawer")
+        implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-materialpreferences:$debugDrawer")
+    } else {
+        implementation(project(":ComposeDebugDrawer:Core"))
+        implementation(project(":ComposeDebugDrawer:Modules:BuildInfos"))
+        implementation(project(":ComposeDebugDrawer:Modules:DeviceInfos"))
+        implementation(project(":ComposeDebugDrawer:Plugins:Lumberjack"))
+        implementation(project(":ComposeDebugDrawer:Plugins:MaterialPreferences"))
+    }
 
     // preferences via delegates
     implementation(deps.materialpreferences)

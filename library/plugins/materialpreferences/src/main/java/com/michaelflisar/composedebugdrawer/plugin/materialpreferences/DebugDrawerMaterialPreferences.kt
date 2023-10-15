@@ -1,12 +1,12 @@
 package com.michaelflisar.composedebugdrawer.plugin.materialpreferences
 
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerCheckbox
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerDropdown
+import com.michaelflisar.composedebugdrawer.core.DebugDrawerSegmentedButtons
 import com.michaelflisar.materialpreferences.core.interfaces.StorageSetting
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -65,11 +65,33 @@ fun <E : Enum<E>> DebugDrawerSettingDropdown(
 }
 
 @Composable
+fun <E : Enum<E>> DebugDrawerSettingSegmentedButtons(
+    modifier: Modifier = Modifier,
+    setting: StorageSetting<E>,
+    items: Array<E>,
+    icon: ImageVector? = null
+) {
+    val scope = rememberCoroutineScope()
+    val selected by setting.collectAsState()
+    DebugDrawerSegmentedButtons(
+        modifier = modifier,
+        icon = icon,
+        selected = selected,
+        items = items.toList(),
+        labelProvider = { it.name }
+    ) {
+        scope.launch(Dispatchers.IO) {
+            setting.update(it)
+        }
+    }
+}
+
+@Composable
 fun <T>StorageSetting<T>.collectAsState(): State<T> {
     return flow.collectAsState(initial = defaultValue)
 }
 
-private fun <T> StorageSetting<T>.getDebugLabel(): String {
+fun <T> StorageSetting<T>.getDebugLabel(): String {
     return key.let {
         var trimmed = it.replaceFirstChar { it.uppercase() }
         val stringToRemove = emptyList<String>()//listOf("debug", "tmp", "temp")

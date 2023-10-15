@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.michaelflisar.composedebugdrawer.buildinfos.BuildConfig
 import com.michaelflisar.composedebugdrawer.core.*
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoLogging
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoPrefs
@@ -29,6 +30,7 @@ import com.michaelflisar.composedebugdrawer.deviceinfos.DebugDrawerDeviceInfos
 import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberjack
 import com.michaelflisar.composedebugdrawer.plugin.materialpreferences.DebugDrawerSettingCheckbox
 import com.michaelflisar.composedebugdrawer.plugin.materialpreferences.DebugDrawerSettingDropdown
+import com.michaelflisar.composedebugdrawer.plugin.materialpreferences.DebugDrawerSettingSegmentedButtons
 import com.michaelflisar.composedebugdrawer.plugin.materialpreferences.collectAsState
 import com.michaelflisar.lumberjack.L
 import com.michaelflisar.testcompose.ui.theme.ComposeDialogDemoTheme
@@ -80,7 +82,7 @@ class DemoActivity : ComponentActivity() {
                 dynamicColor = dynamicTheme
             ) {
                 DebugDrawer(
-                    enabled = BuildConfig.DEBUG, // if disabled the drawer will not be created at all, in this case inside a release build...
+                    enabled = BuildConfig.DEBUG, // if disabled the drawer will not be created at all, in this case inside a release build... could be a (hidden) setting inside your normal settings or whereever you want...
                     drawerState = drawerState,
                     drawerContent = {
                         Drawer(drawerState)
@@ -150,8 +152,18 @@ class DemoActivity : ComponentActivity() {
     ) {
         val scope = rememberCoroutineScope()
 
+        DebugDrawerCheckbox(
+            label = "Expand Single Only",
+            description = "This flag is used by this debug drawer!",
+            checked = DemoPrefs.expandSingleOnly.value
+        ) {
+            scope.launch(Dispatchers.IO) {
+                DemoPrefs.expandSingleOnly.update(it)
+            }
+        }
+
         // 1) Build Infos
-        DebugDrawerBuildInfos(drawerState = drawerState, collapsible = false) {
+        DebugDrawerBuildInfos(drawerState = drawerState, collapsible = true) {
             // optional additional debug drawer entries...
             DebugDrawerInfo(title = "Author", info = "MF")
         }
@@ -182,30 +194,25 @@ class DemoActivity : ComponentActivity() {
             DebugDrawerDivider(info = "Boolean")
             DebugDrawerSettingCheckbox(setting = DemoPrefs.devBoolean1)
             DebugDrawerSettingCheckbox(setting = DemoPrefs.devBoolean2)
+
             DebugDrawerDivider(info = "Enum")
             DebugDrawerSettingDropdown(
                 setting = DemoPrefs.devStyle,
                 items = DemoPrefs.UIStyle.values()
             )
+            DebugDrawerSettingSegmentedButtons(
+                setting = DemoPrefs.devStyle,
+                items = DemoPrefs.UIStyle.values()
+            )
         }
 
-        // 7) Example of manual checkboxes, buttons, info texts
+        // 7) Example of manual checkboxes, buttons, segmentedbuttons, info texts
         DebugDrawerRegion(
             icon = Icons.Default.Info,
             label = "Manual",
             description = "With some description...",
             drawerState = drawerState
         ) {
-            DebugDrawerCheckbox(
-                label = "Expand Single Only",
-                description = "This flag is used by this debug drawer!",
-                checked = DemoPrefs.expandSingleOnly.value
-            ) {
-                scope.launch(Dispatchers.IO) {
-                    DemoPrefs.expandSingleOnly.update(it)
-                }
-            }
-
             var test1 by remember { mutableStateOf(false) }
             DebugDrawerCheckbox(
                 label = "Checkbox",
@@ -227,6 +234,9 @@ class DemoActivity : ComponentActivity() {
                     .show()
             }
             DebugDrawerInfo(title = "Custom Info", info = "Value of custom info...")
+
+            val level = remember { mutableStateOf("L1") }
+            DebugDrawerSegmentedButtons(selected = level, items = listOf("L1", "L2", "L3"))
         }
 
         // 8) Example of custom layouts

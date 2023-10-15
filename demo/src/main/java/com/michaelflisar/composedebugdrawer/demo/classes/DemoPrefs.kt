@@ -18,4 +18,5 @@ object DemoPrefs : SettingsModel(DataStoreStorage(name = "prefs_dev")) {
     val devBoolean1 by boolPref(true)
     val devBoolean2 by boolPref(false)
     val devStyle by enumPref(UIStyle.Style1)
+    val devStyle2 by enumPref(UIStyle.Style1)
 }

@@ -5,7 +5,6 @@ import android.util.DisplayMetrics
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PhoneAndroid
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -38,11 +37,11 @@ fun DebugDrawerDeviceInfos(
         collapsible = collapsible,
         drawerState = drawerState
     ) {
-        DebugDrawerInfo("Manufacturer", manufacturer)
-        DebugDrawerInfo("Model", model)
-        DebugDrawerInfo("Resolution", resolution)
-        DebugDrawerInfo("Density", density)
-        DebugDrawerInfo("SDK", sdk)
+        DebugDrawerInfo(title = "Manufacturer", info = manufacturer)
+        DebugDrawerInfo(title = "Model", info = model)
+        DebugDrawerInfo(title = "Resolution", info = resolution)
+        DebugDrawerInfo(title = "Density", info = density)
+        DebugDrawerInfo(title = "SDK", info = sdk)
         content()
     }
 }
