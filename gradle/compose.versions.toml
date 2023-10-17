@@ -3,8 +3,7 @@ composeBom =            "2023.10.00"
 compiler =              "1.5.3"
 
 lifecycle = 			"2.6.2"
-activity = 				"1.7.2"
-accompanist = 			"0.32.0"
+activity = 				"1.8.0"
 
 [libraries]
 bom =                       { group = "androidx.compose",                       name = "compose-bom",   version.ref = "composeBom" }
@@ -20,6 +19,3 @@ material3 =                 { group = "androidx.compose.material3",             
 
 lifecycle = 				{ module = "androidx.lifecycle:lifecycle-runtime-compose", 					version.ref = "lifecycle" }
 activity = 					{ module = "androidx.activity:activity-compose", 							version.ref = "activity" }
-
-systemuicontroller = 		{ module = "com.google.accompanist:accompanist-systemuicontroller", 		version.ref = "accompanist" }
-drawablepainter = 		    { module = "com.google.accompanist:accompanist-drawablepainter", 		    version.ref = "accompanist" }

@@ -9,8 +9,8 @@ import com.michaelflisar.composedebugdrawer.core.DebugDrawerRegion
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerState
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoPrefs
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoTheme
-import com.michaelflisar.composedebugdrawer.plugin.materialpreferences.DebugDrawerSettingCheckbox
-import com.michaelflisar.composedebugdrawer.plugin.materialpreferences.DebugDrawerSettingDropdown
+import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingCheckbox
+import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingDropdown
 
 @Composable
 fun DebugDrawerAppTheme(

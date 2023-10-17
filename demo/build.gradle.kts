@@ -28,12 +28,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     composeOptions {
@@ -66,7 +66,7 @@ dependencies {
     // ------------------------
 
     val live = false
-    val debugDrawer = "0.1"
+    val debugDrawer = "0.4"
 
     // release test
     if (live) {
@@ -74,18 +74,19 @@ dependencies {
         implementation("com.github.MFlisar.ComposeDebugDrawer:infos-build:$debugDrawer")
         implementation("com.github.MFlisar.ComposeDebugDrawer:infos-device:$debugDrawer")
         implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-lumberjack:$debugDrawer")
-        implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-materialpreferences:$debugDrawer")
+        implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-kotpreferences:$debugDrawer")
     } else {
         implementation(project(":ComposeDebugDrawer:Core"))
         implementation(project(":ComposeDebugDrawer:Modules:BuildInfos"))
         implementation(project(":ComposeDebugDrawer:Modules:DeviceInfos"))
         implementation(project(":ComposeDebugDrawer:Plugins:Lumberjack"))
-        implementation(project(":ComposeDebugDrawer:Plugins:MaterialPreferences"))
+        implementation(project(":ComposeDebugDrawer:Plugins:KotPreferences"))
     }
 
     // preferences via delegates
-    implementation(deps.materialpreferences)
-    implementation(deps.materialpreferences.datastore)
+    implementation(deps.kotpreferences.core)
+    implementation(deps.kotpreferences.datastore)
+    implementation(deps.kotpreferences.compose)
 
     // logging
     implementation(deps.lumberjack)

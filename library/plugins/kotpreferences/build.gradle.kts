@@ -6,7 +6,7 @@ plugins {
 
 android {
 
-    namespace = "com.michaelflisar.composedebugdrawer.plugin.materialpreferences"
+    namespace = "com.michaelflisar.composedebugdrawer.plugin.kotpreferences"
 
     compileSdk = app.versions.compileSdk.get().toInt()
 
@@ -65,14 +65,15 @@ dependencies {
 
     implementation(project(":ComposeDebugDrawer:Core"))
 
-    implementation(deps.materialpreferences)
+    implementation(deps.kotpreferences.core)
+    implementation(deps.kotpreferences.compose)
 }
 
 project.afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("maven") {
-                artifactId = "plugin-materialpreferences"
+                artifactId = "plugin-kotpreferences"
                 from(components["release"])
             }
         }

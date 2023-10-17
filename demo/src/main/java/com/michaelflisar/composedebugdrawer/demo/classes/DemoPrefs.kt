@@ -1,7 +1,7 @@
 package com.michaelflisar.composedebugdrawer.demo.classes
 
-import com.michaelflisar.materialpreferences.core.SettingsModel
-import com.michaelflisar.materialpreferences.datastore.DataStoreStorage
+import com.michaelflisar.kotpreferences.core.SettingsModel
+import com.michaelflisar.kotpreferences.datastore.DataStoreStorage
 
 object DemoPrefs : SettingsModel(DataStoreStorage(name = "prefs_dev")) {
 

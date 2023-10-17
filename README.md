@@ -42,7 +42,7 @@ dependencies {
   
   // plugins for other libraries
   implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-lumberjack:$debugDrawer")
-  implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-materialpreferences:$debugDrawer")
+  implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-kotpreferences:$debugDrawer")
 }
 ```
 
@@ -161,4 +161,4 @@ private fun Drawer(drawerState: DebugDrawerState) {
 * build infos
 * device infos
 * plugin lumberjack
-* plugin material preferences
+* plugin kotpreferences

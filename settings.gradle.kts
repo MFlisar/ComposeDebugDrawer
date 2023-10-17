@@ -59,8 +59,8 @@ project(":ComposeDebugDrawer:Modules:DeviceInfos").projectDir = file("library/mo
 
 include(":ComposeDebugDrawer:Plugins:Lumberjack")
 project(":ComposeDebugDrawer:Plugins:Lumberjack").projectDir = file("library/plugins/lumberjack")
-include(":ComposeDebugDrawer:Plugins:MaterialPreferences")
-project(":ComposeDebugDrawer:Plugins:MaterialPreferences").projectDir = file("library/plugins/materialpreferences")
+include(":ComposeDebugDrawer:Plugins:KotPreferences")
+project(":ComposeDebugDrawer:Plugins:KotPreferences").projectDir = file("library/plugins/kotpreferences")
 
 include(":demo")
 project(":demo").projectDir = file("demo")

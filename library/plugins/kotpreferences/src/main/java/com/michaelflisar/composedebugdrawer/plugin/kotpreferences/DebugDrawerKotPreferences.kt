@@ -1,13 +1,16 @@
-package com.michaelflisar.composedebugdrawer.plugin.materialpreferences
+package com.michaelflisar.composedebugdrawer.plugin.kotpreferences
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerCheckbox
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerDropdown
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerSegmentedButtons
-import com.michaelflisar.materialpreferences.core.interfaces.StorageSetting
+import com.michaelflisar.kotpreferences.compose.collectAsStateNotNull
+import com.michaelflisar.kotpreferences.core.interfaces.StorageSetting
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
@@ -22,7 +25,7 @@ fun DebugDrawerSettingCheckbox(
     description: String = ""
 ) {
     val scope = rememberCoroutineScope()
-    val checked by setting.collectAsState()
+    val checked by setting.collectAsStateNotNull()
     DebugDrawerCheckbox(
         modifier = modifier,
         icon = icon,
@@ -47,7 +50,7 @@ fun <E : Enum<E>> DebugDrawerSettingDropdown(
     label: String = setting.getDebugLabel()
 ) {
     val scope = rememberCoroutineScope()
-    val selected by setting.collectAsState()
+    val selected by setting.collectAsStateNotNull()
 
     DebugDrawerDropdown(
         modifier = modifier,
@@ -72,7 +75,7 @@ fun <E : Enum<E>> DebugDrawerSettingSegmentedButtons(
     icon: ImageVector? = null
 ) {
     val scope = rememberCoroutineScope()
-    val selected by setting.collectAsState()
+    val selected by setting.collectAsStateNotNull()
     DebugDrawerSegmentedButtons(
         modifier = modifier,
         icon = icon,
@@ -84,11 +87,6 @@ fun <E : Enum<E>> DebugDrawerSettingSegmentedButtons(
             setting.update(it)
         }
     }
-}
-
-@Composable
-fun <T>StorageSetting<T>.collectAsState(): State<T> {
-    return flow.collectAsState(initial = defaultValue)
 }
 
 fun <T> StorageSetting<T>.getDebugLabel(): String {

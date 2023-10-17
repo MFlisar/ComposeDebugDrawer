@@ -28,10 +28,11 @@ import com.michaelflisar.composedebugdrawer.demo.classes.DemoPrefs
 import com.michaelflisar.composedebugdrawer.buildinfos.DebugDrawerBuildInfos
 import com.michaelflisar.composedebugdrawer.deviceinfos.DebugDrawerDeviceInfos
 import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberjack
-import com.michaelflisar.composedebugdrawer.plugin.materialpreferences.DebugDrawerSettingCheckbox
-import com.michaelflisar.composedebugdrawer.plugin.materialpreferences.DebugDrawerSettingDropdown
-import com.michaelflisar.composedebugdrawer.plugin.materialpreferences.DebugDrawerSettingSegmentedButtons
-import com.michaelflisar.composedebugdrawer.plugin.materialpreferences.collectAsState
+import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingCheckbox
+import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingDropdown
+import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingSegmentedButtons
+import com.michaelflisar.kotpreferences.compose.collectAsState
+import com.michaelflisar.kotpreferences.compose.collectAsStateNotNull
 import com.michaelflisar.lumberjack.L
 import com.michaelflisar.testcompose.ui.theme.ComposeDialogDemoTheme
 import kotlinx.coroutines.Dispatchers
@@ -57,9 +58,9 @@ class DemoActivity : ComponentActivity() {
         setContent {
 
             // collectAsState comes from preference module and allows us to simply use MaterialPreferences with compose
-            val theme by DemoPrefs.theme.collectAsState()
-            val dynamicTheme by DemoPrefs.dynamicTheme.collectAsState()
-            val expandSingleOnly = DemoPrefs.expandSingleOnly.collectAsState()
+            val theme by DemoPrefs.theme.collectAsStateNotNull()
+            val dynamicTheme by DemoPrefs.dynamicTheme.collectAsStateNotNull()
+            val expandSingleOnly = DemoPrefs.expandSingleOnly.collectAsStateNotNull()
 
             val scope = rememberCoroutineScope()
             val drawerState = rememberDebugDrawerState(
