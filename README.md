@@ -16,6 +16,18 @@ Made for **Compose M3**.
 
 Compose Mappings for BOM file: [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping)
 
+### Other Dependencies
+
+* Plugins do depend on the respective library...
+
+| Modules | Dependency | Version |
+|:-|:-|-:|
+| `core` | no dependency |  |
+| `infos-build` | no dependency |  |
+| `infos-device` | no dependency |  |
+| `plugin-lumberjack` | [ComposeDialogs](https://github.com/MFlisar/Lumberjack) | 5.3.0 |
+| `plugin-kotpreferences` | [https://github.com/MFlisar/KotPreferences) | 0.3 |
+
 ### Gradle (via [JitPack.io](https://jitpack.io/))
 
 1. add jitpack to your project's `build.gradle`:
@@ -85,7 +97,7 @@ private fun Drawer(drawerState: DebugDrawerState) {
         mailReceiver = "feedback@gmail.com"
     )
     
-    // material preferences module for delegate based preferences (another library of mine)
+    // kotpreferences module for delegate based preferences (another library of mine)
     DebugDrawerRegion(
         icon = Icons.Default.ColorLens,
         label = "Demo Preferences",
