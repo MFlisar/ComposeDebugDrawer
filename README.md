@@ -158,6 +158,10 @@ private fun Drawer(drawerState: DebugDrawerState) {
 }
 ```
 
+###  Demo
+
+A full [demo](demo/src/main/java/com/michaelflisar/composedebugdrawer/demo/DemoActivity.kt) is included inside the *demo module*, it shows nearly every usage with working examples.
+
 ### Screenshots
 
 | | | | |
