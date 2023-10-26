@@ -11,7 +11,7 @@ Made for **Compose M3**.
 
 | Dependency | Version | Infos |
 |:-|-:|:-:|
-| [Compose BOM](https://developer.android.com/jetpack/compose/bom/bom) | `2023.10.00` | [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping) |
+| [Compose BOM](https://developer.android.com/jetpack/compose/bom/bom) | `2023.10.01` | [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping) |
 | Material3 | `1.1.2` | |
 
 ### Other Dependencies
@@ -23,7 +23,7 @@ Made for **Compose M3**.
 | `core` | no dependency |  |
 | `infos-build` | no dependency |  |
 | `infos-device` | no dependency |  |
-| `plugin-lumberjack` | [ComposeDialogs](https://github.com/MFlisar/Lumberjack) | 5.3.0 |
+| `plugin-lumberjack` | [ComposeDialogs](https://github.com/MFlisar/Lumberjack) | 5.3.1 |
 | `plugin-kotpreferences` | [KotPreferences](https://github.com/MFlisar/KotPreferences) | 0.3 |
 
 ### Gradle (via [JitPack.io](https://jitpack.io/))

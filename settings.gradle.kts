@@ -13,9 +13,6 @@ dependencyResolutionManagement {
         val gradle = "8.1.2"
 
         // TOML Files
-        create("androidx") {
-            from(files("gradle/androidx.versions.toml"))
-        }
         create("deps") {
             from(files("gradle/dependencies.versions.toml"))
         }

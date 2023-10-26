@@ -1,7 +1,7 @@
 [versions]
 
 # mflisar
-lumberjack = 				"5.3.0"
+lumberjack = 				"5.3.1"
 kotpreferences =        	"0.3"
 
 # ---------

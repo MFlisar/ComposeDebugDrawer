@@ -31,10 +31,9 @@ import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberj
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingCheckbox
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingDropdown
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingSegmentedButtons
-import com.michaelflisar.kotpreferences.compose.collectAsState
 import com.michaelflisar.kotpreferences.compose.collectAsStateNotNull
 import com.michaelflisar.lumberjack.L
-import com.michaelflisar.testcompose.ui.theme.ComposeDialogDemoTheme
+import com.michaelflisar.composedebugdrawer.demo.theme.ComposeDialogDemoTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -112,7 +111,7 @@ class DemoActivity : ComponentActivity() {
             Column {
                 TopAppBar(
                     title = { Text(stringResource(R.string.app_name)) },
-                    colors = TopAppBarDefaults.smallTopAppBarColors(
+                    colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = MaterialTheme.colorScheme.primary,
                         titleContentColor = MaterialTheme.colorScheme.onPrimary
                     )

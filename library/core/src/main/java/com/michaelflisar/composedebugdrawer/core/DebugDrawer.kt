@@ -50,7 +50,6 @@ object DebugDrawerDefaults {
 // Drawer
 // -------------
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Stable
 data class DebugDrawerState(
     val drawerState: DrawerState,
