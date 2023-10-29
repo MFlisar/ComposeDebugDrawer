@@ -66,8 +66,6 @@ dependencies {
     implementation(project(":ComposeDebugDrawer:Core"))
 
     implementation(deps.lumberjack.core)
-    implementation(deps.lumberjack.logger.console)
-    implementation(deps.lumberjack.logger.file)
     implementation(deps.lumberjack.extension.composeviewer)
     implementation(deps.lumberjack.extension.feedback)
 }

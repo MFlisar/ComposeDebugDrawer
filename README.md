@@ -23,7 +23,7 @@ Made for **Compose M3**.
 | `core` | no dependency |  |
 | `infos-build` | no dependency |  |
 | `infos-device` | no dependency |  |
-| `plugin-lumberjack` | [ComposeDialogs](https://github.com/MFlisar/Lumberjack) | 5.3.1 |
+| `plugin-lumberjack` | [Lumberjack](https://github.com/MFlisar/Lumberjack) | 6.0.0 |
 | `plugin-kotpreferences` | [KotPreferences](https://github.com/MFlisar/KotPreferences) | 0.3 |
 
 ### Gradle (via [JitPack.io](https://jitpack.io/))

@@ -2,7 +2,9 @@ package com.michaelflisar.composedebugdrawer.demo
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BugReport
@@ -29,16 +31,19 @@ import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSet
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingDropdown
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingSegmentedButtons
 import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberjack
-import com.michaelflisar.composedemobaseactivity.DemoBaseActivity
+import com.michaelflisar.composedemobaseactivity.classes.DemoBasePrefs
 import com.michaelflisar.composedemobaseactivity.classes.DemoTheme
+import com.michaelflisar.composedemobaseactivity.theme.DemoAppTheme
+import com.michaelflisar.kotpreferences.compose.collectAsState
 import com.michaelflisar.kotpreferences.compose.collectAsStateNotNull
 import com.michaelflisar.lumberjack.core.L
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainActivity : DemoBaseActivity() {
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
         // just for demo purposes of the lumberjack module we log all demo pref changes
@@ -51,10 +56,28 @@ class MainActivity : DemoBaseActivity() {
             }
         }
         L.d { "Demo started" }
+
+        setContent {
+
+            val stateTheme = DemoBasePrefs.theme.collectAsState()
+            val stateDynamicTheme = DemoBasePrefs.dynamicTheme.collectAsState()
+            val theme = stateTheme.value
+            val dynamicTheme = stateDynamicTheme.value
+
+            if (theme == null || dynamicTheme == null)
+                return@setContent
+
+            DemoAppTheme(
+                darkTheme = theme.isDark(),
+                dynamicColor = dynamicTheme
+            ) {
+                RootContent(theme, dynamicTheme)
+            }
+        }
     }
 
     @Composable
-    override fun Content(modifier: Modifier, theme: DemoTheme, dynamicTheme: Boolean) {
+    fun RootContent(theme: DemoTheme, dynamicTheme: Boolean) {
 
         val expandSingleOnly = DemoPrefs.expandSingleOnly.collectAsStateNotNull()
 
@@ -75,7 +98,6 @@ class MainActivity : DemoBaseActivity() {
         }
 
         DebugDrawer(
-            modifier = modifier,
             enabled = BuildConfig.DEBUG, // if disabled the drawer will not be created at all, in this case inside a release build... could be a (hidden) setting inside your normal settings or whereever you want...
             drawerState = drawerState,
             drawerContent = {
