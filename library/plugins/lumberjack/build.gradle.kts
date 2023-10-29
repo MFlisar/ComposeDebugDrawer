@@ -65,10 +65,11 @@ dependencies {
 
     implementation(project(":ComposeDebugDrawer:Core"))
 
-    implementation(deps.lumberjack)
-    implementation(deps.lumberjack.filelogger)
-    implementation(deps.lumberjack.feedback)
-    implementation(deps.lumberjack.viewer)
+    implementation(deps.lumberjack.core)
+    implementation(deps.lumberjack.logger.console)
+    implementation(deps.lumberjack.logger.file)
+    implementation(deps.lumberjack.extension.composeviewer)
+    implementation(deps.lumberjack.extension.feedback)
 }
 
 project.afterEvaluate {

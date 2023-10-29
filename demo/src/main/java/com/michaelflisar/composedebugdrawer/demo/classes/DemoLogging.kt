@@ -1,28 +1,28 @@
 package com.michaelflisar.composedebugdrawer.demo.classes
 
 import android.content.Context
-import com.michaelflisar.lumberjack.FileLoggingSetup
-import com.michaelflisar.lumberjack.FileLoggingTree
-import com.michaelflisar.lumberjack.L
-import timber.log.ConsoleTree
+import com.michaelflisar.lumberjack.core.L
+import com.michaelflisar.lumberjack.core.interfaces.IFileLoggingSetup
+import com.michaelflisar.lumberjack.implementation.LumberjackLogger
+import com.michaelflisar.lumberjack.implementation.plant
+import com.michaelflisar.lumberjack.loggers.console.ConsoleLogger
+import com.michaelflisar.lumberjack.loggers.file.FileLogger
+import com.michaelflisar.lumberjack.loggers.file.FileLoggerSetup
 
 object DemoLogging {
 
-    lateinit var fileLoggingSetup: FileLoggingSetup
+    lateinit var fileLoggingSetup: IFileLoggingSetup
 
     fun init(context: Context) {
 
-        fileLoggingSetup = FileLoggingSetup.NumberedFiles(
-            context,
-            setup = FileLoggingSetup.Setup(
-                fileName = "log",
-                fileExtension = "txt",
-                logsToKeep = 20
-            ),
-            sizeLimit = "1MB"
-        )
+        // 1) init
+        L.init(LumberjackLogger)
 
-        L.plant(ConsoleTree())
-        L.plant(FileLoggingTree(fileLoggingSetup))
+        // 2) add loggers
+        val setup = FileLoggerSetup.Daily(context)
+        L.plant(ConsoleLogger())
+        L.plant(FileLogger(setup))
+
+        fileLoggingSetup = setup
     }
 }

@@ -65,23 +65,11 @@ dependencies {
     // Libraries
     // ------------------------
 
-    val live = false
-    val debugDrawer = "0.4"
-
-    // release test
-    if (live) {
-        implementation("com.github.MFlisar.ComposeDebugDrawer:core:$debugDrawer")
-        implementation("com.github.MFlisar.ComposeDebugDrawer:infos-build:$debugDrawer")
-        implementation("com.github.MFlisar.ComposeDebugDrawer:infos-device:$debugDrawer")
-        implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-lumberjack:$debugDrawer")
-        implementation("com.github.MFlisar.ComposeDebugDrawer:plugin-kotpreferences:$debugDrawer")
-    } else {
-        implementation(project(":ComposeDebugDrawer:Core"))
-        implementation(project(":ComposeDebugDrawer:Modules:BuildInfos"))
-        implementation(project(":ComposeDebugDrawer:Modules:DeviceInfos"))
-        implementation(project(":ComposeDebugDrawer:Plugins:Lumberjack"))
-        implementation(project(":ComposeDebugDrawer:Plugins:KotPreferences"))
-    }
+    implementation(project(":ComposeDebugDrawer:Core"))
+    implementation(project(":ComposeDebugDrawer:Modules:BuildInfos"))
+    implementation(project(":ComposeDebugDrawer:Modules:DeviceInfos"))
+    implementation(project(":ComposeDebugDrawer:Plugins:Lumberjack"))
+    implementation(project(":ComposeDebugDrawer:Plugins:KotPreferences"))
 
     // preferences via delegates
     implementation(deps.kotpreferences.core)
@@ -89,6 +77,11 @@ dependencies {
     implementation(deps.kotpreferences.compose)
 
     // logging
-    implementation(deps.lumberjack)
-    implementation(deps.lumberjack.filelogger)
+    implementation(deps.lumberjack.core)
+    implementation(deps.lumberjack.implementation)
+    implementation(deps.lumberjack.logger.console)
+    implementation(deps.lumberjack.logger.file)
+
+    // a minimal library that provides some useful composables that I use inside demo activities
+    implementation(deps.composedemobaseactivity)
 }

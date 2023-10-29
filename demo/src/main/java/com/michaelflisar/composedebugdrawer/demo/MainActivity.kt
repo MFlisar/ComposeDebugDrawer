@@ -2,7 +2,6 @@ package com.michaelflisar.composedebugdrawer.demo
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -31,15 +30,15 @@ import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberj
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingCheckbox
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingDropdown
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingSegmentedButtons
+import com.michaelflisar.composedemobaseactivity.DemoActivity
+import com.michaelflisar.composedemobaseactivity.classes.DemoTheme
 import com.michaelflisar.kotpreferences.compose.collectAsStateNotNull
-import com.michaelflisar.lumberjack.L
-import com.michaelflisar.composedebugdrawer.demo.theme.ComposeDialogDemoTheme
+import com.michaelflisar.lumberjack.core.L
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DemoActivity : ComponentActivity() {
+class MainActivity : DemoActivity() {
 
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -53,48 +52,41 @@ class DemoActivity : ComponentActivity() {
             }
         }
         L.d { "Demo started" }
-
-        setContent {
-
-            // collectAsState comes from preference module and allows us to simply use MaterialPreferences with compose
-            val theme by DemoPrefs.theme.collectAsStateNotNull()
-            val dynamicTheme by DemoPrefs.dynamicTheme.collectAsStateNotNull()
-            val expandSingleOnly = DemoPrefs.expandSingleOnly.collectAsStateNotNull()
-
-            val scope = rememberCoroutineScope()
-            val drawerState = rememberDebugDrawerState(
-                // all optional
-                DrawerValue.Closed,
-                expandSingleOnly = expandSingleOnly.value,
-                confirmStateChange = { true },
-                initialExpandedIds = emptyList()
-            )
-
-            BackHandler(drawerState.drawerState.isOpen) {
-                // we handle the back press if debug drawer is open and close it
-                scope.launch {
-                    drawerState.drawerState.close()
-                }
-            }
-
-            ComposeDialogDemoTheme(
-                darkTheme = theme.isDark(),
-                dynamicColor = dynamicTheme
-            ) {
-                DebugDrawer(
-                    enabled = BuildConfig.DEBUG, // if disabled the drawer will not be created at all, in this case inside a release build... could be a (hidden) setting inside your normal settings or whereever you want...
-                    drawerState = drawerState,
-                    drawerContent = {
-                        Drawer(drawerState)
-                    },
-                    content = {
-                        Content(drawerState)
-                    }
-                )
-            }
-        }
     }
 
+    @Composable
+    override fun Content(modifier: Modifier, theme: DemoTheme, dynamicTheme: Boolean) {
+
+        val expandSingleOnly = DemoPrefs.expandSingleOnly.collectAsStateNotNull()
+
+        val scope = rememberCoroutineScope()
+        val drawerState = rememberDebugDrawerState(
+            // all optional
+            DrawerValue.Closed,
+            expandSingleOnly = expandSingleOnly.value,
+            confirmStateChange = { true },
+            initialExpandedIds = emptyList()
+        )
+
+        BackHandler(drawerState.drawerState.isOpen) {
+            // we handle the back press if debug drawer is open and close it
+            scope.launch {
+                drawerState.drawerState.close()
+            }
+        }
+
+        DebugDrawer(
+            enabled = BuildConfig.DEBUG, // if disabled the drawer will not be created at all, in this case inside a release build... could be a (hidden) setting inside your normal settings or whereever you want...
+            drawerState = drawerState,
+            drawerContent = {
+                Drawer(drawerState)
+            },
+            content = {
+                Content(drawerState)
+            }
+        )
+    }
+    
     // ----------------
     // UI - Content and Drawer
     // ----------------
@@ -222,7 +214,7 @@ class DemoActivity : ComponentActivity() {
                 test1 = it
             }
             DebugDrawerButton(icon = Icons.Default.BugReport, label = "Button (Filled)") {
-                Toast.makeText(this@DemoActivity, "Filled Button Clicked", Toast.LENGTH_SHORT)
+                Toast.makeText(this@MainActivity, "Filled Button Clicked", Toast.LENGTH_SHORT)
                     .show()
             }
             DebugDrawerButton(
@@ -230,7 +222,7 @@ class DemoActivity : ComponentActivity() {
                 outline = false,
                 label = "Button (Outlined)"
             ) {
-                Toast.makeText(this@DemoActivity, "Outlined Button Clicked", Toast.LENGTH_SHORT)
+                Toast.makeText(this@MainActivity, "Outlined Button Clicked", Toast.LENGTH_SHORT)
                     .show()
             }
             DebugDrawerInfo(title = "Custom Info", info = "Value of custom info...")
@@ -256,7 +248,8 @@ class DemoActivity : ComponentActivity() {
                     icon = Icons.Default.Info,
                     label = "B1"
                 ) {
-                    Toast.makeText(this@DemoActivity, "Button B1 Clicked", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Button B1 Clicked", Toast.LENGTH_SHORT)
+                        .show()
                 }
                 DebugDrawerButton(
                     modifier = modifier,
@@ -264,7 +257,8 @@ class DemoActivity : ComponentActivity() {
                     outline = false,
                     label = "B2"
                 ) {
-                    Toast.makeText(this@DemoActivity, "Button B2 Clicked", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Button B2 Clicked", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
 

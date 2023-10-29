@@ -3,7 +3,7 @@ package com.michaelflisar.composedebugdrawer.demo.classes
 import com.michaelflisar.kotpreferences.core.SettingsModel
 import com.michaelflisar.kotpreferences.datastore.DataStoreStorage
 
-object DemoPrefs : SettingsModel(DataStoreStorage(name = "prefs_dev")) {
+object DemoPrefs : SettingsModel(DataStoreStorage(name = "demo_prefs")) {
 
     enum class UIStyle {
         Style1,
@@ -11,8 +11,6 @@ object DemoPrefs : SettingsModel(DataStoreStorage(name = "prefs_dev")) {
         Style3
     }
 
-    val theme by enumPref(DemoTheme.System)
-    val dynamicTheme by boolPref(false)
     val expandSingleOnly by boolPref(false)
 
     val devBoolean1 by boolPref(true)

@@ -4,23 +4,27 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerButton
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerRegion
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerState
-import com.michaelflisar.lumberjack.FileLoggingSetup
-import com.michaelflisar.lumberjack.L
-import com.michaelflisar.lumberjack.sendFeedback
-import com.michaelflisar.lumberjack.showLog
+import com.michaelflisar.lumberjack.core.L
+import com.michaelflisar.lumberjack.core.interfaces.IFileLoggingSetup
+import com.michaelflisar.lumberjack.extensions.composeviewer.LumberjackDialog
+import com.michaelflisar.lumberjack.extensions.composeviewer.LumberjackView
+import com.michaelflisar.lumberjack.extensions.feedback.sendFeedback
+import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DebugDrawerLumberjack(
-    setup: FileLoggingSetup,
+    setup: IFileLoggingSetup,
     mailReceiver: String,
     icon: ImageVector? = Icons.Default.Description,
     drawerState: DebugDrawerState,
@@ -29,6 +33,10 @@ fun DebugDrawerLumberjack(
     collapsible: Boolean = true,
     content: @Composable ColumnScope.() -> Unit = {}
 ) {
+    val scope = rememberCoroutineScope()
+    val showLog = rememberSaveable {
+        mutableStateOf(false)
+    }
     DebugDrawerRegion(
         icon = icon,
         label = label,
@@ -41,7 +49,7 @@ fun DebugDrawerLumberjack(
             label = "View Log File",
             icon = Icons.Default.Visibility
         ) {
-            L.showLog(context, setup, mailReceiver)
+            showLog.value = true
         }
         DebugDrawerButton(
             label = "Send Log File",
@@ -64,8 +72,18 @@ fun DebugDrawerLumberjack(
             icon = Icons.Default.Delete,
             foregroundTint = MaterialTheme.colorScheme.error
         ) {
-            setup.clearLogFiles()
+            scope.launch {
+                setup.clearLogFiles()
+            }
         }
         content()
+    }
+
+    if (showLog.value) {
+        LumberjackDialog(
+            visible = showLog,
+            title = "Log",
+            setup = setup
+        )
     }
 }

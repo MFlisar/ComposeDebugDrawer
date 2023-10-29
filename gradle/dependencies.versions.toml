@@ -1,8 +1,9 @@
 [versions]
 
 # mflisar
-lumberjack = 				"5.3.1"
+lumberjack = 				"6.0.0"
 kotpreferences =        	"0.3"
+composedemobaseactivity =   "0.3"
 
 # ---------
 # libraries
@@ -11,15 +12,18 @@ kotpreferences =        	"0.3"
 [libraries]
 
 # mflisar
-lumberjack =			        			{ module = "com.github.MFlisar.Lumberjack:lumberjack-library", 						version.ref = "lumberjack" }
-lumberjack-filelogger =	        			{ module = "com.github.MFlisar.Lumberjack:lumberjack-filelogger", 					version.ref = "lumberjack" }
-lumberjack-feedback =	        			{ module = "com.github.MFlisar.Lumberjack:lumberjack-feedback", 					version.ref = "lumberjack" }
-lumberjack-viewer =	            			{ module = "com.github.MFlisar.Lumberjack:lumberjack-viewer", 		    			version.ref = "lumberjack" }
-lumberjack-notification =       			{ module = "com.github.MFlisar.Lumberjack:lumberjack-notification", 				version.ref = "lumberjack" }
-kotpreferences-core =               		{ module = "com.github.MFlisar.KotPreferences:core", 								version.ref = "kotpreferences" }
-kotpreferences-datastore =     				{ module = "com.github.MFlisar.KotPreferences:datastore",      						version.ref = "kotpreferences" }
-kotpreferences-encryption-aes =     		{ module = "com.github.MFlisar.KotPreferences:encryption-aes",      				version.ref = "kotpreferences" }
-kotpreferences-compose =     				{ module = "com.github.MFlisar.KotPreferences:compose",      						version.ref = "kotpreferences" }
+
+lumberjack-core =			        		{ module = "com.github.MFlisar.Lumberjack:core", 						version.ref = "lumberjack" }
+lumberjack-implementation =			        { module = "com.github.MFlisar.Lumberjack:implementation-lumberjack", 	version.ref = "lumberjack" }
+lumberjack-logger-console =			        { module = "com.github.MFlisar.Lumberjack:logger-console", 	            version.ref = "lumberjack" }
+lumberjack-logger-file =			        { module = "com.github.MFlisar.Lumberjack:logger-file", 	            version.ref = "lumberjack" }
+lumberjack-extension-composeviewer =	    { module = "com.github.MFlisar.Lumberjack:extension-composeviewer", 	version.ref = "lumberjack" }
+lumberjack-extension-feedback =	            { module = "com.github.MFlisar.Lumberjack:extension-feedback", 	        version.ref = "lumberjack" }
+kotpreferences-core =               		{ module = "com.github.MFlisar.KotPreferences:core", 					version.ref = "kotpreferences" }
+kotpreferences-datastore =     				{ module = "com.github.MFlisar.KotPreferences:datastore",      			version.ref = "kotpreferences" }
+kotpreferences-encryption-aes =     		{ module = "com.github.MFlisar.KotPreferences:encryption-aes",      	version.ref = "kotpreferences" }
+kotpreferences-compose =     				{ module = "com.github.MFlisar.KotPreferences:compose",      			version.ref = "kotpreferences" }
+composedemobaseactivity =                   { module = "com.github.MFlisar:ComposeDemoBaseActivity", 			    version.ref = "composedemobaseactivity" }
 
 # -------
 # bundles
