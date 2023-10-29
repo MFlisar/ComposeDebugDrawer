@@ -3,7 +3,6 @@ package com.michaelflisar.composedebugdrawer.demo
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BugReport
@@ -21,15 +20,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.michaelflisar.composedebugdrawer.buildinfos.BuildConfig
+import com.michaelflisar.composedebugdrawer.buildinfos.DebugDrawerBuildInfos
 import com.michaelflisar.composedebugdrawer.core.*
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoLogging
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoPrefs
-import com.michaelflisar.composedebugdrawer.buildinfos.DebugDrawerBuildInfos
 import com.michaelflisar.composedebugdrawer.deviceinfos.DebugDrawerDeviceInfos
-import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberjack
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingCheckbox
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingDropdown
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingSegmentedButtons
+import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberjack
 import com.michaelflisar.composedemobaseactivity.DemoActivity
 import com.michaelflisar.composedemobaseactivity.classes.DemoTheme
 import com.michaelflisar.kotpreferences.compose.collectAsStateNotNull
@@ -76,6 +75,7 @@ class MainActivity : DemoActivity() {
         }
 
         DebugDrawer(
+            modifier = modifier,
             enabled = BuildConfig.DEBUG, // if disabled the drawer will not be created at all, in this case inside a release build... could be a (hidden) setting inside your normal settings or whereever you want...
             drawerState = drawerState,
             drawerContent = {
@@ -86,7 +86,7 @@ class MainActivity : DemoActivity() {
             }
         )
     }
-    
+
     // ----------------
     // UI - Content and Drawer
     // ----------------
