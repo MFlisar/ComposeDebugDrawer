@@ -29,14 +29,14 @@ import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSet
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingDropdown
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingSegmentedButtons
 import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberjack
-import com.michaelflisar.composedemobaseactivity.DemoActivity
+import com.michaelflisar.composedemobaseactivity.DemoBaseActivity
 import com.michaelflisar.composedemobaseactivity.classes.DemoTheme
 import com.michaelflisar.kotpreferences.compose.collectAsStateNotNull
 import com.michaelflisar.lumberjack.core.L
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainActivity : DemoActivity() {
+class MainActivity : DemoBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

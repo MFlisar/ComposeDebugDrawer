@@ -9,7 +9,7 @@ import com.michaelflisar.composedebugdrawer.core.DebugDrawerRegion
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerState
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingCheckbox
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingDropdown
-import com.michaelflisar.composedemobaseactivity.classes.AppPrefs
+import com.michaelflisar.composedemobaseactivity.classes.DemoBasePrefs
 import com.michaelflisar.composedemobaseactivity.classes.DemoTheme
 
 @Composable
@@ -26,12 +26,12 @@ fun DebugDrawerAppTheme(
         drawerState = drawerState
     ) {
         DebugDrawerSettingDropdown(
-            setting = AppPrefs.theme,
+            setting = DemoBasePrefs.theme,
             items = DemoTheme.values(),
             label = "Theme" // optional manual label...
         )
         DebugDrawerSettingCheckbox(
-            setting = AppPrefs.dynamicTheme,
+            setting = DemoBasePrefs.dynamicTheme,
             label = "Dynamic Colors" // optional manual label...
         )
         DebugDrawerInfo(
