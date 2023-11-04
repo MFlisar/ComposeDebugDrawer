@@ -65,9 +65,17 @@ dependencies {
 
     implementation(project(":ComposeDebugDrawer:Core"))
 
-    implementation(deps.lumberjack.core)
-    implementation(deps.lumberjack.extension.composeviewer)
-    implementation(deps.lumberjack.extension.feedback)
+    val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
+    if (useLiveDependencies) {
+        implementation(deps.lumberjack.core)
+        implementation(deps.lumberjack.extension.composeviewer)
+        implementation(deps.lumberjack.extension.feedback)
+    } else {
+        implementation(project(":Lumberjack:Core"))
+        implementation(project(":Lumberjack:Extensions:Composeviewer"))
+        implementation(project(":Lumberjack:Extensions:Feedback"))
+    }
+
 }
 
 project.afterEvaluate {

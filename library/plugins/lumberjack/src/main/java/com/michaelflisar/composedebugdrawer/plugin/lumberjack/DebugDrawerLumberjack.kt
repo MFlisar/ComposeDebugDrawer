@@ -3,10 +3,12 @@ package com.michaelflisar.composedebugdrawer.plugin.lumberjack
 import android.widget.Toast
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Description
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -18,7 +20,6 @@ import com.michaelflisar.composedebugdrawer.core.DebugDrawerState
 import com.michaelflisar.lumberjack.core.L
 import com.michaelflisar.lumberjack.core.interfaces.IFileLoggingSetup
 import com.michaelflisar.lumberjack.extensions.composeviewer.LumberjackDialog
-import com.michaelflisar.lumberjack.extensions.composeviewer.LumberjackView
 import com.michaelflisar.lumberjack.extensions.feedback.sendFeedback
 import kotlinx.coroutines.launch
 
@@ -58,10 +59,9 @@ fun DebugDrawerLumberjack(
             val file = setup.getLatestLogFiles()
             if (file != null) {
                 L.sendFeedback(
-                    context,
-                    file,
-                    mailReceiver,
-                    filesToAppend = listOf(file)
+                    context = context,
+                    receiver = mailReceiver,
+                    attachments = listOfNotNull(file)
                 )
             } else {
                 Toast.makeText(context, "No log file found!", Toast.LENGTH_SHORT).show()
