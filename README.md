@@ -3,7 +3,7 @@
 [![Release](https://jitpack.io/v/MFlisar/ComposeDebugDrawer.svg)](https://jitpack.io/#MFlisar/ComposeDebugDrawer)
 ![License](https://img.shields.io/github/license/MFlisar/ComposeDebugDrawer)
 
-This library offers you a simple and easily extendable debug drawer.
+This library offers you a **simple** and easily readme **debug drawer**.
 
 ## :camera: Screenshots
 
