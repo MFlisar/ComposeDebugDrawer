@@ -17,6 +17,6 @@ This library offers you a **simple** and easily readme **debug drawer**.
 
 The readme for this library with **code samples**, **screenshots** and more can be found on following *github page*:
 
-[![Static Badge](https://img.shields.io/badge/Open%20Documentation-lightgreen?style=for-the-badge&logo=github&logoColor=black)](https://mflisar.github.io/github-docs/libraries/composedebugdrawer/)
+[![Static Badge](https://img.shields.io/badge/Open%20Documentation-lightgreen?style=for-the-badge&logo=github&logoColor=black)](https://mflisar.github.io/github-docs/pages/compose/composedebugdrawer/)
 
 Additionally there is also a full working [demo app](demo) inside the *demo module*.
