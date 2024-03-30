@@ -479,7 +479,7 @@ fun DebugDrawerDivider(
     info: String
 ) {
     if (info.isEmpty()) {
-        Divider(
+        HorizontalDivider(
             modifier = modifier,
             color = MaterialTheme.colorScheme.outline
         )
@@ -487,7 +487,7 @@ fun DebugDrawerDivider(
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Divider(
+            HorizontalDivider(
                 modifier = Modifier.weight(1f),
                 color = MaterialTheme.colorScheme.outline
             )
@@ -501,7 +501,7 @@ fun DebugDrawerDivider(
                 textAlign = TextAlign.Center,
                 //color = MaterialTheme.colorScheme.primary
             )
-            Divider(
+            HorizontalDivider(
                 modifier = Modifier.weight(1f),
                 color = MaterialTheme.colorScheme.outline
             )

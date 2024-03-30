@@ -2,8 +2,8 @@
 
 # mflisar
 lumberjack = 				"6.0.2"
-kotpreferences =        	"0.3"
-composedemobaseactivity =   "0.5"
+kotpreferences =        	"0.4"
+composedemobaseactivity =   "0.6"
 
 # ---------
 # libraries
@@ -21,8 +21,8 @@ lumberjack-extension-composeviewer =	    { module = "com.github.MFlisar.Lumberja
 lumberjack-extension-feedback =	            { module = "com.github.MFlisar.Lumberjack:extension-feedback", 	        version.ref = "lumberjack" }
 kotpreferences-core =               		{ module = "com.github.MFlisar.KotPreferences:core", 					version.ref = "kotpreferences" }
 kotpreferences-datastore =     				{ module = "com.github.MFlisar.KotPreferences:datastore",      			version.ref = "kotpreferences" }
-kotpreferences-encryption-aes =     		{ module = "com.github.MFlisar.KotPreferences:encryption-aes",      	version.ref = "kotpreferences" }
 kotpreferences-compose =     				{ module = "com.github.MFlisar.KotPreferences:compose",      			version.ref = "kotpreferences" }
+
 composedemobaseactivity =                   { module = "com.github.MFlisar:ComposeDemoBaseActivity", 			    version.ref = "composedemobaseactivity" }
 
 # -------
