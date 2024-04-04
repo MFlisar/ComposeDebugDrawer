@@ -19,7 +19,7 @@ object DemoLogging {
         L.init(LumberjackLogger)
 
         // 2) add loggers
-        val setup = FileLoggerSetup.Daily(context)
+        val setup = FileLoggerSetup.Daily.create(context)
         L.plant(ConsoleLogger())
         L.plant(FileLogger(setup))
 
