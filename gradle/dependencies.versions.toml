@@ -1,7 +1,7 @@
 [versions]
 
 # mflisar
-lumberjack = 				"6.0.2"
+lumberjack = 				"6.0.4"
 kotpreferences =        	"0.4"
 composedemobaseactivity =   "0.6"
 
