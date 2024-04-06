@@ -1,9 +1,9 @@
 [versions]
 
 # mflisar
-lumberjack = 				"6.0.4"
-kotpreferences =        	"0.4"
-composedemobaseactivity =   "0.6"
+lumberjack = 				"6.0.5"
+kotpreferences =        	"0.5"
+composedemobaseactivity =   "0.7"
 
 # ---------
 # libraries
