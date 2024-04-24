@@ -47,7 +47,7 @@ dependencies {
     // ------------------------
 
     implementation(libs.kotlin)
-    implementation(libs.kotlin.coroutines)
+    implementation(libs.kotlinx.coroutines)
 
     // ------------------------
     // AndroidX / Google / Goolge
