@@ -3,20 +3,34 @@ package com.michaelflisar.composedebugdrawer.buildinfos
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.graphics.drawable.VectorDrawable
 import android.os.Build
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerDefaults
-import com.michaelflisar.composedebugdrawer.core.DebugDrawerInfo
-import com.michaelflisar.composedebugdrawer.core.DebugDrawerRegion
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerState
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerInfo
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerRegion
 
 @Composable
 fun DebugDrawerBuildInfos(
-    icon: ImageVector? = null,
     drawerState: DebugDrawerState,
+    icon: ImageVector,
+    label: String = "Information",
+    id: String = label,
+    collapsible: Boolean = true,
+    content: @Composable ColumnScope.() -> Unit = {}
+) {
+    DebugDrawerBuildInfos(drawerState, image = { Icon(icon, null) }, label, id, collapsible, content)
+}
+
+@Composable
+fun DebugDrawerBuildInfos(
+    drawerState: DebugDrawerState,
+    image: @Composable (() -> Unit)? = null,
     label: String = "Information",
     id: String = label,
     collapsible: Boolean = true,
@@ -52,7 +66,7 @@ fun DebugDrawerBuildInfos(
     val debug = if (BuildConfig.DEBUG) DebugDrawerDefaults.TRUE else DebugDrawerDefaults.FALSE
 
     DebugDrawerRegion(
-        icon = icon,
+        image = image,
         label = label,
         id = id,
         collapsible = collapsible,

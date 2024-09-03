@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -72,7 +73,8 @@ dependencies {
     // Dependent on Compose BOM
     implementation(compose.material3)
     implementation(compose.activity)
-    implementation(compose.icons.material.extendedicons)
+    implementation(compose.icons.material.icons.core)
+    implementation(compose.icons.material.icons.extended)
 
     // ------------------------
     // Libraries

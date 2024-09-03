@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -14,8 +15,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import com.michaelflisar.composedebugdrawer.core.DebugDrawerButton
-import com.michaelflisar.composedebugdrawer.core.DebugDrawerRegion
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerButton
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerRegion
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerState
 import com.michaelflisar.lumberjack.core.L
 import com.michaelflisar.lumberjack.core.interfaces.IFileLoggingSetup
@@ -25,10 +26,24 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun DebugDrawerLumberjack(
+    drawerState: DebugDrawerState,
     setup: IFileLoggingSetup,
     mailReceiver: String,
-    icon: ImageVector? = Icons.Default.Description,
+    icon: ImageVector = Icons.Default.Description,
+    label: String = "Logging",
+    id: String = label,
+    collapsible: Boolean = true,
+    content: @Composable ColumnScope.() -> Unit = {}
+) {
+    DebugDrawerLumberjack(drawerState, setup, mailReceiver, image = { Icon(icon, null) }, label, id, collapsible, content)
+}
+
+@Composable
+fun DebugDrawerLumberjack(
     drawerState: DebugDrawerState,
+    setup: IFileLoggingSetup,
+    mailReceiver: String,
+    image: @Composable (() -> Unit)?,
     label: String = "Logging",
     id: String = label,
     collapsible: Boolean = true,
@@ -39,7 +54,7 @@ fun DebugDrawerLumberjack(
         mutableStateOf(false)
     }
     DebugDrawerRegion(
-        icon = icon,
+        image = image,
         label = label,
         id = id,
         collapsible = collapsible,

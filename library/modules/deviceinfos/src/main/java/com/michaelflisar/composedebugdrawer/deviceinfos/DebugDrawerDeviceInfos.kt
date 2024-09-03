@@ -5,17 +5,30 @@ import android.util.DisplayMetrics
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PhoneAndroid
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import com.michaelflisar.composedebugdrawer.core.DebugDrawerInfo
-import com.michaelflisar.composedebugdrawer.core.DebugDrawerRegion
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerInfo
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerRegion
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerState
 
 @Composable
 fun DebugDrawerDeviceInfos(
-    icon: ImageVector? = Icons.Default.PhoneAndroid,
     drawerState: DebugDrawerState,
+    icon: ImageVector? = Icons.Default.PhoneAndroid,
+    label: String = "Device",
+    id: String = label,
+    collapsible: Boolean = true,
+    content: @Composable ColumnScope.() -> Unit = {}
+) {
+    DebugDrawerDeviceInfos(drawerState, image = icon?.let { { Icon(it, null) } }, label, id, collapsible, content)
+}
+
+@Composable
+fun DebugDrawerDeviceInfos(
+    drawerState: DebugDrawerState,
+    image: @Composable (() -> Unit)?,
     label: String = "Device",
     id: String = label,
     collapsible: Boolean = true,
@@ -31,7 +44,7 @@ fun DebugDrawerDeviceInfos(
     val sdk = Build.VERSION.SDK_INT.toString()
 
     DebugDrawerRegion(
-        icon = icon,
+        image = image,
         label = label,
         id = id,
         collapsible = collapsible,

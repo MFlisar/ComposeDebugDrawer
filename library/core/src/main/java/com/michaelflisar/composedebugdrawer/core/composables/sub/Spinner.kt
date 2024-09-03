@@ -1,8 +1,10 @@
-package com.michaelflisar.composedebugdrawer.core.composables
+package com.michaelflisar.composedebugdrawer.core.composables.sub
 
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -15,17 +17,18 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun <T> Spinner(
+internal fun <T> Spinner(
     modifier: Modifier,
     expanded: MutableState<Boolean>,
     label: String,
     selected: T,
     items: List<T>,
     labelProvider: (item: T) -> String = { it.toString() },
-    iconProvider: ((item: T) -> ImageVector)? = null,
+    iconProvider: @Composable ((item: T) -> Unit)? = null,
     onItemSelected: (item: T) -> Unit
 ) {
     ExposedDropdownMenuBox(
@@ -45,6 +48,11 @@ fun <T> Spinner(
             value = labelProvider(selected),
             onValueChange = { },
             label = { Text(text = label) },
+            leadingIcon = {
+                if (iconProvider != null) {
+                    iconProvider(selected)
+                }
+            },
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(expanded.value)
             },
@@ -69,10 +77,8 @@ fun <T> Spinner(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             if (iconProvider != null) {
-                                Icon(
-                                    imageVector = iconProvider.invoke(item),
-                                    contentDescription = ""
-                                )
+                                iconProvider(item)
+                                Spacer(Modifier.width(8.dp))
                             }
                             Text(text = labelProvider(item))
                         }

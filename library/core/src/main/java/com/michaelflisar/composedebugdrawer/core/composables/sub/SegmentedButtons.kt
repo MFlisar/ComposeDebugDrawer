@@ -1,4 +1,4 @@
-package com.michaelflisar.composedebugdrawer.core.composables
+package com.michaelflisar.composedebugdrawer.core.composables.sub
 
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.MutableTransitionState
@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 
 @Composable
-fun SegmentedButtons(
+internal fun SegmentedButtons(
     modifier: Modifier = Modifier,
     items: List<String>,
     selectedIndex: Int,

@@ -1,10 +1,12 @@
 [versions]
 
-gradle = 				"8.3.2"
-kotlin = 				"1.9.23"
+gradle = 				"8.6.0"
+kotlin = 				"2.0.20"
 kotlinx-coroutines = 	"1.8.0"
 
 [plugins]
+
+compose-compiler = 				{ id = "org.jetbrains.kotlin.plugin.compose", 	version.ref = "kotlin" }
 
 [libraries]
 

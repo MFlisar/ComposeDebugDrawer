@@ -24,6 +24,13 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.michaelflisar.composedebugdrawer.buildinfos.BuildConfig
 import com.michaelflisar.composedebugdrawer.buildinfos.DebugDrawerBuildInfos
 import com.michaelflisar.composedebugdrawer.core.*
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerButton
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerCheckbox
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerDivider
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerDropdown
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerInfo
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerRegion
+import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerSegmentedButtons
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoLogging
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoPrefs
 import com.michaelflisar.composedebugdrawer.deviceinfos.DebugDrawerDeviceInfos

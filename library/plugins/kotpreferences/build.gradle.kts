@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("maven-publish")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -64,8 +65,15 @@ dependencies {
 
     implementation(project(":ComposeDebugDrawer:Core"))
 
-    implementation(deps.kotpreferences.core)
-    implementation(deps.kotpreferences.compose)
+    val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
+    if (useLiveDependencies) {
+        implementation(deps.kotpreferences.core)
+        implementation(deps.kotpreferences.compose)
+    } else {
+        implementation(project(":KotPreferences:Core"))
+        implementation(project(":KotPreferences:Modules:Compose"))
+    }
+
 }
 
 project.afterEvaluate {
