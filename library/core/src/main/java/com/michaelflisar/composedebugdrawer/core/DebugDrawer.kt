@@ -40,6 +40,8 @@ data class DebugDrawerState(
     private val expandSingleOnly: Boolean = false,
     private val expandedIds: MutableState<List<String>>
 ) {
+    fun expandedIds() = expandedIds.value
+
     fun toggleExpanded(id: String) {
         if (expandedIds.value.contains(id)) {
             expandedIds.value = expandedIds.value - id
