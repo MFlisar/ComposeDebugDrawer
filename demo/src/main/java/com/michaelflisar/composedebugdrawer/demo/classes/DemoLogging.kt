@@ -8,6 +8,7 @@ import com.michaelflisar.lumberjack.implementation.plant
 import com.michaelflisar.lumberjack.loggers.console.ConsoleLogger
 import com.michaelflisar.lumberjack.loggers.file.FileLogger
 import com.michaelflisar.lumberjack.loggers.file.FileLoggerSetup
+import com.michaelflisar.lumberjack.loggers.file.create
 
 object DemoLogging {
 

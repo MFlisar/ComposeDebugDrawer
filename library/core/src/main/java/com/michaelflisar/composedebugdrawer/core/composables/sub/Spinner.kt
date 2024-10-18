@@ -9,14 +9,12 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -25,11 +23,11 @@ internal fun <T> Spinner(
     modifier: Modifier,
     expanded: MutableState<Boolean>,
     label: String,
-    selected: T,
+    selected: Int,
     items: List<T>,
-    labelProvider: (item: T) -> String = { it.toString() },
-    iconProvider: @Composable ((item: T) -> Unit)? = null,
-    onItemSelected: (item: T) -> Unit
+    labelProvider: (item: T, index: Int) -> String = { item, index -> item.toString() },
+    iconProvider: @Composable ((item: T, index: Int) -> Unit)? = null,
+    onItemSelected: (item: T, index: Int) -> Unit
 ) {
     ExposedDropdownMenuBox(
         modifier = modifier,
@@ -45,12 +43,12 @@ internal fun <T> Spinner(
                 .menuAnchor(),
             readOnly = true,
             enabled = true,
-            value = labelProvider(selected),
+            value = labelProvider(items[selected], selected),
             onValueChange = { },
             label = { Text(text = label) },
             leadingIcon = {
                 if (iconProvider != null) {
-                    iconProvider(selected)
+                    iconProvider(items[selected], selected)
                 }
             },
             trailingIcon = {
@@ -64,11 +62,11 @@ internal fun <T> Spinner(
                 expanded.value = false
             }
         ) {
-            items.forEach { item ->
+            items.forEachIndexed { index, item ->
                 DropdownMenuItem(
                     onClick = {
-                        if (item != selected) {
-                            onItemSelected.invoke(item)
+                        if (index != selected) {
+                            onItemSelected.invoke(item, index)
                         }
                         expanded.value = false
                     },
@@ -77,10 +75,10 @@ internal fun <T> Spinner(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             if (iconProvider != null) {
-                                iconProvider(item)
+                                iconProvider(item, index)
                                 Spacer(Modifier.width(8.dp))
                             }
-                            Text(text = labelProvider(item))
+                            Text(text = labelProvider(item, index))
                         }
                     }
                 )

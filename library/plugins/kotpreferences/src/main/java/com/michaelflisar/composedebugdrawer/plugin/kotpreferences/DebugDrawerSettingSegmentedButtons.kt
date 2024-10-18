@@ -13,21 +13,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun <E : Enum<E>> DebugDrawerSettingSegmentedButtons(
+fun <T> DebugDrawerSettingSegmentedButtons(
     modifier: Modifier = Modifier,
-    setting: StorageSetting<E>,
-    items: Array<E>,
+    setting: StorageSetting<T>,
+    items: List<T>,
     icon: ImageVector,
 ) {
     DebugDrawerSettingSegmentedButtons(modifier, setting, items, image = { Icon(icon, null) })
 }
 
 @Composable
-fun <E : Enum<E>> DebugDrawerSettingSegmentedButtons(
+fun <T> DebugDrawerSettingSegmentedButtons(
     modifier: Modifier = Modifier,
-    setting: StorageSetting<E>,
-    items: Array<E>,
+    setting: StorageSetting<T>,
+    items: List<T>,
     image: @Composable (() -> Unit)? = null,
+    labelProvider: (item: T) -> String = { it.toString() }
 ) {
     val scope = rememberCoroutineScope()
     val selected by setting.collectAsStateNotNull()
@@ -35,8 +36,8 @@ fun <E : Enum<E>> DebugDrawerSettingSegmentedButtons(
         modifier = modifier,
         image = image,
         selected = selected,
-        items = items.toList(),
-        labelProvider = { it.name }
+        items = items,
+        labelProvider = labelProvider
     ) {
         scope.launch(Dispatchers.IO) {
             setting.update(it)

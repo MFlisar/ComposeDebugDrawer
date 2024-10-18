@@ -1,9 +1,11 @@
 package com.michaelflisar.composedebugdrawer.demo.classes
 
 import com.michaelflisar.kotpreferences.core.SettingsModel
-import com.michaelflisar.kotpreferences.datastore.DataStoreStorage
+import com.michaelflisar.kotpreferences.core.enumPref
+import com.michaelflisar.kotpreferences.storage.datastore.DataStoreStorage
+import com.michaelflisar.kotpreferences.storage.datastore.create
 
-object DemoPrefs : SettingsModel(DataStoreStorage(name = "demo_prefs")) {
+object DebugDrawerPrefs : SettingsModel(DataStoreStorage.create(name = "debug_drawer_prefs")) {
 
     enum class UIStyle {
         Style1,

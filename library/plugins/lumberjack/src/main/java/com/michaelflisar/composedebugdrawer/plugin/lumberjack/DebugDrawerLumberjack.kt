@@ -19,6 +19,7 @@ import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerButton
 import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerRegion
 import com.michaelflisar.composedebugdrawer.core.DebugDrawerState
 import com.michaelflisar.lumberjack.core.L
+import com.michaelflisar.lumberjack.core.getLatestLogFile
 import com.michaelflisar.lumberjack.core.interfaces.IFileLoggingSetup
 import com.michaelflisar.lumberjack.extensions.composeviewer.LumberjackDialog
 import com.michaelflisar.lumberjack.extensions.feedback.sendFeedback
@@ -71,7 +72,7 @@ fun DebugDrawerLumberjack(
             label = "Send Log File",
             icon = Icons.Default.Email
         ) {
-            val file = setup.getLatestLogFiles()
+            val file = setup.getLatestLogFile()
             if (file != null) {
                 L.sendFeedback(
                     context = context,

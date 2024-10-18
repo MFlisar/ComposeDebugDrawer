@@ -49,10 +49,6 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = compose.versions.compiler.get()
-    }
 }
 
 dependencies {
@@ -68,13 +64,13 @@ dependencies {
     // ------------------------
 
     // Compose BOM
-    implementation(platform(compose.bom))
+    implementation(platform(libs.bom))
 
     // Dependent on Compose BOM
-    implementation(compose.material3)
-    implementation(compose.activity)
-    implementation(compose.icons.material.icons.core)
-    implementation(compose.icons.material.icons.extended)
+    implementation(libs.material3)
+    implementation(libs.activity)
+    implementation(libs.icons.material.icons.core)
+    implementation(libs.icons.material.icons.extended)
 
     // ------------------------
     // Libraries
@@ -87,16 +83,17 @@ dependencies {
     implementation(project(":ComposeDebugDrawer:Plugins:KotPreferences"))
 
     // preferences via delegates
-    implementation(deps.kotpreferences.core)
-    implementation(deps.kotpreferences.datastore)
-    implementation(deps.kotpreferences.compose)
+    implementation(libs.kotpreferences.core)
+    implementation(libs.kotpreferences.datastore)
+    implementation(libs.kotpreferences.compose)
 
     // logging
-    implementation(deps.lumberjack.core)
-    implementation(deps.lumberjack.implementation)
-    implementation(deps.lumberjack.logger.console)
-    implementation(deps.lumberjack.logger.file)
+    implementation(libs.lumberjack.core)
+    implementation(libs.lumberjack.implementation)
+    implementation(libs.lumberjack.logger.console)
+    implementation(libs.lumberjack.logger.file)
 
     // a minimal library that provides some useful composables that I use inside demo activities
-    implementation(deps.composedemobaseactivity)
+    implementation(libs.toolbox.demo.app)
+    implementation(libs.composethemer.themes)
 }

@@ -1,9 +1,33 @@
+import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    id("maven-publish")
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.gradle.maven.publish.plugin)
 }
+
+// -------------------
+// Informations
+// -------------------
+
+// Module
+val artifactId = "plugin-kotpreferences"
+
+// Library
+val libraryName = "ComposeDebugDrawer"
+val libraryDescription = "This library offers you a simple and easily readme debug drawer."
+val groupID = "io.github.mflisar.composedebugdrawer"
+val release = 2023
+val github = "https://github.com/MFlisar/ComposeDebugDrawer"
+val license = "Apache License 2.0"
+val licenseUrl = "$github/blob/main/LICENSE"
+
+// -------------------
+// Setup
+// -------------------
 
 android {
 
@@ -35,10 +59,6 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = compose.versions.compiler.get()
-    }
 }
 
 dependencies {
@@ -54,10 +74,10 @@ dependencies {
     // ------------------------
 
     // Compose BOM
-    implementation(platform(compose.bom))
-    implementation(compose.material3)
+    implementation(platform(libs.bom))
+    implementation(libs.material3)
 
-    implementation(compose.activity)
+    implementation(libs.activity)
 
     // ------------------------
     // Libraries
@@ -67,8 +87,8 @@ dependencies {
 
     val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
     if (useLiveDependencies) {
-        implementation(deps.kotpreferences.core)
-        implementation(deps.kotpreferences.compose)
+        implementation(libs.kotpreferences.core)
+        implementation(libs.kotpreferences.compose)
     } else {
         implementation(project(":KotPreferences:Core"))
         implementation(project(":KotPreferences:Modules:Compose"))
@@ -76,13 +96,45 @@ dependencies {
 
 }
 
-project.afterEvaluate {
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                artifactId = "plugin-kotpreferences"
-                from(components["release"])
+mavenPublishing {
+
+    configure(AndroidSingleVariantLibrary("release", true, true))
+
+    coordinates(
+        groupId = groupID,
+        artifactId = artifactId,
+        version = System.getenv("TAG")
+    )
+
+    pom {
+        name.set(libraryName)
+        description.set(libraryDescription)
+        inceptionYear.set("$release")
+        url.set(github)
+
+        licenses {
+            license {
+                name.set(license)
+                url.set(licenseUrl)
             }
         }
+
+        developers {
+            developer {
+                id.set("mflisar")
+                name.set("Michael Flisar")
+                email.set("mflisar.development@gmail.com")
+            }
+        }
+
+        scm {
+            url.set(github)
+        }
     }
+
+    // Configure publishing to Maven Central
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, true)
+
+    // Enable GPG signing for all publications
+    signAllPublications()
 }

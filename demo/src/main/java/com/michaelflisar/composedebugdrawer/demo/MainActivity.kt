@@ -31,19 +31,19 @@ import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerDropdown
 import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerInfo
 import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerRegion
 import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerSegmentedButtons
+import com.michaelflisar.composedebugdrawer.demo.classes.DebugDrawerPrefs
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoLogging
-import com.michaelflisar.composedebugdrawer.demo.classes.DemoPrefs
 import com.michaelflisar.composedebugdrawer.deviceinfos.DebugDrawerDeviceInfos
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingCheckbox
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingDropdown
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingSegmentedButtons
 import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberjack
-import com.michaelflisar.composedemobaseactivity.classes.DemoBasePrefs
-import com.michaelflisar.composedemobaseactivity.classes.DemoTheme
-import com.michaelflisar.composedemobaseactivity.theme.DemoAppTheme
+import com.michaelflisar.composethemer.ComposeTheme
+import com.michaelflisar.composethemer.UpdateEdgeToEdgeDefault
 import com.michaelflisar.kotpreferences.compose.collectAsState
 import com.michaelflisar.kotpreferences.compose.collectAsStateNotNull
 import com.michaelflisar.lumberjack.core.L
+import com.michaelflisar.toolbox.androiddemoapp.classes.DemoPrefs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -66,27 +66,22 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
-            val stateTheme = DemoBasePrefs.theme.collectAsState()
-            val stateDynamicTheme = DemoBasePrefs.dynamicTheme.collectAsState()
-            val theme = stateTheme.value
-            val dynamicTheme = stateDynamicTheme.value
+            val baseTheme = DemoPrefs.baseTheme.collectAsStateNotNull()
+            val dynamic = DemoPrefs.dynamic.collectAsStateNotNull()
+            val theme = DemoPrefs.themeKey.collectAsStateNotNull()
+            val state = ComposeTheme.State(baseTheme, dynamic, theme)
 
-            if (theme == null || dynamicTheme == null)
-                return@setContent
-
-            DemoAppTheme(
-                darkTheme = theme.isDark(),
-                dynamicColor = dynamicTheme
-            ) {
-                RootContent(theme, dynamicTheme)
+            ComposeTheme(state = state) {
+                UpdateEdgeToEdgeDefault(this, state)
+                RootContent()
             }
         }
     }
 
     @Composable
-    fun RootContent(theme: DemoTheme, dynamicTheme: Boolean) {
+    fun RootContent() {
 
-        val expandSingleOnly = DemoPrefs.expandSingleOnly.collectAsStateNotNull()
+        val expandSingleOnly = DebugDrawerPrefs.expandSingleOnly.collectAsStateNotNull()
 
         val scope = rememberCoroutineScope()
         val drawerState = rememberDebugDrawerState(
@@ -176,10 +171,10 @@ class MainActivity : ComponentActivity() {
         DebugDrawerCheckbox(
             label = "Expand Single Only",
             description = "This flag is used by this debug drawer!",
-            checked = DemoPrefs.expandSingleOnly.value
+            checked = DebugDrawerPrefs.expandSingleOnly.value
         ) {
             scope.launch(Dispatchers.IO) {
-                DemoPrefs.expandSingleOnly.update(it)
+                DebugDrawerPrefs.expandSingleOnly.update(it)
             }
         }
 
@@ -213,17 +208,19 @@ class MainActivity : ComponentActivity() {
             drawerState = drawerState
         ) {
             DebugDrawerDivider(info = "Boolean")
-            DebugDrawerSettingCheckbox(setting = DemoPrefs.devBoolean1)
-            DebugDrawerSettingCheckbox(setting = DemoPrefs.devBoolean2)
+            DebugDrawerSettingCheckbox(setting = DebugDrawerPrefs.devBoolean1)
+            DebugDrawerSettingCheckbox(setting = DebugDrawerPrefs.devBoolean2)
 
             DebugDrawerDivider(info = "Enum")
             DebugDrawerSettingDropdown(
-                setting = DemoPrefs.devStyle,
-                items = DemoPrefs.UIStyle.values()
+                setting = DebugDrawerPrefs.devStyle,
+                items = DebugDrawerPrefs.UIStyle.entries,
+                labelProvider = { it.name }
             )
             DebugDrawerSettingSegmentedButtons(
-                setting = DemoPrefs.devStyle,
-                items = DemoPrefs.UIStyle.values()
+                setting = DebugDrawerPrefs.devStyle,
+                items = DebugDrawerPrefs.UIStyle.entries,
+                labelProvider = { it.name }
             )
         }
 

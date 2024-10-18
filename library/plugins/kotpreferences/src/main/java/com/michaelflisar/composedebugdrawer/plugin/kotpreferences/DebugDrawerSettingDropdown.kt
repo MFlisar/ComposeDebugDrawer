@@ -13,23 +13,25 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun <E : Enum<E>> DebugDrawerSettingDropdown(
+fun <T> DebugDrawerSettingDropdown(
     modifier: Modifier = Modifier,
-    setting: StorageSetting<E>,
-    items: Array<E>,
+    setting: StorageSetting<T>,
+    items: List<T>,
     icon: ImageVector,
-    label: String = setting.getDebugLabel()
+    label: String = setting.getDebugLabel(),
+    labelProvider: (item: T) -> String = { it.toString() }
 ) {
-    DebugDrawerSettingDropdown(modifier, setting, items, image = { Icon(icon, null) }, label)
+    DebugDrawerSettingDropdown(modifier, setting, items, image = { Icon(icon, null) }, label, labelProvider)
 }
 
 @Composable
-fun <E : Enum<E>> DebugDrawerSettingDropdown(
+fun <T> DebugDrawerSettingDropdown(
     modifier: Modifier = Modifier,
-    setting: StorageSetting<E>,
-    items: Array<E>,
+    setting: StorageSetting<T>,
+    items: List<T>,
     image: @Composable (() -> Unit)? = null,
-    label: String = setting.getDebugLabel()
+    label: String = setting.getDebugLabel(),
+    labelProvider: (item: T) -> String = { it.toString() }
 ) {
     val scope = rememberCoroutineScope()
     val selected by setting.collectAsStateNotNull()
@@ -39,8 +41,8 @@ fun <E : Enum<E>> DebugDrawerSettingDropdown(
         image = image,
         label = label,
         selected = selected,
-        items = items.toList(),
-        labelProvider = { it.name },
+        items = items,
+        labelProvider = labelProvider,
         iconProvider = null
     ) {
         scope.launch(Dispatchers.IO) {
