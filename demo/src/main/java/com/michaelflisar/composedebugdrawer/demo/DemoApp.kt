@@ -1,11 +1,9 @@
 package com.michaelflisar.composedebugdrawer.demo
 
-import android.app.Application
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoLogging
-import com.michaelflisar.composethemer.ComposeTheme
-import com.michaelflisar.composethemer.themes.ComposeThemes
+import com.michaelflisar.toolbox.androiddemoapp.DemoApp
 
-class DemoApp : Application() {
+class DemoApp : DemoApp() {
 
     override fun onCreate() {
 
@@ -13,8 +11,5 @@ class DemoApp : Application() {
 
         // lumberjack initialisation
         DemoLogging.init(this)
-
-        // Themes
-        ComposeTheme.register(*ComposeThemes.ALL.toTypedArray())
     }
 }

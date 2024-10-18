@@ -9,17 +9,16 @@ gradle-maven-publish-plugin =   "0.29.0"
 kotlinx-coroutines = 	"1.9.0"
 
 composeBom =            "2024.10.00"
-compiler =              "1.5.15"
 activity = 				"1.9.3"
 
 # mflisar
 lumberjack = 				"7.0.7"
 kotpreferences =        	"0.6.2"
 toolbox =                   "2.1.8"
-composethemer =             "0.3.1"
 
 [plugins]
 
+android-application = 			    { id = "com.android.application", 	                version.ref = "gradle" }
 android-library = 			        { id = "com.android.library", 	                    version.ref = "gradle" }
 
 kotlin-android = 				    { id = "org.jetbrains.kotlin.android", 			    version.ref = "kotlin" }
@@ -59,5 +58,3 @@ kotpreferences-datastore =     				{ module = "io.github.mflisar.kotpreferences:
 kotpreferences-compose =     				{ module = "io.github.mflisar.kotpreferences:extension-compose",      	version.ref = "kotpreferences" }
 
 toolbox-demo-app =                          { module = "io.github.mflisar.toolbox:android-demo-app", 			    version.ref = "toolbox" }
-composethemer-core =                    { module = "io.github.mflisar.composethemer:core", 			                version.ref = "composethemer" }
-composethemer-themes =                  { module = "io.github.mflisar.composethemer:themes", 	                    version.ref = "composethemer" }
