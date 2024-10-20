@@ -12,9 +12,9 @@ composeBom =            "2024.10.00"
 activity = 				"1.9.3"
 
 # mflisar
-lumberjack = 				"7.0.7"
-kotpreferences =        	"0.6.2"
-toolbox =                   "2.1.8"
+lumberjack = 				"7.1.0"
+kotpreferences =        	"0.7.0"
+toolbox =                   "2.2.0"
 
 [plugins]
 

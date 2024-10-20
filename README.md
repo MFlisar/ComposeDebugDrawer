@@ -27,6 +27,15 @@ This library offers you a **simple** and easily readme **debug drawer**.
 | ![Demo](screenshots/demo5.jpg "Demo") | ![Demo](screenshots/demo6.jpg "Demo") | ![Demo](screenshots/demo7.jpg "Demo") |  |
 | ![Demo](screenshots/demo-theme-1.jpg "Demo") | ![Demo](screenshots/demo-theme-2.jpg "Demo") | ![Demo](screenshots/demo-theme-3.jpg "Demo") | |
 
+## :link: Dependencies
+
+|      Dependency       | Version |                     Infos                      |
+|:---------------------:|:-------:|:----------------------------------------------:|
+| Compose Multiplatform | `1.7.0` | based on compose `1.7.1` and material3 `1.3.0` |
+
+> [!NOTE]  
+> I try to use as few experimental APIs as possible, but the `composeviewer` module does use `ExposedDropdownMenuBox` which is still marked as experimental in material3 `1.3.0`. I will provide new versions as soon as possible if experimental APIs change or become stable.
+
 ## :elephant: Gradle
 
 This library is distributed via [maven central](https://central.sonatype.com/).
