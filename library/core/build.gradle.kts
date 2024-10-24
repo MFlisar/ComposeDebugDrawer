@@ -15,6 +15,7 @@ plugins {
 
 // Module
 val artifactId = "core"
+val androidNamespace = "com.michaelflisar.composedebugdrawer.core"
 
 // Library
 val libraryName = "ComposeDebugDrawer"
@@ -31,7 +32,7 @@ val licenseUrl = "$github/blob/main/LICENSE"
 
 android {
 
-    namespace = "com.michaelflisar.composedebugdrawer.core"
+    namespace = androidNamespace
 
     compileSdk = app.versions.compileSdk.get().toInt()
 

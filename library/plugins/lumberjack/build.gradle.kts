@@ -15,6 +15,7 @@ plugins {
 
 // Module
 val artifactId = "plugin-lumberjack"
+val androidNamespace = "com.michaelflisar.composedebugdrawer.plugin.lumberjack"
 
 // Library
 val libraryName = "ComposeDebugDrawer"
@@ -31,7 +32,7 @@ val licenseUrl = "$github/blob/main/LICENSE"
 
 android {
 
-    namespace = "com.michaelflisar.composedebugdrawer.plugin.lumberjack"
+    namespace = androidNamespace
 
     compileSdk = app.versions.compileSdk.get().toInt()
 

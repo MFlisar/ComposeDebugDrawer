@@ -15,6 +15,7 @@ plugins {
 
 // Module
 val artifactId = "plugin-kotpreferences"
+val androidNamespace = "com.michaelflisar.composedebugdrawer.plugin.kotpreferences"
 
 // Library
 val libraryName = "ComposeDebugDrawer"
@@ -31,7 +32,7 @@ val licenseUrl = "$github/blob/main/LICENSE"
 
 android {
 
-    namespace = "com.michaelflisar.composedebugdrawer.plugin.kotpreferences"
+    namespace = androidNamespace
 
     compileSdk = app.versions.compileSdk.get().toInt()
 

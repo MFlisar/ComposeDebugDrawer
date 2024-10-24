@@ -33,6 +33,17 @@ This library offers you a **simple** and easily readme **debug drawer**.
 |:---------------------:|:-------:|:----------------------------------------------:|
 | Compose Multiplatform | `1.7.0` | based on compose `1.7.1` and material3 `1.3.0` |
 
+| Module                  | Dependency                                                  | Version |
+|:------------------------|:------------------------------------------------------------|:--------|
+| core                    | -                                                           |         |
+| **Modules**             |                                                             |
+| `infos-build`           | -                                                           |         |
+| `infos-device`          | -                                                           |         |
+| **Plugins**             |                                                             |         |
+| `plugin-lumberjack`     | [Lumberjack](https://github.com/MFlisar/Lumberjack)         | `7.1.0` |
+| `plugin-kotpreferences` | [KotPreferences](https://github.com/MFlisar/KotPreferences) | `0.7.0` |
+
+
 ## :elephant: Gradle
 
 This library is distributed via [maven central](https://central.sonatype.com/).
