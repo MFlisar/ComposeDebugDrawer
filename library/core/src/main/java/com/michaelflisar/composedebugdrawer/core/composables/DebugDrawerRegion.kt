@@ -2,8 +2,8 @@ package com.michaelflisar.composedebugdrawer.core.composables
 
 import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.rememberTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -28,7 +28,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -53,7 +52,7 @@ fun DebugDrawerRegion(
         val transitionState =
             remember { MutableTransitionState(drawerState.isExpanded(id, collapsible)) }
         transitionState.targetState = drawerState.isExpanded(id, collapsible)
-        val transition = updateTransition(transitionState, label = "transition")
+        val transition = rememberTransition(transitionState, label = "transition")
 
         val arrowRotationDegree by transition.animateFloat(
             transitionSpec = { tween() },
