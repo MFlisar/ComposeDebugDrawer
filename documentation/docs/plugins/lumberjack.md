@@ -12,14 +12,13 @@ fun DebugDrawerLumberjack(
     drawerState: DebugDrawerState,
     setup: IFileLoggingSetup,
     mailReceiver: String,
-    icon: ImageVector = Icons.Default.Description,
+    image: @Composable (() -> Unit)? = { Icon(Icons.Default.Description, null) },
     label: String = "Logging",
     id: String = label,
     collapsible: Boolean = true,
     content: @Composable ColumnScope.() -> Unit = {}
 )
 ```
-
 
 | Lumberjack Plugin                                                                                                    |
 |----------------------------------------------------------------------------------------------------------------------|

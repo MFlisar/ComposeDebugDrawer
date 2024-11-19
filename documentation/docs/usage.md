@@ -39,7 +39,7 @@ private fun Drawer(drawerState: DebugDrawerState) {
     
     // kotpreferences module for delegate based preferences (another library of mine)
     DebugDrawerRegion(
-        icon = Icons.Default.ColorLens,
+        image = { Icon(Icons.Default.ColorLens, null) },
         label = "Demo Preferences",
         drawerState = drawerState
     ) {
@@ -52,7 +52,7 @@ private fun Drawer(drawerState: DebugDrawerState) {
     
     // manual checkboxes, dropdowns, infos
     DebugDrawerRegion(
-        icon = Icons.Default.Info,
+        image = { Icon(Icons.Default.Info, null) },
         label = "Manual",
         drawerState = drawerState
     ) {
@@ -68,7 +68,7 @@ private fun Drawer(drawerState: DebugDrawerState) {
         
         // Button
         DebugDrawerButton(
-            icon = Icons.Default.BugReport, 
+            image = { Icon(Icons.Default.BugReport, null) },
             label = "Button (Filled)"
         ) {
             // on click

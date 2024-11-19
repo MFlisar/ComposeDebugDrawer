@@ -39,20 +39,6 @@ import com.michaelflisar.composedebugdrawer.core.composables.sub.AnimatedVisibil
 @Composable
 fun DebugDrawerRegion(
     label: String,
-    icon: ImageVector,
-    id: String = label,
-    description: String = "",
-    drawerState: DebugDrawerState,
-    collapsible: Boolean = true,
-    itemSpacing: Dp = DebugDrawerDefaults.ITEM_SPACING,
-    content: @Composable ColumnScope.() -> Unit
-) {
-    DebugDrawerRegion(label, id, image = { Icon(icon, null) }, description, drawerState, collapsible, itemSpacing, content)
-}
-
-@Composable
-fun DebugDrawerRegion(
-    label: String,
     id: String = label,
     image: @Composable (() -> Unit)? = null,
     description: String = "",

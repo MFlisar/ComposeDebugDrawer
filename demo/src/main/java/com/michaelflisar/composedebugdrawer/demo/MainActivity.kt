@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.ColorLens
+import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.*
@@ -205,7 +206,7 @@ class MainActivity : ComponentActivity() {
         // 6) Example of use with MaterialPreferences and automatic label deduction from properties
         // currently enum based lists + boolean basec checkboxes are supported
         DebugDrawerRegion(
-            icon = Icons.Default.ColorLens,
+            image = { Icon(Icons.Default.ColorLens, null) },
             label = "Demo Preferences",
             drawerState = drawerState
         ) {
@@ -232,7 +233,7 @@ class MainActivity : ComponentActivity() {
 
         // 7) Example of manual checkboxes, buttons, segmentedbuttons, info texts
         DebugDrawerRegion(
-            icon = Icons.Default.Info,
+            image = { Icon(Icons.Default.Info, null) },
             label = "Manual",
             description = "With some description...",
             drawerState = drawerState
@@ -265,7 +266,7 @@ class MainActivity : ComponentActivity() {
 
         // 8) Example of custom layouts
         DebugDrawerRegion(
-            icon = Icons.Outlined.Info,
+            image = { Icon(Icons.Outlined.Info, null) },
             label = "Custom Layouts",
             drawerState = drawerState
         ) {
