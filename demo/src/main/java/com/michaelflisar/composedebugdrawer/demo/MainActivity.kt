@@ -37,9 +37,11 @@ import com.michaelflisar.composedebugdrawer.deviceinfos.DebugDrawerDeviceInfos
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingCheckbox
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingDropdown
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingSegmentedButtons
+import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.getDebugLabel
 import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberjack
 import com.michaelflisar.composethemer.ComposeTheme
 import com.michaelflisar.composethemer.UpdateEdgeToEdgeDefault
+import com.michaelflisar.kotpreferences.compose.asMutableState
 import com.michaelflisar.kotpreferences.compose.collectAsState
 import com.michaelflisar.kotpreferences.compose.collectAsStateNotNull
 import com.michaelflisar.lumberjack.core.L
@@ -211,14 +213,18 @@ class MainActivity : ComponentActivity() {
             DebugDrawerSettingCheckbox(setting = DebugDrawerPrefs.devBoolean1)
             DebugDrawerSettingCheckbox(setting = DebugDrawerPrefs.devBoolean2)
 
+            // example on how to reuse a KotPreference field between multiple settings
+            // => in this case share the mutable state manually!
             DebugDrawerDivider(info = "Enum")
-            DebugDrawerSettingDropdown(
-                setting = DebugDrawerPrefs.devStyle,
+            val devStyle = DebugDrawerPrefs.devStyle.asMutableState()
+            DebugDrawerDropdown(
+                selected = devStyle,
+                label = DebugDrawerPrefs.devStyle.getDebugLabel(),
                 items = DebugDrawerPrefs.UIStyle.entries,
                 labelProvider = { it.name }
             )
-            DebugDrawerSettingSegmentedButtons(
-                setting = DebugDrawerPrefs.devStyle,
+            DebugDrawerSegmentedButtons(
+                selected = devStyle,
                 items = DebugDrawerPrefs.UIStyle.entries,
                 labelProvider = { it.name }
             )

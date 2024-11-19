@@ -1,5 +1,5 @@
 ---
-icon: material/professional-hexagon
+icon: material/puzzle
 ---
 
 The `plugin-lumberjack` provides a seemless integration of my [Lumberjack](https://mflisar.github.io/Lumberjack) with this library.

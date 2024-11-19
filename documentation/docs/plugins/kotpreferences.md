@@ -1,5 +1,5 @@
 ---
-icon: material/professional-hexagon
+icon: material/puzzle
 ---
 
 The `plugin-kotpreferences` provides a seemless integration of my [KotPreferences](https://mflisar.github.io/KotPreferences) with this library.
