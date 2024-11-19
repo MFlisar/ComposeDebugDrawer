@@ -4,7 +4,7 @@ import com.vanniktech.maven.publish.SonatypeHost
 plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.compose.compiler)
+     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dokka)
     alias(libs.plugins.gradle.maven.publish.plugin)
 }
@@ -65,20 +65,13 @@ android {
 dependencies {
 
     // ------------------------
-    // Kotlin
-    // ------------------------
-
-    implementation(libs.kotlin)
-
-    // ------------------------
     // AndroidX / Google / Goolge
     // ------------------------
 
-    // Compose BOM
-    implementation(platform(libs.bom))
-    implementation(libs.material3)
+    // Compose
+    implementation(libs.compose.material3)
 
-    implementation(libs.activity)
+    implementation(androidx.activity.compose)
 
     // ------------------------
     // Libraries
@@ -88,8 +81,8 @@ dependencies {
 
     val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
     if (useLiveDependencies) {
-        implementation(libs.kotpreferences.core)
-        implementation(libs.kotpreferences.compose)
+        implementation(deps.kotpreferences.core)
+        implementation(deps.kotpreferences.compose)
     } else {
         implementation(project(":KotPreferences:Core"))
         implementation(project(":KotPreferences:Modules:Compose"))

@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -54,23 +54,15 @@ android {
 dependencies {
 
     // ------------------------
-    // Kotlin
-    // ------------------------
-
-    implementation(libs.kotlin)
-
-    // ------------------------
     // AndroidX
     // ------------------------
 
-    // Compose BOM
-    implementation(platform(libs.bom))
+    // Compose
+    implementation(libs.compose.material3)
+    implementation(libs.compose.material.icons.core)
+    implementation(libs.compose.material.icons.extended)
 
-    // Dependent on Compose BOM
-    implementation(libs.material3)
-    implementation(libs.activity)
-    implementation(libs.icons.material.icons.core)
-    implementation(libs.icons.material.icons.extended)
+    implementation(androidx.activity.compose)
 
     // ------------------------
     // Libraries
@@ -83,16 +75,16 @@ dependencies {
     implementation(project(":ComposeDebugDrawer:Plugins:KotPreferences"))
 
     // preferences via delegates
-    implementation(libs.kotpreferences.core)
-    implementation(libs.kotpreferences.datastore)
-    implementation(libs.kotpreferences.compose)
+    implementation(deps.kotpreferences.core)
+    implementation(deps.kotpreferences.datastore)
+    implementation(deps.kotpreferences.compose)
 
     // logging
-    implementation(libs.lumberjack.core)
-    implementation(libs.lumberjack.implementation)
-    implementation(libs.lumberjack.logger.console)
-    implementation(libs.lumberjack.logger.file)
+    implementation(deps.lumberjack.core)
+    implementation(deps.lumberjack.implementation)
+    implementation(deps.lumberjack.logger.console)
+    implementation(deps.lumberjack.logger.file)
 
     // a minimal library that provides some useful composables that I use inside demo activities
-    implementation(libs.toolbox.demo.app)
+    implementation(deps.toolbox.demo.app)
 }

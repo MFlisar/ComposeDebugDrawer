@@ -1,0 +1,20 @@
+[versions]
+
+# mflisar
+lumberjack = 				"7.1.1"
+kotpreferences =        	"0.7.0"
+toolbox =                   "2.2.2"
+
+[libraries]
+
+# mflisar
+lumberjack-core =			        		{ module = "io.github.mflisar.lumberjack:core", 						version.ref = "lumberjack" }
+lumberjack-implementation =			        { module = "io.github.mflisar.lumberjack:implementation-lumberjack", 	version.ref = "lumberjack" }
+lumberjack-logger-console =			        { module = "io.github.mflisar.lumberjack:logger-console", 	            version.ref = "lumberjack" }
+lumberjack-logger-file =			        { module = "io.github.mflisar.lumberjack:logger-file", 	                version.ref = "lumberjack" }
+lumberjack-extension-composeviewer =	    { module = "io.github.mflisar.lumberjack:extension-composeviewer", 	    version.ref = "lumberjack" }
+lumberjack-extension-feedback =	            { module = "io.github.mflisar.lumberjack:extension-feedback", 	        version.ref = "lumberjack" }
+kotpreferences-core =               		{ module = "io.github.mflisar.kotpreferences:core", 					version.ref = "kotpreferences" }
+kotpreferences-datastore =     				{ module = "io.github.mflisar.kotpreferences:storage-datastore",      	version.ref = "kotpreferences" }
+kotpreferences-compose =     				{ module = "io.github.mflisar.kotpreferences:extension-compose",      	version.ref = "kotpreferences" }
+toolbox-demo-app =                          { module = "io.github.mflisar.toolbox:android-demo-app", 			    version.ref = "toolbox" }

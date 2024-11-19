@@ -1,60 +1,34 @@
 [versions]
 
-gradle = 				        "8.7.1"
+gradle = 				        "8.7.2"
 kotlin = 				        "2.0.21"
 dokka =                         "1.9.20"
-gradle-maven-publish-plugin =   "0.29.0"
-
-# KotlinX / AndroidX / Google
-kotlinx-coroutines = 	"1.9.0"
-
-composeBom =            "2024.10.00"
-activity = 				"1.9.3"
-
-# mflisar
-lumberjack = 				"7.1.0"
-kotpreferences =        	"0.7.0"
-toolbox =                   "2.2.0"
+gradle-maven-publish-plugin =   "0.30.0"
+compose =                       "1.7.1"
 
 [plugins]
 
+# android
 android-application = 			    { id = "com.android.application", 	                version.ref = "gradle" }
 android-library = 			        { id = "com.android.library", 	                    version.ref = "gradle" }
 
+# kotlin
 kotlin-android = 				    { id = "org.jetbrains.kotlin.android", 			    version.ref = "kotlin" }
 kotlin-parcelize =                  { id = "org.jetbrains.kotlin.plugin.parcelize",     version.ref = "kotlin"  }
+kotlin-multiplatform = 			    { id = "org.jetbrains.kotlin.multiplatform", 	    version.ref = "kotlin" }
+kotlin-compose = 				    { id = "org.jetbrains.kotlin.plugin.compose", 	    version.ref = "kotlin" }
+kotlin-serialization = 			    { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-jvm = 				        { id = "org.jetbrains.kotlin.jvm", 			        version.ref = "kotlin" }
 
-compose-compiler = 				{ id = "org.jetbrains.kotlin.plugin.compose", 	version.ref = "kotlin" }
-
+# github release (dokka + maven)
 dokka =                             { id = "org.jetbrains.dokka",                       version.ref = "dokka" }
 gradle-maven-publish-plugin =       { id = "com.vanniktech.maven.publish.base",         version.ref = "gradle-maven-publish-plugin" }
 
 [libraries]
 
-gradle =						{ module = "com.android.tools.build:gradle", 									version.ref = "gradle" }
+kotlin-test = 			            { module = "org.jetbrains.kotlin:kotlin-test",                          version.ref = "kotlin" }
 
-kotlin =						{ module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", 							version.ref = "kotlin" }
-
-kotlin-gradle-plugin =			{ module = "org.jetbrains.kotlin:kotlin-gradle-plugin", 						version.ref = "kotlin" }
-kotlin-serialization =			{ module = "org.jetbrains.kotlin:kotlin-serialization", 						version.ref = "kotlin" }
-kotlinx-coroutines =			{ module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", 					version.ref = "kotlinx-coroutines" }
-
-bom =                       	{ group = "androidx.compose",                       name = "compose-bom",       version.ref = "composeBom" }
-icons-material-icons-core = 	{ group = "androidx.compose.material",              name = "material-icons-core" }
-icons-material-icons-extended = { group = "androidx.compose.material",              name = "material-icons-extended" }
-material3 =                 	{ group = "androidx.compose.material3",             name = "material3" }
-
-activity = 						{ module = "androidx.activity:activity-compose", 							    version.ref = "activity" }
-
-# mflisar
-lumberjack-core =			        		{ module = "io.github.mflisar.lumberjack:core", 						version.ref = "lumberjack" }
-lumberjack-implementation =			        { module = "io.github.mflisar.lumberjack:implementation-lumberjack", 	version.ref = "lumberjack" }
-lumberjack-logger-console =			        { module = "io.github.mflisar.lumberjack:logger-console", 	            version.ref = "lumberjack" }
-lumberjack-logger-file =			        { module = "io.github.mflisar.lumberjack:logger-file", 	                version.ref = "lumberjack" }
-lumberjack-extension-composeviewer =	    { module = "io.github.mflisar.lumberjack:extension-composeviewer", 	    version.ref = "lumberjack" }
-lumberjack-extension-feedback =	            { module = "io.github.mflisar.lumberjack:extension-feedback", 	        version.ref = "lumberjack" }
-kotpreferences-core =               		{ module = "io.github.mflisar.kotpreferences:core", 					version.ref = "kotpreferences" }
-kotpreferences-datastore =     				{ module = "io.github.mflisar.kotpreferences:storage-datastore",      	version.ref = "kotpreferences" }
-kotpreferences-compose =     				{ module = "io.github.mflisar.kotpreferences:extension-compose",      	version.ref = "kotpreferences" }
-
-toolbox-demo-app =                          { module = "io.github.mflisar.toolbox:android-demo-app", 			    version.ref = "toolbox" }
+compose-runtime =                   { module = "org.jetbrains.compose.runtime:runtime",                     version.ref = "compose" }
+compose-material-icons-core = 	    { module = "org.jetbrains.compose.material:material-icons-core",        version.ref = "compose" }
+compose-material-icons-extended = 	{ module = "org.jetbrains.compose.material:material-icons-extended",    version.ref = "compose" }
+compose-material3 =                 { module = "org.jetbrains.compose.material3:material3",                 version.ref = "compose" }

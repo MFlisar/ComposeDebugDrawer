@@ -4,7 +4,7 @@ import com.vanniktech.maven.publish.SonatypeHost
 plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.compose.compiler)
+     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dokka)
     alias(libs.plugins.gradle.maven.publish.plugin)
 }
@@ -65,22 +65,15 @@ android {
 dependencies {
 
     // ------------------------
-    // Kotlin
-    // ------------------------
-
-    implementation(libs.kotlin)
-
-    // ------------------------
     // AndroidX / Google / Goolge
     // ------------------------
 
-    // Compose BOM
-    implementation(platform(libs.bom))
-    implementation(libs.material3)
-    implementation(libs.icons.material.icons.core)
-    implementation(libs.icons.material.icons.extended)
+    // Compose
+    implementation(libs.compose.material3)
+    implementation(libs.compose.material.icons.core)
+    implementation(libs.compose.material.icons.extended)
 
-    implementation(libs.activity)
+    implementation(androidx.activity.compose)
 
     // ------------------------
     // Libraries
@@ -90,9 +83,9 @@ dependencies {
 
     val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
     if (useLiveDependencies) {
-        implementation(libs.lumberjack.core)
-        implementation(libs.lumberjack.extension.composeviewer)
-        implementation(libs.lumberjack.extension.feedback)
+        implementation(deps.lumberjack.core)
+        implementation(deps.lumberjack.extension.composeviewer)
+        implementation(deps.lumberjack.extension.feedback)
     } else {
         implementation(project(":Lumberjack:Core"))
         implementation(project(":Lumberjack:Extensions:Composeviewer"))

@@ -4,7 +4,7 @@ import com.vanniktech.maven.publish.SonatypeHost
 plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.compose.compiler)
+     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dokka)
     alias(libs.plugins.gradle.maven.publish.plugin)
 }
@@ -68,18 +68,16 @@ dependencies {
     // Kotlin
     // ------------------------
 
-    implementation(libs.kotlin)
-    implementation(libs.kotlinx.coroutines)
+    implementation(kotlinx.coroutines)
 
     // ------------------------
     // AndroidX / Google / Goolge
     // ------------------------
 
-    // Compose BOM
-    implementation(platform(libs.bom))
-    implementation(libs.material3)
+    // Compose
+    implementation(libs.compose.material3)
 
-    implementation(libs.activity)
+    implementation(androidx.activity.compose)
 }
 
 mavenPublishing {
