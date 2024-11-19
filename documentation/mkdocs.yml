@@ -123,6 +123,8 @@ nav:
   - Plugins:
     - Lumberjack: plugins/lumberjack.md
     - KotPreferences: plugins/kotpreferences.md
+  - Migration:
+      - Version 0.7.1: migration/v0.7.1.md
   - More:
     - Other Libraries: other-libraries.md
     - About Me: me.md
