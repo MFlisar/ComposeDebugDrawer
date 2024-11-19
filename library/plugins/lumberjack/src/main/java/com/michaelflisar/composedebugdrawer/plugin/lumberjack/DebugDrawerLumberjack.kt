@@ -50,13 +50,13 @@ fun DebugDrawerLumberjack(
         val context = LocalContext.current
         DebugDrawerButton(
             label = "View Log File",
-            icon = Icons.Default.Visibility
+            image = { Icon(Icons.Default.Visibility, null) }
         ) {
             showLog.value = true
         }
         DebugDrawerButton(
             label = "Send Log File",
-            icon = Icons.Default.Email
+            image = { Icon(Icons.Default.Email, null) }
         ) {
             val file = setup.getLatestLogFile()
             if (file != null) {
@@ -71,7 +71,7 @@ fun DebugDrawerLumberjack(
         }
         DebugDrawerButton(
             label = "Clear Log File",
-            icon = Icons.Default.Delete,
+            image = { Icon(Icons.Default.Delete, null) },
             foregroundTint = MaterialTheme.colorScheme.error
         ) {
             scope.launch {
