@@ -104,7 +104,7 @@ groups:
     gradle-comment: "core module"
   - name: infos
     label: Infos
-    gradle-comment: "if you want to use some of the defualt info modules"
+    gradle-comment: "if you want to use some of the default info modules"
   - name: plugins
     label: Plugins
-    gradle-comment: "plugins that add support for the correspodning libraries"
+    gradle-comment: "plugins that add support for the corresponding libraries"

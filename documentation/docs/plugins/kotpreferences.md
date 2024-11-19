@@ -2,9 +2,9 @@
 icon: material/puzzle
 ---
 
-The `plugin-kotpreferences` provides a seemless integration of my [KotPreferences](https://mflisar.github.io/KotPreferences) with this library.
+The `plugin-kotpreferences` provides a seemless integration of my [KotPreferences](https://mflisar.github.io/KotPreferences) library.
 
-This simple module allows you to use my delegate based preference library KotPreferences inside the debug drawer. With this extension labels are e.g. directly derived from the KotPreference property. It offers overloads for Checkbox, Dropdown and SegmentedButton debug drawer fields.
+This simple module allows you to use my delegate based preference library `KotPreferences` inside the debug drawer. With this extension labels are e.g. directly derived from the KotPreference property. It offers composables for `Checkbox`, `Dropdown` and `SegmentedButton` debug drawer fields.
 
 ```kotlin
 fun DebugDrawerSettingCheckbox(
