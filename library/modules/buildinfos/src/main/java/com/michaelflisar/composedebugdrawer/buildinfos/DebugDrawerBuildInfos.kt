@@ -18,18 +18,6 @@ import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerRegion
 @Composable
 fun DebugDrawerBuildInfos(
     drawerState: DebugDrawerState,
-    icon: ImageVector,
-    label: String = "Information",
-    id: String = label,
-    collapsible: Boolean = true,
-    content: @Composable ColumnScope.() -> Unit = {}
-) {
-    DebugDrawerBuildInfos(drawerState, image = { Icon(icon, null) }, label, id, collapsible, content)
-}
-
-@Composable
-fun DebugDrawerBuildInfos(
-    drawerState: DebugDrawerState,
     image: @Composable (() -> Unit)? = null,
     label: String = "Information",
     id: String = label,

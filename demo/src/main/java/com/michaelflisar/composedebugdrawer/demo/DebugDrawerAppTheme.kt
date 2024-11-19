@@ -10,6 +10,7 @@ import com.michaelflisar.composedebugdrawer.core.DebugDrawerState
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingCheckbox
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingDropdown
 import com.michaelflisar.composethemer.ComposeTheme
+import com.michaelflisar.kotpreferences.compose.asMutableState
 import com.michaelflisar.toolbox.androiddemoapp.classes.DemoPrefs
 
 @Composable

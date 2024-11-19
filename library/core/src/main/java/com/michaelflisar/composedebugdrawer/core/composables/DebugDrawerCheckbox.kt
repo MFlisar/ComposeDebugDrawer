@@ -9,6 +9,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,14 +20,20 @@ import com.michaelflisar.composedebugdrawer.core.composables.sub.TextWithDescrip
 @Composable
 fun DebugDrawerCheckbox(
     label: String,
-    checked: Boolean,
+    checked: MutableState<Boolean>,
     modifier: Modifier = Modifier,
-    icon: ImageVector,
+    image: @Composable (() -> Unit)? = null,
     description: String = "",
-    foregroundTint: Color? = null,
-    onCheckedChange: (checked: Boolean) -> Unit
+    foregroundTint: Color? = null
 ) {
-    DebugDrawerCheckbox(label, checked, modifier, image = { Icon(icon, null) }, description, foregroundTint, onCheckedChange)
+    DebugDrawerCheckbox(
+        label = label,
+        checked = checked.value,
+        modifier = modifier,
+        image = image,
+        description = description,
+        foregroundTint = foregroundTint,
+        onCheckedChange = {  checked.value = it })
 }
 
 @Composable

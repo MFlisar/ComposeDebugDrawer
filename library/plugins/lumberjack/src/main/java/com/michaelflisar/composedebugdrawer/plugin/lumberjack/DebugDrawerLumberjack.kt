@@ -30,21 +30,7 @@ fun DebugDrawerLumberjack(
     drawerState: DebugDrawerState,
     setup: IFileLoggingSetup,
     mailReceiver: String,
-    icon: ImageVector = Icons.Default.Description,
-    label: String = "Logging",
-    id: String = label,
-    collapsible: Boolean = true,
-    content: @Composable ColumnScope.() -> Unit = {}
-) {
-    DebugDrawerLumberjack(drawerState, setup, mailReceiver, image = { Icon(icon, null) }, label, id, collapsible, content)
-}
-
-@Composable
-fun DebugDrawerLumberjack(
-    drawerState: DebugDrawerState,
-    setup: IFileLoggingSetup,
-    mailReceiver: String,
-    image: @Composable (() -> Unit)?,
+    image: @Composable (() -> Unit)? = { Icon(Icons.Default.Description, null) },
     label: String = "Logging",
     id: String = label,
     collapsible: Boolean = true,

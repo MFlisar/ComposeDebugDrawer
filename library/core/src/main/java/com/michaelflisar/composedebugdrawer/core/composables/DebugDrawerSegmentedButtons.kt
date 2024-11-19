@@ -2,7 +2,6 @@ package com.michaelflisar.composedebugdrawer.core.composables
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -24,7 +23,13 @@ fun <T> DebugDrawerSegmentedButtons(
     icon: ImageVector,
     labelProvider: (item: T) -> String = { it.toString() }
 ) {
-    DebugDrawerSegmentedButtons(items, selected, modifier, image = { Icon(icon, null) }, labelProvider)
+    DebugDrawerSegmentedButtons(
+        items = items,
+        selected = selected,
+        modifier = modifier,
+        image = { Icon(icon, null) },
+        labelProvider = labelProvider
+    )
 }
 
 @Composable
@@ -36,26 +41,15 @@ fun <T> DebugDrawerSegmentedButtons(
     labelProvider: (item: T) -> String = { it.toString() }
 ) {
     DebugDrawerSegmentedButtons(
-        items,
-        selected.value,
-        modifier,
-        image,
-        labelProvider
-    ) {
-        selected.value = it
-    }
-}
-
-@Composable
-fun <T> DebugDrawerSegmentedButtons(
-    items: List<T>,
-    selected: T,
-    modifier: Modifier = Modifier,
-    icon: ImageVector,
-    labelProvider: (item: T) -> String = { it.toString() },
-    onItemSelected: (item: T) -> Unit
-) {
-    DebugDrawerSegmentedButtons(items, selected, modifier, image = { Icon(icon, null) }, labelProvider, onItemSelected)
+        items = items,
+        selected = selected.value,
+        modifier = modifier,
+        image = image,
+        labelProvider = labelProvider,
+        onItemSelected = {
+            selected.value = it
+        }
+    )
 }
 
 @Composable

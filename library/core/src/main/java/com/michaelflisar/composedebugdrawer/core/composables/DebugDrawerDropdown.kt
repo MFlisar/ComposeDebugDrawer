@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -17,22 +18,21 @@ import com.michaelflisar.composedebugdrawer.core.composables.sub.Spinner
 fun <T> DebugDrawerDropdown(
     label: String,
     items: List<T>,
-    selected: T,
+    selected: MutableState<T>,
     modifier: Modifier = Modifier,
-    icon: ImageVector,
+    image: @Composable (() -> Unit)? = null,
     labelProvider: (item: T) -> String = { it.toString() },
     iconProvider: @Composable ((item: T) -> Unit)? = null,
-    onItemSelected: (item: T) -> Unit
 ) {
     DebugDrawerDropdown(
         label = label,
         items = items,
-        selected = selected,
+        selected = selected.value,
         modifier = modifier,
-        image = { Icon(icon, null) },
+        image = image,
         labelProvider = labelProvider,
         iconProvider = iconProvider,
-        onItemSelected = onItemSelected
+        onItemSelected = { selected.value = it }
     )
 }
 

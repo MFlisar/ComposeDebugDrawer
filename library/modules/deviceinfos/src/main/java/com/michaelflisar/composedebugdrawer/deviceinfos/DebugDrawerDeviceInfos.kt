@@ -16,19 +16,7 @@ import com.michaelflisar.composedebugdrawer.core.DebugDrawerState
 @Composable
 fun DebugDrawerDeviceInfos(
     drawerState: DebugDrawerState,
-    icon: ImageVector? = Icons.Default.PhoneAndroid,
-    label: String = "Device",
-    id: String = label,
-    collapsible: Boolean = true,
-    content: @Composable ColumnScope.() -> Unit = {}
-) {
-    DebugDrawerDeviceInfos(drawerState, image = icon?.let { { Icon(it, null) } }, label, id, collapsible, content)
-}
-
-@Composable
-fun DebugDrawerDeviceInfos(
-    drawerState: DebugDrawerState,
-    image: @Composable (() -> Unit)?,
+    image: @Composable (() -> Unit)? = { Icon(Icons.Default.PhoneAndroid, null) },
     label: String = "Device",
     id: String = label,
     collapsible: Boolean = true,
