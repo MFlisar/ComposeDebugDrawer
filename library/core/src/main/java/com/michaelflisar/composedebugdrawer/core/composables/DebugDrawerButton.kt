@@ -22,18 +22,6 @@ import androidx.compose.ui.unit.dp
 fun DebugDrawerButton(
     label: String,
     modifier: Modifier = Modifier.fillMaxWidth(),
-    icon: ImageVector,
-    foregroundTint: Color? = null,
-    outline: Boolean = true,
-    onClick: () -> Unit
-) {
-    DebugDrawerButton(label, modifier, image = { Icon(icon, null) }, foregroundTint, outline, onClick)
-}
-
-@Composable
-fun DebugDrawerButton(
-    label: String,
-    modifier: Modifier = Modifier.fillMaxWidth(),
     image: @Composable (() -> Unit)? = null,
     foregroundTint: Color? = null,
     outline: Boolean = true,

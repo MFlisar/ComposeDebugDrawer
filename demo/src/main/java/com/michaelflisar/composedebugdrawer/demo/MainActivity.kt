@@ -5,15 +5,33 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.ColorLens
-import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -24,7 +42,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.michaelflisar.composedebugdrawer.buildinfos.BuildConfig
 import com.michaelflisar.composedebugdrawer.buildinfos.DebugDrawerBuildInfos
-import com.michaelflisar.composedebugdrawer.core.*
+import com.michaelflisar.composedebugdrawer.core.DebugDrawer
+import com.michaelflisar.composedebugdrawer.core.DebugDrawerActions
+import com.michaelflisar.composedebugdrawer.core.DebugDrawerState
 import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerButton
 import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerCheckbox
 import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerDivider
@@ -32,18 +52,16 @@ import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerDropdown
 import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerInfo
 import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerRegion
 import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerSegmentedButtons
+import com.michaelflisar.composedebugdrawer.core.rememberDebugDrawerState
 import com.michaelflisar.composedebugdrawer.demo.classes.DebugDrawerPrefs
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoLogging
 import com.michaelflisar.composedebugdrawer.deviceinfos.DebugDrawerDeviceInfos
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingCheckbox
-import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingDropdown
-import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingSegmentedButtons
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.getDebugLabel
 import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberjack
 import com.michaelflisar.composethemer.ComposeTheme
 import com.michaelflisar.composethemer.UpdateEdgeToEdgeDefault
 import com.michaelflisar.kotpreferences.compose.asMutableState
-import com.michaelflisar.kotpreferences.compose.collectAsState
 import com.michaelflisar.kotpreferences.compose.collectAsStateNotNull
 import com.michaelflisar.lumberjack.core.L
 import com.michaelflisar.toolbox.androiddemoapp.classes.DemoPrefs
@@ -246,12 +264,15 @@ class MainActivity : ComponentActivity() {
             ) {
                 test1 = it
             }
-            DebugDrawerButton(icon = Icons.Default.BugReport, label = "Button (Filled)") {
+            DebugDrawerButton(
+                image = { Icon(Icons.Default.BugReport, null) },
+                label = "Button (Filled)"
+            ) {
                 Toast.makeText(this@MainActivity, "Filled Button Clicked", Toast.LENGTH_SHORT)
                     .show()
             }
             DebugDrawerButton(
-                icon = Icons.Default.BugReport,
+                image = { Icon(Icons.Default.BugReport, null) },
                 outline = false,
                 label = "Button (Outlined)"
             ) {
@@ -278,7 +299,7 @@ class MainActivity : ComponentActivity() {
                 val modifier = Modifier.weight(1f)
                 DebugDrawerButton(
                     modifier = modifier,
-                    icon = Icons.Default.Info,
+                    image = { Icon(Icons.Default.Info, null) },
                     label = "B1"
                 ) {
                     Toast.makeText(this@MainActivity, "Button B1 Clicked", Toast.LENGTH_SHORT)
@@ -286,7 +307,7 @@ class MainActivity : ComponentActivity() {
                 }
                 DebugDrawerButton(
                     modifier = modifier,
-                    icon = Icons.Default.Info,
+                    image = { Icon(Icons.Default.Info, null) },
                     outline = false,
                     label = "B2"
                 ) {
