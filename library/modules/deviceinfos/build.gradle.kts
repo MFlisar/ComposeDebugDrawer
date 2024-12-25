@@ -79,7 +79,7 @@ dependencies {
     // Libraries
     // ------------------------
 
-    implementation(project(":ComposeDebugDrawer:Core"))
+    implementation(project(":composedebugdrawer:core"))
 }
 
 mavenPublishing {

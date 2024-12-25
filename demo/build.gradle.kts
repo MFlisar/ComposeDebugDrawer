@@ -68,16 +68,16 @@ dependencies {
     // Libraries
     // ------------------------
 
-    implementation(project(":ComposeDebugDrawer:Core"))
-    implementation(project(":ComposeDebugDrawer:Modules:BuildInfos"))
-    implementation(project(":ComposeDebugDrawer:Modules:DeviceInfos"))
-    implementation(project(":ComposeDebugDrawer:Plugins:Lumberjack"))
-    implementation(project(":ComposeDebugDrawer:Plugins:KotPreferences"))
+    implementation(project(":composedebugdrawer:core"))
+    implementation(project(":composedebugdrawer:modules:buildinfos"))
+    implementation(project(":composedebugdrawer:modules:deviceinfos"))
+    implementation(project(":composedebugdrawer:plugins:lumberjack"))
+    implementation(project(":composedebugdrawer:plugins:kotpreferences"))
 
     // preferences via delegates
     implementation(deps.kotpreferences.core)
-    implementation(deps.kotpreferences.datastore)
-    implementation(deps.kotpreferences.compose)
+    implementation(deps.kotpreferences.storage.datastore)
+    implementation(deps.kotpreferences.extension.compose)
 
     // logging
     implementation(deps.lumberjack.core)

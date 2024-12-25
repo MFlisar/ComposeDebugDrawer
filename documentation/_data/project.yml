@@ -82,7 +82,7 @@ modules:
     dependencies: # optionales Array
       - name: Lumberjack
         link: https://mflisar.github.io/Lumberjack/
-        version: 7.1.1
+        version: 7.1.2
   - name: "plugin-kotpreferences"
     group: "plugins"
     description: "a plugin to use my kotpreferences library inside this library"
@@ -95,7 +95,7 @@ modules:
     dependencies: # optionales Array
     - name: KotPreferences
       link: https://mflisar.github.io/KotPreferences/
-      version: 0.7.0
+      version: 0.7.2
 
 # GRUPPEN - optional: nur bei mehreren Modulen benötigt!
 groups:

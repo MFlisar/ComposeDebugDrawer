@@ -77,15 +77,15 @@ dependencies {
     // Libraries
     // ------------------------
 
-    implementation(project(":ComposeDebugDrawer:Core"))
+    implementation(project(":composedebugdrawer:core"))
 
     val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
     if (useLiveDependencies) {
         implementation(deps.kotpreferences.core)
-        implementation(deps.kotpreferences.compose)
+        implementation(deps.kotpreferences.extension.compose)
     } else {
-        implementation(project(":KotPreferences:Core"))
-        implementation(project(":KotPreferences:Modules:Compose"))
+        implementation(project(":kotpreferences:core"))
+        implementation(project(":kotpreferences:modules:compose"))
     }
 
 }

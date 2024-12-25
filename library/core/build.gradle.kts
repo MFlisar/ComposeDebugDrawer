@@ -68,7 +68,7 @@ dependencies {
     // Kotlin
     // ------------------------
 
-    implementation(kotlinx.coroutines)
+    implementation(kotlinx.coroutines.core)
 
     // ------------------------
     // AndroidX / Google / Goolge

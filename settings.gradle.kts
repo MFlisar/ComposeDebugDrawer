@@ -36,18 +36,18 @@ pluginManagement {
 // App
 // --------------
 
-include(":ComposeDebugDrawer:Core")
-project(":ComposeDebugDrawer:Core").projectDir = file("library/core")
+include(":composedebugdrawer:core")
+project(":composedebugdrawer:core").projectDir = file("library/core")
 
-include(":ComposeDebugDrawer:Modules:BuildInfos")
-project(":ComposeDebugDrawer:Modules:BuildInfos").projectDir = file("library/modules/buildinfos")
-include(":ComposeDebugDrawer:Modules:DeviceInfos")
-project(":ComposeDebugDrawer:Modules:DeviceInfos").projectDir = file("library/modules/deviceinfos")
+include(":composedebugdrawer:modules:buildinfos")
+project(":composedebugdrawer:modules:buildinfos").projectDir = file("library/modules/buildinfos")
+include(":composedebugdrawer:modules:deviceinfos")
+project(":composedebugdrawer:modules:deviceinfos").projectDir = file("library/modules/deviceinfos")
 
-include(":ComposeDebugDrawer:Plugins:Lumberjack")
-project(":ComposeDebugDrawer:Plugins:Lumberjack").projectDir = file("library/plugins/lumberjack")
-include(":ComposeDebugDrawer:Plugins:KotPreferences")
-project(":ComposeDebugDrawer:Plugins:KotPreferences").projectDir = file("library/plugins/kotpreferences")
+include(":composedebugdrawer:plugins:lumberjack")
+project(":composedebugdrawer:plugins:lumberjack").projectDir = file("library/plugins/lumberjack")
+include(":composedebugdrawer:plugins:kotpreferences")
+project(":composedebugdrawer:plugins:kotpreferences").projectDir = file("library/plugins/kotpreferences")
 
 include(":demo")
 project(":demo").projectDir = file("demo")
