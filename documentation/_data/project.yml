@@ -12,14 +12,14 @@ library:
   screenshots:
     - name: Drawer
       images:
-        - https://raw.githubusercontent.com/MFlisar/ComposeDebugDrawer/refs/heads/main/screenshots/demo1.jpg
-        - https://raw.githubusercontent.com/MFlisar/ComposeDebugDrawer/refs/heads/main/screenshots/demo3.jpg
-        - https://raw.githubusercontent.com/MFlisar/ComposeDebugDrawer/refs/heads/main/screenshots/demo4.jpg
+        - ./screenshots/demo1.jpg
+        - ./screenshots/demo3.jpg
+        - ./screenshots/demo4.jpg
     - name: Drawer
       images:
-        - https://raw.githubusercontent.com/MFlisar/ComposeDebugDrawer/refs/heads/main/screenshots/demo5.jpg
-        - https://raw.githubusercontent.com/MFlisar/ComposeDebugDrawer/refs/heads/main/screenshots/demo6.jpg
-        - https://raw.githubusercontent.com/MFlisar/ComposeDebugDrawer/refs/heads/main/screenshots/demo7.jpg
+        - ./screenshots/demo5.jpg
+        - ./screenshots/demo6.jpg
+        - ./screenshots/demo7.jpg
   branch: main
   demo: true
 
