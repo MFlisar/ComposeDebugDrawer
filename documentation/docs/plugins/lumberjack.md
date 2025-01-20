@@ -22,4 +22,4 @@ fun DebugDrawerLumberjack(
 
 | Lumberjack Plugin                                                                                                    |
 |----------------------------------------------------------------------------------------------------------------------|
-| ![Device Module](https://raw.githubusercontent.com/MFlisar/ComposeDebugDrawer/refs/heads/main/screenshots/demo5.jpg) |
+| ![Device Module](../screenshots/lumberjack/demo5.jpg) |

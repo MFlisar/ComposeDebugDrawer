@@ -10,4 +10,4 @@ DebugDrawerBuildInfos(drawerState)
 
 | Info Module                                                                                                        |
 |--------------------------------------------------------------------------------------------------------------------|
-| ![Info Module](https://raw.githubusercontent.com/MFlisar/ComposeDebugDrawer/refs/heads/main/screenshots/demo1.jpg) |
+| ![Info Module](../screenshots/buildinfos/demo1.jpg) |
