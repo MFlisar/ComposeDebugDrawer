@@ -13,18 +13,32 @@ plugins {
 // Informations
 // -------------------
 
+val description = "provides a simple device infos region"
+
 // Module
 val artifactId = "infos-device"
 val androidNamespace = "com.michaelflisar.composedebugdrawer.deviceinfos"
 
 // Library
 val libraryName = "ComposeDebugDrawer"
-val libraryDescription = "This library offers you a simple and easily readme debug drawer."
+val libraryDescription = "ComposeDebugDrawer - $artifactId module - $description"
 val groupID = "io.github.mflisar.composedebugdrawer"
 val release = 2023
 val github = "https://github.com/MFlisar/ComposeDebugDrawer"
 val license = "Apache License 2.0"
 val licenseUrl = "$github/blob/main/LICENSE"
+
+// -------------------
+// Variables for Documentation Generator
+// -------------------
+
+// # DEP is an optional arrays!
+
+// OPTIONAL = "true"                // defines if this module is optional or not
+// GROUP_ID = "modules"             // defines the "grouping" in the documentation this module belongs to
+// #DEP = "deps.kotbilling|KotBilling|https://github.com/MFlisar/Kotbilling"
+// PLATFORM_INFO = ""               // defines a comment that will be shown in the documentation for this modules platform support
+
 
 // -------------------
 // Setup

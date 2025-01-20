@@ -13,18 +13,37 @@ plugins {
 // Informations
 // -------------------
 
+val description = "the core module - provides the basic debug drawer"
+
 // Module
 val artifactId = "core"
 val androidNamespace = "com.michaelflisar.composedebugdrawer.core"
 
 // Library
 val libraryName = "ComposeDebugDrawer"
-val libraryDescription = "This library offers you a simple and easily readme debug drawer."
+val libraryDescription = "ComposeDebugDrawer - $artifactId module - $description"
 val groupID = "io.github.mflisar.composedebugdrawer"
 val release = 2023
 val github = "https://github.com/MFlisar/ComposeDebugDrawer"
 val license = "Apache License 2.0"
 val licenseUrl = "$github/blob/main/LICENSE"
+
+// -------------------
+// Variables for Documentation Generator
+// -------------------
+
+// # DEP + GROUP are optional arrays!
+
+// OPTIONAL = "false"               // defines if this module is optional or not
+// GROUP_ID = "core"                // defines the "grouping" in the documentation this module belongs to
+// #DEP = "deps.composables.core|Compose Unstyled (core)|https://github.com/composablehorizons/compose-unstyled/"
+// PLATFORM_INFO = ""               // defines a comment that will be shown in the documentation for this modules platform support
+
+// GLOBAL DATA
+// BRANCH = "master"        // defines the branch on github (master/main)
+// GROUP = "core|Core|core"
+// GROUP = "modules|Modules|modules"
+// GROUP = "plugins|Plugins|plugins"
 
 // -------------------
 // Setup
