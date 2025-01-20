@@ -19,7 +19,6 @@ library:
         - ./screenshots/core/demo-theme-3.jpg
         - ./screenshots/core/demo2.jpg
         - ./screenshots/core/demo3.jpg
-        - ./screenshots/core/demo5.jpg
         - ./screenshots/core/demo6.jpg
         - ./screenshots/core/demo7.jpg
         - ./screenshots/core/demo8.jpg
@@ -29,6 +28,9 @@ library:
     - name: deviceinfos
       images:
         - ./screenshots/deviceinfos/demo4.jpg
+    - name: lumberjack
+      images:
+        - ./screenshots/lumberjack/demo5.jpg
   branch: master
   demo: true
 
