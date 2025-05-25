@@ -1,10 +1,11 @@
 [versions]
 
-gradle = 				        "8.7.3"
-kotlin = 				        "2.1.0"
+gradle = 				        "8.9.3"
+kotlin = 				        "2.1.21"
 dokka =                         "1.9.20"
-gradle-maven-publish-plugin =   "0.30.0"
-compose =                       "1.7.1"
+gradle-maven-publish-plugin =   "0.32.0"
+compose =                       "1.8.1"
+compose-icons =                 "1.7.3"
 
 [plugins]
 
@@ -29,6 +30,6 @@ gradle-maven-publish-plugin =       { id = "com.vanniktech.maven.publish.base", 
 kotlin-test = 			            { module = "org.jetbrains.kotlin:kotlin-test",                          version.ref = "kotlin" }
 
 compose-runtime =                   { module = "org.jetbrains.compose.runtime:runtime",                     version.ref = "compose" }
-compose-material-icons-core = 	    { module = "org.jetbrains.compose.material:material-icons-core",        version.ref = "compose" }
-compose-material-icons-extended = 	{ module = "org.jetbrains.compose.material:material-icons-extended",    version.ref = "compose" }
 compose-material3 =                 { module = "org.jetbrains.compose.material3:material3",                 version.ref = "compose" }
+compose-material-icons-core = 	    { module = "org.jetbrains.compose.material:material-icons-core",        version.ref = "compose-icons" }
+compose-material-icons-extended = 	{ module = "org.jetbrains.compose.material:material-icons-extended",    version.ref = "compose-icons" }

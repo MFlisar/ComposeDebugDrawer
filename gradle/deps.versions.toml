@@ -1,9 +1,9 @@
 [versions]
 
 # mflisar
-lumberjack = 				"7.1.2"
-kotpreferences =        	"0.7.2"
-toolbox =                   "2.2.3"
+lumberjack = 				"7.1.3"
+kotpreferences =        	"0.8.0"
+toolbox =                   "2.2.3" # demo app only!
 
 [libraries]
 

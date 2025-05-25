@@ -39,10 +39,10 @@ library:
 # ------------
 
 dependencies:
-  compose-multiplatform: 1.7.1 # https://github.com/JetBrains/compose-multiplatform/releases
-  jetpack-compose-runtime: 1.7.5 # https://developer.android.com/jetpack/androidx/releases/compose-runtime
-  jetpack-compose-material3: 1.3.1 # https://developer.android.com/jetpack/androidx/releases/compose-material3
-  experimental: false
+  compose-multiplatform: 1.8.1 # https://github.com/JetBrains/compose-multiplatform/releases
+  jetpack-compose-runtime: 1.8.1 # https://developer.android.com/jetpack/androidx/releases/compose-runtime
+  jetpack-compose-material3: 1.3.2 # https://developer.android.com/jetpack/androidx/releases/compose-material3
+  experimental: true
 
 # ------------
 # Groups
@@ -98,7 +98,7 @@ modules:
     dependencies:
       - name: KotPreferences
         link: https://github.com/MFlisar/KotPreferences
-        version: 0.7.2
+        version: 0.8.0
   - name: plugin-lumberjack
     group: plugins
     description: provides a simple lumberjack region
@@ -109,4 +109,4 @@ modules:
     dependencies:
       - name: Lumberjack
         link: https://github.com/MFlisar/Lumberjack
-        version: 7.1.2
+        version: 7.1.3
