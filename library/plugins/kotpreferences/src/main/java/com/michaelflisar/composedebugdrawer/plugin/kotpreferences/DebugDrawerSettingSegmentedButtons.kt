@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerSegmentedButtons
 import com.michaelflisar.kotpreferences.compose.asMutableState
+import com.michaelflisar.kotpreferences.compose.asMutableStateNotNull
 import com.michaelflisar.kotpreferences.core.interfaces.StorageSetting
 
 @Composable
@@ -16,7 +17,7 @@ fun <T> DebugDrawerSettingSegmentedButtons(
 ) {
     DebugDrawerSegmentedButtons(
         modifier = modifier,
-        selected = setting.asMutableState(),
+        selected = setting.asMutableStateNotNull(),
         items = items,
         image = image,
         labelProvider = labelProvider

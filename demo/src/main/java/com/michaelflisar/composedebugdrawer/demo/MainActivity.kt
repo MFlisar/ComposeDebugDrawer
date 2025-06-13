@@ -63,10 +63,12 @@ import com.michaelflisar.composethemer.ComposeTheme
 import com.michaelflisar.composethemer.UpdateEdgeToEdgeDefault
 import com.michaelflisar.kotpreferences.compose.asMutableState
 import com.michaelflisar.kotpreferences.compose.collectAsStateNotNull
+import com.michaelflisar.kotpreferences.core.value
 import com.michaelflisar.lumberjack.core.L
 import com.michaelflisar.toolbox.androiddemoapp.classes.DemoPrefs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import com.michaelflisar.kotpreferences.compose.asMutableStateNotNull
 
 class MainActivity : ComponentActivity() {
 
@@ -235,7 +237,7 @@ class MainActivity : ComponentActivity() {
             // example on how to reuse a KotPreference field between multiple settings
             // => in this case share the mutable state manually!
             DebugDrawerDivider(info = "Enum")
-            val devStyle = DebugDrawerPrefs.devStyle.asMutableState()
+            val devStyle = DebugDrawerPrefs.devStyle.asMutableStateNotNull()
             DebugDrawerDropdown(
                 selected = devStyle,
                 label = DebugDrawerPrefs.devStyle.getDebugLabel(),

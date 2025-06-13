@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerCheckbox
-import com.michaelflisar.kotpreferences.compose.asMutableState
+import com.michaelflisar.kotpreferences.compose.asMutableStateNotNull
 import com.michaelflisar.kotpreferences.core.interfaces.StorageSetting
 
 @Composable
@@ -17,7 +17,7 @@ fun DebugDrawerSettingCheckbox(
     description: String = ""
 ) {
     DebugDrawerCheckbox(
-        checked = setting.asMutableState(),
+        checked = setting.asMutableStateNotNull(),
         modifier = modifier,
         image = image,
         foregroundTint = foregroundTint,
