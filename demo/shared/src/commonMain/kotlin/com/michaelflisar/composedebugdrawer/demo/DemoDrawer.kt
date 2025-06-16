@@ -2,6 +2,8 @@ package com.michaelflisar.composedebugdrawer.demo
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.ColorLens
@@ -80,6 +82,8 @@ private fun DemoDrawerContent(
     fileLoggingSetup: IFileLoggingSetup?
 ) {
     val scope = rememberCoroutineScope()
+
+    Spacer(modifier = Modifier.height(8.dp))
 
     DebugDrawerCheckbox(
         label = "Expand Single Only",

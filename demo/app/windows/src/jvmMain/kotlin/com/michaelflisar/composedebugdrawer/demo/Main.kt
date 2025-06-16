@@ -43,17 +43,17 @@ fun main() {
         ) {
             MaterialTheme {
                 val snackbarHostState = remember { SnackbarHostState() }
-                Scaffold(
-                    snackbarHost = {
-                        SnackbarHost(snackbarHostState)
-                    },
-                    content = { padding ->
-                        DemoDrawer(
-                            snackbarHostState = snackbarHostState,
-                            prefs = prefs,
-                            enabled = true,
-                            fileLoggingSetup = null
-                        ) {
+                DemoDrawer(
+                    snackbarHostState = snackbarHostState,
+                    prefs = prefs,
+                    enabled = true,
+                    fileLoggingSetup = null
+                ) {
+                    Scaffold(
+                        snackbarHost = {
+                            SnackbarHost(snackbarHostState)
+                        },
+                        content = { padding ->
                             val scope = rememberCoroutineScope()
                             DemoContent(
                                 modifier = Modifier
@@ -66,8 +66,8 @@ fun main() {
                                 }
                             }
                         }
-                    }
-                )
+                    )
+                }
             }
         }
     }

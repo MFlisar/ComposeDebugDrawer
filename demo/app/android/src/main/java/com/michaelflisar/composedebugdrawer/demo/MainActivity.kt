@@ -18,7 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.michaelflisar.composedebugdrawer.buildinfos.BuildConfig
+import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoLogging
 import com.michaelflisar.lumberjack.core.L
 import kotlinx.coroutines.launch
@@ -36,40 +36,40 @@ class MainActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 val snackbarHostState = remember { SnackbarHostState() }
-                Scaffold(
-                    topBar = {
-                        TopAppBar(
-                            title = { Text(stringResource(R.string.app_name)) },
-                            colors = TopAppBarDefaults.topAppBarColors(
-                                containerColor = MaterialTheme.colorScheme.primary,
-                                titleContentColor = MaterialTheme.colorScheme.onPrimary
+                DemoDrawer(
+                    snackbarHostState = snackbarHostState,
+                    prefs = DemoApp.PREFS,
+                    enabled = BuildConfig.DEBUG,
+                    fileLoggingSetup = DemoLogging.fileLoggingSetup
+                ) {
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(
+                                title = { Text(stringResource(R.string.app_name)) },
+                                colors = TopAppBarDefaults.topAppBarColors(
+                                    containerColor = MaterialTheme.colorScheme.primary,
+                                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                                )
                             )
-                        )
-                    },
-                    snackbarHost = {
-                        SnackbarHost(snackbarHostState)
-                    },
-                    content = { padding ->
-                        DemoDrawer(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(padding),
-                            snackbarHostState = snackbarHostState,
-                            prefs = DemoApp.PREFS,
-                            enabled = BuildConfig.DEBUG,
-                            fileLoggingSetup = DemoLogging.fileLoggingSetup
-                        ) {
+                        },
+                        snackbarHost = {
+                            SnackbarHost(snackbarHostState)
+                        },
+                        content = { padding ->
                             val scope = rememberCoroutineScope()
                             DemoContent(
-                                modifier = Modifier.fillMaxSize()
+                                modifier = Modifier
+                                    .padding(padding)
+                                    .padding(16.dp)
+                                    .fillMaxSize()
                             ) {
                                 scope.launch {
                                     it.drawerState.open()
                                 }
                             }
                         }
-                    }
-                )
+                    )
+                }
             }
         }
     }
