@@ -1,8 +1,9 @@
 import com.michaelflisar.kmptemplate.BuildFilePlugin
-import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+import com.michaelflisar.kmptemplate.Target
+import com.michaelflisar.kmptemplate.Targets
 
 plugins {
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
      alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dokka)
@@ -12,6 +13,18 @@ plugins {
 
 // get build file plugin
 val buildFilePlugin = project.plugins.getPlugin(BuildFilePlugin::class.java)
+
+// targets
+val buildTargets = Targets(
+    // mobile
+    android = true,
+    iOS = false,
+    // desktop
+    windows = false,
+    macOS = false,
+    // web
+    wasm = false
+)
 
 // -------------------
 // Informations
@@ -23,22 +36,37 @@ val androidNamespace = "com.michaelflisar.composedebugdrawer.buildinfos"
 // Setup
 // -------------------
 
-dependencies {
-    
-    // ------------------------
-    // AndroidX / Google / Goolge
-    // ------------------------
+kotlin {
 
-    // Compose
-    implementation(libs.compose.material3)
+    //-------------
+    // Targets
+    //-------------
 
-    implementation(androidx.activity.compose)
+    buildFilePlugin.setupTargets(buildTargets)
 
-    // ------------------------
-    // Libraries
-    // ------------------------
+    // -------
+    // Sources
+    // -------
 
-    implementation(project(":composedebugdrawer:core"))
+    sourceSets {
+
+        commonMain.dependencies {
+
+            // ------------------------
+            // AndroidX / Google / Goolge
+            // ------------------------
+
+            // Compose
+            implementation(libs.compose.material3)
+
+            // ------------------------
+            // Libraries
+            // ------------------------
+
+            implementation(project(":composedebugdrawer:core"))
+
+        }
+    }
 }
 
 // -------------------
@@ -54,13 +82,7 @@ android {
         compose = true,
         buildConfig = true
     )
-
-    kotlinOptions {
-        jvmTarget = buildFilePlugin.javaVersion()
-    }
 }
 
 // maven publish configuration
-buildFilePlugin.setupMavenPublish(
-    platform = AndroidSingleVariantLibrary("release", true, true)
-)
+buildFilePlugin.setupMavenPublish()

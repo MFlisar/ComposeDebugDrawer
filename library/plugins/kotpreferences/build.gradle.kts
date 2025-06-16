@@ -1,8 +1,9 @@
 import com.michaelflisar.kmptemplate.BuildFilePlugin
-import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+import com.michaelflisar.kmptemplate.Target
+import com.michaelflisar.kmptemplate.Targets
 
 plugins {
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
      alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dokka)
@@ -12,6 +13,18 @@ plugins {
 
 // get build file plugin
 val buildFilePlugin = project.plugins.getPlugin(BuildFilePlugin::class.java)
+
+// targets
+val buildTargets = Targets(
+    // mobile
+    android = true,
+    iOS = true,
+    // desktop
+    windows = true,
+    macOS = true,
+    // web
+    wasm = true
+)
 
 // -------------------
 // Informations
@@ -23,32 +36,46 @@ val androidNamespace = "com.michaelflisar.composedebugdrawer.plugin.kotpreferenc
 // Setup
 // -------------------
 
-dependencies {
+kotlin {
 
-    // ------------------------
-    // AndroidX / Google / Goolge
-    // ------------------------
+    //-------------
+    // Targets
+    //-------------
 
-    // Compose
-    implementation(libs.compose.material3)
+    buildFilePlugin.setupTargets(buildTargets)
 
-    implementation(androidx.activity.compose)
+    // -------
+    // Sources
+    // -------
 
-    // ------------------------
-    // Libraries
-    // ------------------------
+    sourceSets {
 
-    implementation(project(":composedebugdrawer:core"))
+        commonMain.dependencies {
 
-    val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
-    if (useLiveDependencies) {
-        implementation(deps.kotpreferences.core)
-        implementation(deps.kotpreferences.extension.compose)
-    } else {
-        implementation(project(":kotpreferences:core"))
-        implementation(project(":kotpreferences:modules:compose"))
+            // ------------------------
+            // AndroidX / Google / Goolge
+            // ------------------------
+
+            // Compose
+            implementation(libs.compose.material3)
+
+            // ------------------------
+            // Libraries
+            // ------------------------
+
+            implementation(project(":composedebugdrawer:core"))
+
+            val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
+            if (useLiveDependencies) {
+                implementation(deps.kotpreferences.core)
+                implementation(deps.kotpreferences.extension.compose)
+            } else {
+                implementation(project(":kotpreferences:core"))
+                implementation(project(":kotpreferences:modules:compose"))
+            }
+
+        }
     }
-
 }
 
 // -------------------
@@ -64,13 +91,7 @@ android {
         compose = true,
         buildConfig = false
     )
-
-    kotlinOptions {
-        jvmTarget = buildFilePlugin.javaVersion()
-    }
 }
 
 // maven publish configuration
-buildFilePlugin.setupMavenPublish(
-    platform = AndroidSingleVariantLibrary("release", true, true)
-)
+buildFilePlugin.setupMavenPublish()

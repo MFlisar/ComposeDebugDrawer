@@ -49,5 +49,6 @@ project(":composedebugdrawer:plugins:lumberjack").projectDir = file("library/plu
 include(":composedebugdrawer:plugins:kotpreferences")
 project(":composedebugdrawer:plugins:kotpreferences").projectDir = file("library/plugins/kotpreferences")
 
-include(":demo")
-project(":demo").projectDir = file("demo")
+include(":demo:shared")
+include(":demo:app:windows")
+include(":demo:app:android")

@@ -21,6 +21,9 @@ kotlin-compose = 				    { id = "org.jetbrains.kotlin.plugin.compose", 	    vers
 kotlin-serialization = 			    { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-jvm = 				        { id = "org.jetbrains.kotlin.jvm", 			        version.ref = "kotlin" }
 
+# compose
+compose =                           { id = "org.jetbrains.compose",                     version.ref = "compose" }
+
 # github release (dokka + maven)
 dokka =                             { id = "org.jetbrains.dokka",                       version.ref = "dokka" }
 gradle-maven-publish-plugin =       { id = "com.vanniktech.maven.publish.base",         version.ref = "gradle-maven-publish-plugin" }
@@ -30,6 +33,7 @@ gradle-maven-publish-plugin =       { id = "com.vanniktech.maven.publish.base", 
 kotlin-test = 			            { module = "org.jetbrains.kotlin:kotlin-test",                          version.ref = "kotlin" }
 
 compose-runtime =                   { module = "org.jetbrains.compose.runtime:runtime",                     version.ref = "compose" }
+compose-ui-backhandler =            { module = "org.jetbrains.compose.ui:ui-backhandler",                   version.ref = "compose" }
 compose-material3 =                 { module = "org.jetbrains.compose.material3:material3",                 version.ref = "compose" }
 compose-material-icons-core = 	    { module = "org.jetbrains.compose.material:material-icons-core",        version.ref = "compose-icons" }
 compose-material-icons-extended = 	{ module = "org.jetbrains.compose.material:material-icons-extended",    version.ref = "compose-icons" }

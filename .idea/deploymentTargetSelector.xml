@@ -2,7 +2,7 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="demo">
+      <SelectionState runConfigName="demo.android">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

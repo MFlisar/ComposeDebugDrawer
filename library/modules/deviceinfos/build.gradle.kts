@@ -1,8 +1,9 @@
 import com.michaelflisar.kmptemplate.BuildFilePlugin
-import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+import com.michaelflisar.kmptemplate.Target
+import com.michaelflisar.kmptemplate.Targets
 
 plugins {
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
      alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dokka)
@@ -12,6 +13,18 @@ plugins {
 
 // get build file plugin
 val buildFilePlugin = project.plugins.getPlugin(BuildFilePlugin::class.java)
+
+// targets
+val buildTargets = Targets(
+    // mobile
+    android = true,
+    iOS = false,
+    // desktop
+    windows = false,
+    macOS = false,
+    // web
+    wasm = false
+)
 
 // -------------------
 // Informations
@@ -23,26 +36,40 @@ val androidNamespace = "com.michaelflisar.composedebugdrawer.deviceinfos"
 // Setup
 // -------------------
 
-dependencies {
+kotlin {
 
-    // ------------------------
-    // AndroidX / Google / Goolge
-    // ------------------------
+    //-------------
+    // Targets
+    //-------------
 
-    // Compose
-    implementation(libs.compose.material3)
-    implementation(libs.compose.material.icons.core)
-    implementation(libs.compose.material.icons.extended)
+    buildFilePlugin.setupTargets(buildTargets)
 
-    implementation(androidx.activity.compose)
+    // -------
+    // Sources
+    // -------
 
-    // ------------------------
-    // Libraries
-    // ------------------------
+    sourceSets {
 
-    implementation(project(":composedebugdrawer:core"))
+        commonMain.dependencies {
+
+            // ------------------------
+            // AndroidX / Google / Goolge
+            // ------------------------
+
+            // Compose
+            implementation(libs.compose.material3)
+            implementation(libs.compose.material.icons.core)
+            implementation(libs.compose.material.icons.extended)
+
+            // ------------------------
+            // Libraries
+            // ------------------------
+
+            implementation(project(":composedebugdrawer:core"))
+
+        }
+    }
 }
-
 
 // -------------------
 // Configurations
@@ -57,13 +84,7 @@ android {
         compose = true,
         buildConfig = false
     )
-
-    kotlinOptions {
-        jvmTarget = buildFilePlugin.javaVersion()
-    }
 }
 
 // maven publish configuration
-buildFilePlugin.setupMavenPublish(
-    platform = AndroidSingleVariantLibrary("release", true, true)
-)
+buildFilePlugin.setupMavenPublish()
