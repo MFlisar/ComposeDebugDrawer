@@ -1,5 +1,5 @@
+import com.michaelflisar.kmptemplate.BuildFilePlugin
 import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
-import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
     alias(libs.plugins.kotlin.android)
@@ -7,73 +7,21 @@ plugins {
      alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dokka)
     alias(libs.plugins.gradle.maven.publish.plugin)
+    alias(deps.plugins.kmp.template.gradle.plugin)
 }
+
+// get build file plugin
+val buildFilePlugin = project.plugins.getPlugin(BuildFilePlugin::class.java)
 
 // -------------------
 // Informations
 // -------------------
 
-val description = "provides a simple lumberjack region"
-
-// Module
-val artifactId = "plugin-lumberjack"
 val androidNamespace = "com.michaelflisar.composedebugdrawer.plugin.lumberjack"
-
-// Library
-val libraryName = "ComposeDebugDrawer"
-val libraryDescription = "ComposeDebugDrawer - $artifactId module - $description"
-val groupID = "io.github.mflisar.composedebugdrawer"
-val release = 2023
-val github = "https://github.com/MFlisar/ComposeDebugDrawer"
-val license = "Apache License 2.0"
-val licenseUrl = "$github/blob/main/LICENSE"
-
-// -------------------
-// Variables for Documentation Generator
-// -------------------
-
-// # DEP is an optional arrays!
-
-// OPTIONAL = "true"                // defines if this module is optional or not
-// GROUP_ID = "plugins"             // defines the "grouping" in the documentation this module belongs to
-// DEP = "deps.lumberjack.core|Lumberjack|https://github.com/MFlisar/Lumberjack"
-// PLATFORM_INFO = ""               // defines a comment that will be shown in the documentation for this modules platform support
 
 // -------------------
 // Setup
 // -------------------
-
-android {
-
-    namespace = androidNamespace
-
-    compileSdk = app.versions.compileSdk.get().toInt()
-
-    buildFeatures {
-        compose = true
-    }
-
-    defaultConfig {
-        minSdk = app.versions.minSdk.get().toInt()
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            consumerProguardFiles("proguard-rules.pro")
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-    }
-}
 
 dependencies {
 
@@ -107,45 +55,26 @@ dependencies {
 
 }
 
-mavenPublishing {
+// -------------------
+// Configurations
+// -------------------
 
-    configure(AndroidSingleVariantLibrary("release", true, true))
-
-    coordinates(
-        groupId = groupID,
-        artifactId = artifactId,
-        version = System.getenv("TAG")
+// android configuration
+android {
+    buildFilePlugin.setupAndroid(
+        androidNamespace = androidNamespace,
+        compileSdk = app.versions.compileSdk,
+        minSdk = app.versions.minSdk,
+        compose = true,
+        buildConfig = false
     )
 
-    pom {
-        name.set(libraryName)
-        description.set(libraryDescription)
-        inceptionYear.set("$release")
-        url.set(github)
-
-        licenses {
-            license {
-                name.set(license)
-                url.set(licenseUrl)
-            }
-        }
-
-        developers {
-            developer {
-                id.set("mflisar")
-                name.set("Michael Flisar")
-                email.set("mflisar.development@gmail.com")
-            }
-        }
-
-        scm {
-            url.set(github)
-        }
+    kotlinOptions {
+        jvmTarget = buildFilePlugin.javaVersion()
     }
-
-    // Configure publishing to Maven Central
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, true)
-
-    // Enable GPG signing for all publications
-    signAllPublications()
 }
+
+// maven publish configuration
+buildFilePlugin.setupMavenPublish(
+    platform = AndroidSingleVariantLibrary("release", true, true)
+)

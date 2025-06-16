@@ -85,6 +85,5 @@ dependencies {
     implementation(deps.lumberjack.logger.console)
     implementation(deps.lumberjack.logger.file)
 
-    // a minimal library that provides some useful composables that I use inside demo activities
-    implementation(deps.toolbox.demo.app)
+    implementation(deps.kmp.template.open.source.demo)
 }

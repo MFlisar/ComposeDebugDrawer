@@ -1,0 +1,115 @@
+# ------------
+# General Setup
+# ------------
+
+# Developer
+developer:
+  name: Michael Flisar
+  mail: mflisar.development@gmail.com
+  maven-id: mflisar
+  social-github: https://github.com/MFlisar
+
+# Java
+java-version: 17
+
+# -----------
+# Project
+# -----------
+
+library:
+  name: ComposeDebugDrawer
+  release: 2023
+  link-docs: https://mflisar.github.io/ComposeDebugDrawer/
+  link-repo: https://github.com/MFlisar/ComposeDebugDrawer/
+  repo-name: mflisar/ComposeDebugDrawer # the label of the repo link on the mkdocs homepage at the top right
+  # TODO: autom. detecten?
+  license:
+    name: Apache License 2.0
+    link: https://github.com/MFlisar/ComposeDebugDrawer/blob/main/LICENSE
+  screenshots: []
+  about-me: true # set to true if you want to show the about me section on the homepage
+
+maven:
+  group-id: io.github.mflisar.composedebugdrawer
+  primary-artifact-id: core # used to detect latest release version of the library (dynamically on the published homepage)
+
+# -----------
+# Module Groups
+# -----------
+
+# optional - remove it if you do not want to group your Modules
+# each group has following properties:
+# - id...  the id - only needed to reference this group below inside the Modules sections
+# - label... the label of the group - used in the docs tables
+# - gradle-comment... the comment on the gradle setup docs page for this group
+groups:
+  - id: core
+    label: Core
+    gradle-comment: core
+  - id: modules
+    label: Modules
+    gradle-comment: modules
+  - id: plugins
+    label: Plugins
+    gradle-comment: plugins
+
+# -----------
+# Modules
+# -----------
+
+# REQUIRED! each module must define its meta data here!
+# each module has following properties:
+# relativePath... the relative path to the project root folder
+# artifact-id... the maven artifact id
+# group... the id of the group this module belongs to (defined above) [OPTIONAL]
+# platforms-info... a string that is displayed inside the docs in the "supported platforms" table in the info column [OPTIONAL]
+#                   IDEE: reference this info inside the parts/index_platform_comments.md
+# dependencies... a list of dependencies this module has (see below for details) [OPTIONAL]
+#    ... name: the name of the dependency - used in the docs tables
+#    ... versions-file... the toml file to load the version from (e.g. deps.versions.toml, ...)
+#    ... versions-key... the key for the versions table in the toml file
+#    ... link: a link to the dependency - used in the docs tables
+modules:
+  - relativePath: library\core
+    artifact-id: core
+    group: core
+    description: the core module - provides the basic debug drawer"
+    optional: false
+    platforms-info: ""
+    dependencies: []
+  - relativePath: library\modules\buildinfos
+    artifact-id: infos-build
+    group: modules
+    description: provides a simple build infos region
+    optional: true
+    platforms-info: ""
+    dependencies: []
+  - relativePath: library\modules\deviceinfos
+    artifact-id: infos-device
+    group: modules
+    description: provides a simple device infos region
+    optional: true
+    platforms-info: ""
+    dependencies: []
+  - relativePath: library\plugins\kotpreferences
+    artifact-id: plugin-kotpreferences
+    group: plugins
+    description: adds support to use KotPreferences in the debug drawer
+    optional: true
+    platforms-info: ""
+    dependencies:
+      - name: KotPreferences
+        versions-file: deps.versions.toml
+        versions-key: kotpreferences
+        link: https://github.com/MFlisar/KotPreferences
+  - relativePath: library\plugins\lumberjack
+    artifact-id: plugin-lumberjack
+    group: plugins
+    description: provides a simple lumberjack region
+    optional: true
+    platforms-info: ""
+    dependencies:
+      - name: Lumberjack
+        versions-file: deps.versions.toml
+        versions-key: lumberjack
+        link: https://github.com/MFlisar/Lumberjack

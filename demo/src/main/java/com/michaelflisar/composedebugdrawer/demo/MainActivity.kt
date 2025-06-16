@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -59,13 +60,9 @@ import com.michaelflisar.composedebugdrawer.deviceinfos.DebugDrawerDeviceInfos
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.DebugDrawerSettingCheckbox
 import com.michaelflisar.composedebugdrawer.plugin.kotpreferences.getDebugLabel
 import com.michaelflisar.composedebugdrawer.plugin.lumberjack.DebugDrawerLumberjack
-import com.michaelflisar.composethemer.ComposeTheme
-import com.michaelflisar.composethemer.UpdateEdgeToEdgeDefault
-import com.michaelflisar.kotpreferences.compose.asMutableState
 import com.michaelflisar.kotpreferences.compose.collectAsStateNotNull
 import com.michaelflisar.kotpreferences.core.value
 import com.michaelflisar.lumberjack.core.L
-import com.michaelflisar.toolbox.androiddemoapp.classes.DemoPrefs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import com.michaelflisar.kotpreferences.compose.asMutableStateNotNull
@@ -76,26 +73,11 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
 
-        // just for demo purposes of the lumberjack module we log all demo pref changes
-        // and write at least an initial log...
-        lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                DemoPrefs.changes.collect {
-                    L.d { "Preference \"${it.setting.key}\" changed to \"${it.value}\"" }
-                }
-            }
-        }
         L.d { "Demo started" }
 
+        enableEdgeToEdge()
         setContent {
-
-            val baseTheme = DemoPrefs.baseTheme.collectAsStateNotNull()
-            val dynamic = DemoPrefs.dynamic.collectAsStateNotNull()
-            val theme = DemoPrefs.themeKey.collectAsStateNotNull()
-            val state = ComposeTheme.State(baseTheme, dynamic, theme)
-
-            ComposeTheme(state = state) {
-                UpdateEdgeToEdgeDefault(this, state)
+            MaterialTheme {
                 RootContent()
             }
         }
@@ -208,7 +190,7 @@ class MainActivity : ComponentActivity() {
         }
 
         // 2) Custom Module
-        DebugDrawerAppTheme(drawerState = drawerState)
+        DebugDrawerCustom(drawerState = drawerState)
 
         // 3) Debug Drawer Actions
         DebugDrawerActions(drawerState = drawerState)

@@ -1,13 +1,19 @@
 [versions]
 
 # mflisar
-kotpreferences =        	"0.9.0-t12"  # todo
-lumberjack = 				"7.2.0-alpha21"  # todo
-toolbox =                   "2.2.3" # demo app only!
+kmp-template =              "1.2.2" # docu + demo only
+kotpreferences =        	"1.0.1"
+lumberjack = 				"7.2.0"
+
+[plugins]
+
+kmp-template-gradle-plugin =        { id = "io.github.mflisar.kmp-template.build-plugin",               version.ref = "kmp-template" }
 
 [libraries]
 
 # mflisar
+kmp-template-docs =                         { module = "io.github.mflisar.kmp-template:docs",                      version.ref = "kmp-template" }
+kmp-template-open-source-demo =             { module = "io.github.mflisar.kmp-template:open-source-demo",          version.ref = "kmp-template" }
 lumberjack-core =			        		{ module = "io.github.mflisar.lumberjack:core", 						version.ref = "lumberjack" }
 lumberjack-implementation =			        { module = "io.github.mflisar.lumberjack:implementation-lumberjack", 	version.ref = "lumberjack" }
 lumberjack-logger-console =			        { module = "io.github.mflisar.lumberjack:logger-console", 	            version.ref = "lumberjack" }
@@ -17,4 +23,3 @@ lumberjack-extension-feedback =	            { module = "io.github.mflisar.lumber
 kotpreferences-core =               		{ module = "io.github.mflisar.kotpreferences:core", 					version.ref = "kotpreferences" }
 kotpreferences-storage-datastore =     	    { module = "io.github.mflisar.kotpreferences:storage-datastore",      	version.ref = "kotpreferences" }
 kotpreferences-extension-compose =     		{ module = "io.github.mflisar.kotpreferences:extension-compose",      	version.ref = "kotpreferences" }
-toolbox-demo-app =                          { module = "io.github.mflisar.toolbox:android-demo-app", 			    version.ref = "toolbox" }
