@@ -1,6 +1,8 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="windows-jvm">
     <output-path>$PROJECT_DIR$/demo/app/windows/build/libs</output-path>
-    <root id="archive" name="windows-jvm.jar" />
+    <root id="archive" name="windows-jvm.jar">
+      <element id="module-output" name="ComposeDebugDrawer.demo.app.windows.jvmMain" />
+    </root>
   </artifact>
 </component>

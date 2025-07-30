@@ -1,8 +1,8 @@
 [versions]
 
 # mflisar
-kotpreferences =        	    "1.0.2"
-lumberjack =                    "8.0.0-alpha04" # TODO
+kotpreferences =        	    "1.0.3"
+lumberjack =                    "8.0.0"
 kmp-gradle-tools =              "1.4.2"
 
 [plugins]

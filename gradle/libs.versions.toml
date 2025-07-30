@@ -1,11 +1,12 @@
 [versions]
 
-gradle = 				        "8.9.3"
-kotlin = 				        "2.1.21"
-dokka =                         "1.9.20"
-gradle-maven-publish-plugin =   "0.32.0"
-compose =                       "1.8.1"
-compose-icons =                 "1.7.3"
+gradle = 				            "8.11.1"
+kotlin = 				            "2.2.0"
+dokka =                             "1.9.20"
+gradle-maven-publish-plugin =       "0.34.0"
+compose =                           "1.8.2"
+compose-icons =                     "1.7.3"
+binary-compatibility-validator =    "0.18.1"
 
 [plugins]
 
@@ -20,6 +21,9 @@ kotlin-multiplatform = 			    { id = "org.jetbrains.kotlin.multiplatform", 	    
 kotlin-compose = 				    { id = "org.jetbrains.kotlin.plugin.compose", 	    version.ref = "kotlin" }
 kotlin-serialization = 			    { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-jvm = 				        { id = "org.jetbrains.kotlin.jvm", 			        version.ref = "kotlin" }
+
+# binary compatibility
+binary-compatibility-validator =    { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
 
 # compose
 compose =                           { id = "org.jetbrains.compose",                     version.ref = "compose" }

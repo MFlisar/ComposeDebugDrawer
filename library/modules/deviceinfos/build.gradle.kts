@@ -8,6 +8,7 @@ plugins {
      alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dokka)
     alias(libs.plugins.gradle.maven.publish.plugin)
+    alias(libs.plugins.binary.compatibility.validator)
     alias(deps.plugins.kmp.gradle.tools.gradle.plugin)
 }
 
