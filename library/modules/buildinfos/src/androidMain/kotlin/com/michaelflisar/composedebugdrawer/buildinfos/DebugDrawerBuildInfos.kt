@@ -18,6 +18,7 @@ import com.michaelflisar.composedebugdrawer.core.composables.DebugDrawerRegion
 @Composable
 fun DebugDrawerBuildInfos(
     drawerState: DebugDrawerState,
+    isDebugBuild: Boolean,
     image: @Composable (() -> Unit)? = null,
     label: String = "Information",
     id: String = label,
@@ -51,7 +52,7 @@ fun DebugDrawerBuildInfos(
     val debuggable = if (0 != context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) {
         DebugDrawerDefaults.TRUE
     } else DebugDrawerDefaults.FALSE
-    val debug = if (BuildConfig.DEBUG) DebugDrawerDefaults.TRUE else DebugDrawerDefaults.FALSE
+    val debug = if (isDebugBuild) DebugDrawerDefaults.TRUE else DebugDrawerDefaults.FALSE
 
     DebugDrawerRegion(
         image = image,
