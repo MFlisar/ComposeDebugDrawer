@@ -3,7 +3,7 @@
 # mflisar
 kotpreferences =        	    "1.0.3"
 lumberjack =                    "8.0.0"
-kmp-gradle-tools =              "1.4.2"
+kmp-gradle-tools =              "1.4.5"
 
 [plugins]
 

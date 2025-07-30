@@ -26,7 +26,18 @@ library:
   license:
     name: Apache License 2.0
     link: https://github.com/MFlisar/ComposeDebugDrawer/blob/main/LICENSE
-  screenshots: []
+  screenshots:
+    - name: Drawer
+      images:
+        - screenshots/core/demo2.jpg
+        - screenshots/core/demo3.jpg
+        - screenshots/core/demo6.jpg
+        - screenshots/core/demo7.jpg
+    - name: Modules
+      images:
+        - screenshots/buildinfos/demo1.jpg
+        - screenshots/deviceinfos/demo4.jpg
+        - screenshots/lumberjack/demo5.jpg
   about-me: true # set to true if you want to show the about me section on the homepage
 
 maven:
