@@ -1,13 +1,14 @@
-import com.michaelflisar.kmptemplate.BuildFilePlugin
-import com.michaelflisar.kmptemplate.Targets
+import com.michaelflisar.kmpgradletools.BuildFilePlugin
+import com.michaelflisar.kmpgradletools.Target
+import com.michaelflisar.kmpgradletools.Targets
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
-     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dokka)
     alias(libs.plugins.gradle.maven.publish.plugin)
-    alias(deps.plugins.kmp.template.gradle.plugin)
+    alias(deps.plugins.kmp.gradle.tools.gradle.plugin)
 }
 
 // get build file plugin
@@ -41,7 +42,7 @@ kotlin {
     // Targets
     //-------------
 
-    buildFilePlugin.setupTargets(buildTargets)
+    buildFilePlugin.setupTargetsLibrary(buildTargets)
 
     // -------
     // Sources
@@ -76,14 +77,14 @@ kotlin {
 
 // android configuration
 android {
-    buildFilePlugin.setupAndroid(
+    buildFilePlugin.setupAndroidLibrary(
         androidNamespace = androidNamespace,
         compileSdk = app.versions.compileSdk,
         minSdk = app.versions.minSdk,
-        compose = true,
         buildConfig = false
     )
 }
 
 // maven publish configuration
-buildFilePlugin.setupMavenPublish()
+if (buildFilePlugin.checkGradleProperty("publishToMaven") != false)
+    buildFilePlugin.setupMavenPublish()

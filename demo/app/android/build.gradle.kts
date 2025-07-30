@@ -81,7 +81,5 @@ dependencies {
     implementation(deps.lumberjack.logger.console)
     implementation(deps.lumberjack.logger.file)
 
-    implementation(deps.kmp.template.open.source.demo)
-
     implementation(project(":demo:shared"))
 }

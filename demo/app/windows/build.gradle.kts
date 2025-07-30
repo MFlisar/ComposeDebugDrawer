@@ -30,8 +30,6 @@ kotlin {
                 implementation(deps.lumberjack.core)
                 implementation(deps.lumberjack.logger.file)
 
-                implementation(deps.kmp.template.open.source.demo)
-
                 implementation(project(":demo:shared"))
 
             }

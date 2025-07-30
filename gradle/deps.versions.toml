@@ -1,19 +1,17 @@
 [versions]
 
 # mflisar
-kmp-template =              "1.2.2" # docu + demo only
-kotpreferences =        	"1.0.1"
-lumberjack = 				"7.2.0"
+kotpreferences =        	    "1.0.2"
+lumberjack =                    "8.0.0-alpha04" # TODO
+kmp-gradle-tools =              "1.4.2"
 
 [plugins]
 
-kmp-template-gradle-plugin =        { id = "io.github.mflisar.kmp-template.build-plugin",               version.ref = "kmp-template" }
+kmp-gradle-tools-gradle-plugin =            { id = "io.github.mflisar.kmp-gradle-tools.gradle-plugin",              version.ref = "kmp-gradle-tools" }
 
 [libraries]
 
 # mflisar
-kmp-template-docs =                         { module = "io.github.mflisar.kmp-template:docs",                      version.ref = "kmp-template" }
-kmp-template-open-source-demo =             { module = "io.github.mflisar.kmp-template:open-source-demo",          version.ref = "kmp-template" }
 lumberjack-core =			        		{ module = "io.github.mflisar.lumberjack:core", 						version.ref = "lumberjack" }
 lumberjack-implementation =			        { module = "io.github.mflisar.lumberjack:implementation-lumberjack", 	version.ref = "lumberjack" }
 lumberjack-logger-console =			        { module = "io.github.mflisar.lumberjack:logger-console", 	            version.ref = "lumberjack" }
@@ -23,3 +21,5 @@ lumberjack-extension-feedback =	            { module = "io.github.mflisar.lumber
 kotpreferences-core =               		{ module = "io.github.mflisar.kotpreferences:core", 					version.ref = "kotpreferences" }
 kotpreferences-storage-datastore =     	    { module = "io.github.mflisar.kotpreferences:storage-datastore",      	version.ref = "kotpreferences" }
 kotpreferences-extension-compose =     		{ module = "io.github.mflisar.kotpreferences:extension-compose",      	version.ref = "kotpreferences" }
+kmp-gradle-tools-scripts =                  { module = "io.github.mflisar.kmp-gradle-tools:scripts",                version.ref = "kmp-gradle-tools" }
+kmp-gradle-tools-docs =                     { module = "io.github.mflisar.kmp-gradle-tools:docs",                   version.ref = "kmp-gradle-tools" }
