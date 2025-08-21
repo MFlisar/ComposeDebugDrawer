@@ -34,21 +34,27 @@ pluginManagement {
 }
 
 // --------------
-// App
+// Functions
 // --------------
 
-include(":composedebugdrawer:core")
-project(":composedebugdrawer:core").projectDir = file("library/core")
+fun includeModule(path: String, name: String) {
+    include(name)
+    project(name).projectDir = file(path)
+}
 
-include(":composedebugdrawer:modules:buildinfos")
-project(":composedebugdrawer:modules:buildinfos").projectDir = file("library/modules/buildinfos")
-include(":composedebugdrawer:modules:deviceinfos")
-project(":composedebugdrawer:modules:deviceinfos").projectDir = file("library/modules/deviceinfos")
+// --------------
+// Library
+// --------------
 
-include(":composedebugdrawer:plugins:lumberjack")
-project(":composedebugdrawer:plugins:lumberjack").projectDir = file("library/plugins/lumberjack")
-include(":composedebugdrawer:plugins:kotpreferences")
-project(":composedebugdrawer:plugins:kotpreferences").projectDir = file("library/plugins/kotpreferences")
+includeModule("library/core", ":composedebugdrawer:core")
+includeModule("library/modules/buildinfos", ":composedebugdrawer:modules:buildinfos")
+includeModule("library/modules/deviceinfos", ":composedebugdrawer:modules:deviceinfos")
+includeModule("library/plugins/lumberjack", ":composedebugdrawer:plugins:lumberjack")
+includeModule("library/plugins/kotpreferences", ":composedebugdrawer:plugins:kotpreferences")
+
+// --------------
+// Demo
+// --------------
 
 include(":demo:shared")
 include(":demo:app:windows")

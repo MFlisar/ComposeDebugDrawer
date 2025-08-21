@@ -1,0 +1,10 @@
+public final class com/michaelflisar/composedebugdrawer/buildinfos/ComposableSingletons$DebugDrawerBuildInfosKt {
+	public static final field INSTANCE Lcom/michaelflisar/composedebugdrawer/buildinfos/ComposableSingletons$DebugDrawerBuildInfosKt;
+	public fun <init> ()V
+	public final fun getLambda$1283009177$buildinfos_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/michaelflisar/composedebugdrawer/buildinfos/DebugDrawerBuildInfosKt {
+	public static final fun DebugDrawerBuildInfos (Lcom/michaelflisar/composedebugdrawer/core/DebugDrawerState;ZLkotlin/jvm/functions/Function2;Ljava/lang/String;Ljava/lang/String;ZLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+

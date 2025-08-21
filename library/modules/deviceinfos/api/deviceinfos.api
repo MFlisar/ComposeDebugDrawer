@@ -1,0 +1,11 @@
+public final class com/michaelflisar/composedebugdrawer/deviceinfos/ComposableSingletons$DebugDrawerDeviceInfosKt {
+	public static final field INSTANCE Lcom/michaelflisar/composedebugdrawer/deviceinfos/ComposableSingletons$DebugDrawerDeviceInfosKt;
+	public fun <init> ()V
+	public final fun getLambda$-1607607923$deviceinfos_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$180448827$deviceinfos_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/michaelflisar/composedebugdrawer/deviceinfos/DebugDrawerDeviceInfosKt {
+	public static final fun DebugDrawerDeviceInfos (Lcom/michaelflisar/composedebugdrawer/core/DebugDrawerState;Lkotlin/jvm/functions/Function2;Ljava/lang/String;Ljava/lang/String;ZLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+

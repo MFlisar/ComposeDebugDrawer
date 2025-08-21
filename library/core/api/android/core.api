@@ -1,0 +1,83 @@
+public final class com/michaelflisar/composedebugdrawer/core/ComposableSingletons$DebugDrawerActionsKt {
+	public static final field INSTANCE Lcom/michaelflisar/composedebugdrawer/core/ComposableSingletons$DebugDrawerActionsKt;
+	public fun <init> ()V
+	public final fun getLambda$-2082998796$core_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1259580102$core_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/michaelflisar/composedebugdrawer/core/DebugDrawerActionsKt {
+	public static final fun DebugDrawerActions (Lcom/michaelflisar/composedebugdrawer/core/DebugDrawerState;Lkotlin/jvm/functions/Function2;Ljava/lang/String;ZLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/michaelflisar/composedebugdrawer/core/DebugDrawerDefaults {
+	public static final field $stable I
+	public static final field EMPTY Ljava/lang/String;
+	public static final field FALSE Ljava/lang/String;
+	public static final field INSTANCE Lcom/michaelflisar/composedebugdrawer/core/DebugDrawerDefaults;
+	public static final field TITLE_TO_TEXT_RATIO F
+	public static final field TRUE Ljava/lang/String;
+	public final fun getDEFAULT_MIN_SPACE_LEFT-D9Ej5fM ()F
+	public final fun getITEM_PADDING-D9Ej5fM ()F
+	public final fun getITEM_SPACING-D9Ej5fM ()F
+}
+
+public final class com/michaelflisar/composedebugdrawer/core/DebugDrawerKt {
+	public static final fun DebugDrawer-P8aMy-k (Lkotlin/jvm/functions/Function3;Landroidx/compose/ui/Modifier;ZLcom/michaelflisar/composedebugdrawer/core/DebugDrawerState;ZJFFLandroidx/compose/foundation/layout/PaddingValues;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun rememberDebugDrawerState (Landroidx/compose/material3/DrawerValue;ZLkotlin/jvm/functions/Function1;Ljava/util/List;Landroidx/compose/runtime/Composer;II)Lcom/michaelflisar/composedebugdrawer/core/DebugDrawerState;
+}
+
+public final class com/michaelflisar/composedebugdrawer/core/DebugDrawerState {
+	public static final field $stable I
+	public fun <init> (Landroidx/compose/material3/DrawerState;ZLandroidx/compose/runtime/MutableState;)V
+	public synthetic fun <init> (Landroidx/compose/material3/DrawerState;ZLandroidx/compose/runtime/MutableState;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun collapse ([Ljava/lang/String;)V
+	public final fun collapseAll ()V
+	public final fun component1 ()Landroidx/compose/material3/DrawerState;
+	public final fun copy (Landroidx/compose/material3/DrawerState;ZLandroidx/compose/runtime/MutableState;)Lcom/michaelflisar/composedebugdrawer/core/DebugDrawerState;
+	public static synthetic fun copy$default (Lcom/michaelflisar/composedebugdrawer/core/DebugDrawerState;Landroidx/compose/material3/DrawerState;ZLandroidx/compose/runtime/MutableState;ILjava/lang/Object;)Lcom/michaelflisar/composedebugdrawer/core/DebugDrawerState;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun expand ([Ljava/lang/String;)V
+	public final fun expandedIds ()Ljava/util/List;
+	public final fun getDrawerState ()Landroidx/compose/material3/DrawerState;
+	public fun hashCode ()I
+	public final fun isExpanded (Ljava/lang/String;Z)Z
+	public fun toString ()Ljava/lang/String;
+	public final fun toggleExpanded (Ljava/lang/String;)V
+}
+
+public final class com/michaelflisar/composedebugdrawer/core/composables/AnimatedDebugDrawerSubRegionKt {
+	public static final fun AnimatedDebugDrawerSubRegion-uFdPcIQ (ZFLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/michaelflisar/composedebugdrawer/core/composables/DebugDrawerButtonKt {
+	public static final fun DebugDrawerButton-_trzp-w (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/ui/graphics/Color;ZLkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/michaelflisar/composedebugdrawer/core/composables/DebugDrawerCheckboxKt {
+	public static final fun DebugDrawerCheckbox-FV1VA1c (Ljava/lang/String;Landroidx/compose/runtime/MutableState;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Ljava/lang/String;Landroidx/compose/ui/graphics/Color;Landroidx/compose/runtime/Composer;II)V
+	public static final fun DebugDrawerCheckbox-yZUFuyM (Ljava/lang/String;ZLandroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Ljava/lang/String;Landroidx/compose/ui/graphics/Color;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/michaelflisar/composedebugdrawer/core/composables/DebugDrawerDividerKt {
+	public static final fun DebugDrawerDivider (Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/michaelflisar/composedebugdrawer/core/composables/DebugDrawerDropdownKt {
+	public static final fun DebugDrawerDropdown (Ljava/lang/String;Ljava/util/List;Landroidx/compose/runtime/MutableState;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun DebugDrawerDropdown (Ljava/lang/String;Ljava/util/List;Ljava/lang/Object;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/michaelflisar/composedebugdrawer/core/composables/DebugDrawerInfoKt {
+	public static final fun DebugDrawerInfo (Ljava/lang/String;Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/michaelflisar/composedebugdrawer/core/composables/DebugDrawerRegionKt {
+	public static final fun DebugDrawerRegion-0vH8DBg (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Ljava/lang/String;Lcom/michaelflisar/composedebugdrawer/core/DebugDrawerState;ZFLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/michaelflisar/composedebugdrawer/core/composables/DebugDrawerSegmentedButtonsKt {
+	public static final fun DebugDrawerSegmentedButtons (Ljava/util/List;Landroidx/compose/runtime/MutableState;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/graphics/vector/ImageVector;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun DebugDrawerSegmentedButtons (Ljava/util/List;Landroidx/compose/runtime/MutableState;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun DebugDrawerSegmentedButtons (Ljava/util/List;Ljava/lang/Object;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+}
+

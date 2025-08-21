@@ -1,0 +1,19 @@
+public final class com/michaelflisar/composedebugdrawer/plugin/lumberjack/ComposableSingletons$DebugDrawerLumberjackKt {
+	public static final field INSTANCE Lcom/michaelflisar/composedebugdrawer/plugin/lumberjack/ComposableSingletons$DebugDrawerLumberjackKt;
+	public fun <init> ()V
+	public final fun getLambda$-2042854356$lumberjack_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-2064729627$lumberjack_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-636672045$lumberjack_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-750506941$lumberjack_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/michaelflisar/composedebugdrawer/plugin/lumberjack/ComposableSingletons$Platform_androidKt {
+	public static final field INSTANCE Lcom/michaelflisar/composedebugdrawer/plugin/lumberjack/ComposableSingletons$Platform_androidKt;
+	public fun <init> ()V
+	public final fun getLambda$625638916$lumberjack_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/michaelflisar/composedebugdrawer/plugin/lumberjack/DebugDrawerLumberjackKt {
+	public static final fun DebugDrawerLumberjack (Lcom/michaelflisar/composedebugdrawer/core/DebugDrawerState;Lcom/michaelflisar/lumberjack/core/interfaces/IFileLoggingSetup;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Ljava/lang/String;Ljava/lang/String;ZLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
