@@ -58,13 +58,9 @@ kotlin {
         // custom source sets
         // ---------------------
 
-        // --
-        // e.g.:
-        // val nativeMain by creating { dependsOn(commonMain.get()) }
-        // nativeMain.dependencyOf(sourceSets, buildTargets, listOf(Target.IOS, Target.MACOS))
-
         val featureNotAndroid by creating { dependsOn(commonMain.get()) }
-        featureNotAndroid.dependencyOfAll(sourceSets, buildTargets, exclusions = listOf(Target.ANDROID))
+
+        featureNotAndroid.setupDependencies(sourceSets, buildTargets, listOf(Target.ANDROID), targetsNotSupported = true)
 
         // ---------------------
         // dependencies
