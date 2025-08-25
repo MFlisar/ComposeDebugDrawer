@@ -38,8 +38,6 @@ val androidNamespace = "com.michaelflisar.composedebugdrawer.plugin.lumberjack"
 // Setup
 // -------------------
 
-val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
-
 kotlin {
 
     //-------------
@@ -83,7 +81,7 @@ kotlin {
 
             implementation(project(":composedebugdrawer:core"))
 
-            if (useLiveDependencies) {
+            if (buildFilePlugin.useLiveDependencies()) {
                 implementation(deps.lumberjack.core)
                 implementation(deps.lumberjack.extension.composeviewer)
             } else {
@@ -95,7 +93,7 @@ kotlin {
 
         androidMain.dependencies {
 
-            if (useLiveDependencies) {
+            if (buildFilePlugin.useLiveDependencies()) {
                 implementation(deps.lumberjack.extension.feedback)
             } else {
                 implementation(project(":lumberjack:extensions:feedback"))

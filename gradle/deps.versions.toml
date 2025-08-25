@@ -1,9 +1,9 @@
 [versions]
 
 # mflisar
-kotpreferences =        	"1.0.3"
-lumberjack =                "8.0.0"
-kmp-library =               "1.9.0"
+kotpreferences =        	"2.0.0"
+lumberjack =                "9.0.0"
+kmp-library =               "1.9.7"
 
 [plugins]
 
@@ -21,4 +21,4 @@ lumberjack-extension-feedback =	            { module = "io.github.mflisar.lumber
 kotpreferences-core =               		{ module = "io.github.mflisar.kotpreferences:core", 					version.ref = "kotpreferences" }
 kotpreferences-storage-datastore =     	    { module = "io.github.mflisar.kotpreferences:storage-datastore",      	version.ref = "kotpreferences" }
 kotpreferences-extension-compose =     		{ module = "io.github.mflisar.kotpreferences:extension-compose",      	version.ref = "kotpreferences" }
-kmplibrary-docs =                   { module = "io.github.mflisar.kmp-library:docs",                        version.ref = "kmp-library" }
+kmplibrary-docs =                           { module = "io.github.mflisar.kmp-library:docs",                        version.ref = "kmp-library" }

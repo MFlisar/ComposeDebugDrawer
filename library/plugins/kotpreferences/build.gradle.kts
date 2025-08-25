@@ -2,7 +2,6 @@ import com.michaelflisar.kmplibrary.BuildFilePlugin
 import com.michaelflisar.kmplibrary.setupDependencies
 import com.michaelflisar.kmplibrary.Target
 import com.michaelflisar.kmplibrary.Targets
-import com.michaelflisar.kmplibrary.implementation
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -78,17 +77,13 @@ kotlin {
 
             implementation(project(":composedebugdrawer:core"))
 
-            // mflisar dependencies
-            implementation(
-                live = deps.kotpreferences.core,
-                project = ":kotpreferences:core",
-                plugin = buildFilePlugin
-            )
-            implementation(
-                live = deps.kotpreferences.extension.compose,
-                project = ":kotpreferences:modules:compose",
-                plugin = buildFilePlugin
-            )
+            if (buildFilePlugin.useLiveDependencies()) {
+                api(deps.kotpreferences.core)
+                implementation(deps.kotpreferences.extension.compose)
+            } else {
+                api(project(":kotpreferences:core"))
+                implementation(project(":kotpreferences:modules:compose"))
+            }
         }
     }
 }

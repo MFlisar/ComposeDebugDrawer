@@ -21,7 +21,7 @@ library:
   release: 2023
   link-docs: https://mflisar.github.io/ComposeDebugDrawer/
   link-repo: https://github.com/MFlisar/ComposeDebugDrawer/
-  repo-name: mflisar/ComposeDebugDrawer # the label of the repo link on the mkdocs homepage at the top right
+  repo-name: mflisar/composedebugdrawer # the label of the repo link on the mkdocs homepage at the top right
   # TODO: autom. detecten?
   license:
     name: Apache License 2.0
