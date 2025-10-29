@@ -81,23 +81,14 @@ kotlin {
 
             implementation(project(":composedebugdrawer:core"))
 
-            if (buildFilePlugin.useLiveDependencies()) {
-                implementation(deps.lumberjack.core)
-                implementation(deps.lumberjack.extension.composeviewer)
-            } else {
-                implementation(project(":lumberjack:core"))
-                implementation(project(":lumberjack:extensions:composeviewer"))
-            }
+            implementation(deps.lumberjack.core)
+            implementation(deps.lumberjack.extension.composeviewer)
 
         }
 
         androidMain.dependencies {
 
-            if (buildFilePlugin.useLiveDependencies()) {
-                implementation(deps.lumberjack.extension.feedback)
-            } else {
-                implementation(project(":lumberjack:extensions:feedback"))
-            }
+            implementation(deps.lumberjack.extension.feedback)
 
         }
     }

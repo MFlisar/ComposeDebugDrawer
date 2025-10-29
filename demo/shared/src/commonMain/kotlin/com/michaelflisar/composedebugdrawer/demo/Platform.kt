@@ -7,6 +7,7 @@ import com.michaelflisar.lumberjack.core.interfaces.IFileLoggingSetup
 @Composable
 internal expect fun DemoDrawerBuildInfos(
     drawerState: DebugDrawerState,
+    isDebugBuild: Boolean,
     collapsible: Boolean = true,
 )
 

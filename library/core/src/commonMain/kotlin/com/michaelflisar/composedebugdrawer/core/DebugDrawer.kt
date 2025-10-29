@@ -77,13 +77,14 @@ fun rememberDebugDrawerState(
     confirmStateChange: (DrawerValue) -> Boolean = { true },
     initialExpandedIds: List<String> = emptyList()
 ): DebugDrawerState {
-    val drawerState = rememberSaveable(
-        initialValue,
-        confirmStateChange,
-        saver = DrawerState.Saver(confirmStateChange)
-    ) {
-        DrawerState(initialValue, confirmStateChange)
-    }
+    val drawerState = rememberDrawerState(initialValue = initialValue, confirmStateChange = confirmStateChange)
+    //val drawerState = rememberSaveable(
+    //    initialValue,
+    //    confirmStateChange,
+    //    saver = DrawerState.Saver(confirmStateChange)
+    //) {
+    //    DrawerState(initialValue, confirmStateChange)
+    //}
     val expandedIds = rememberSaveable { mutableStateOf(initialExpandedIds) }
     LaunchedEffect(expandSingleOnly) {
         if (expandSingleOnly && expandedIds.value.size > 1) {

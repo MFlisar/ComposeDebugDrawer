@@ -13,6 +13,7 @@ class DebugDrawerPrefs(
         Style3
     }
 
+    val enabled by boolPref(true)
     val expandSingleOnly by boolPref(false)
 
     val devBoolean1 by boolPref(true)

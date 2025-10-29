@@ -51,6 +51,7 @@ android {
     }
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -78,6 +79,7 @@ dependencies {
     // preferences via delegates
     implementation(deps.kotpreferences.core)
     implementation(deps.kotpreferences.storage.datastore)
+    implementation(deps.kotpreferences.extension.compose)
 
     // logging
     implementation(deps.lumberjack.core)
@@ -86,4 +88,6 @@ dependencies {
     implementation(deps.lumberjack.logger.file)
 
     implementation(project(":demo:shared"))
+
+    coreLibraryDesugaring(libs.desugar)
 }

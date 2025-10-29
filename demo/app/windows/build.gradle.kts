@@ -25,6 +25,7 @@ kotlin {
                 // preferences via delegates
                 implementation(deps.kotpreferences.core)
                 implementation(deps.kotpreferences.storage.datastore)
+                implementation(deps.kotpreferences.extension.compose)
 
                 // logging
                 implementation(deps.lumberjack.core)

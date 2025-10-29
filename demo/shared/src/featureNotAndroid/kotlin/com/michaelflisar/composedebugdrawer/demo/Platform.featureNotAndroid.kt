@@ -11,6 +11,7 @@ internal actual fun DemoDrawerDeviceInfos(drawerState: DebugDrawerState) {
 @Composable
 internal actual fun DemoDrawerBuildInfos(
     drawerState: DebugDrawerState,
+    isDebugBuild: Boolean,
     collapsible: Boolean
 ) {
     // empty

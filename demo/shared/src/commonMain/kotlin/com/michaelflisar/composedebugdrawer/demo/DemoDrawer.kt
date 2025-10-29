@@ -40,23 +40,30 @@ import com.michaelflisar.lumberjack.core.interfaces.IFileLoggingSetup
 import kotlinx.coroutines.launch
 
 @Composable
-fun DemoDrawer(
-    snackbarHostState: SnackbarHostState,
+fun rememberDebugDrawerDemoState(
     prefs: DebugDrawerPrefs,
-    enabled: Boolean,
-    fileLoggingSetup: IFileLoggingSetup?,
-    content: @Composable (drawerState: DebugDrawerState) -> Unit
-) {
+) : DebugDrawerState{
     val expandSingleOnly = prefs.expandSingleOnly.collectAsStateNotNull()
 
-    val drawerState = rememberDebugDrawerState(
+    return rememberDebugDrawerState(
         // all optional
         DrawerValue.Closed,
         expandSingleOnly = expandSingleOnly.value,
         confirmStateChange = { true },
         initialExpandedIds = emptyList()
     )
+}
 
+@Composable
+fun DemoDrawer(
+    snackbarHostState: SnackbarHostState,
+    prefs: DebugDrawerPrefs,
+    enabled: Boolean,
+    fileLoggingSetup: IFileLoggingSetup?,
+    isDebugBuild: Boolean,
+    drawerState: DebugDrawerState = rememberDebugDrawerDemoState(prefs),
+    content: @Composable (drawerState: DebugDrawerState) -> Unit
+) {
     DebugDrawer(
         enabled = enabled, // if disabled the drawer will not be created at all, in this case inside a release build... could be a (hidden) setting inside your normal settings or whereever you want...
         drawerState = drawerState,
@@ -65,7 +72,8 @@ fun DemoDrawer(
                 drawerState,
                 snackbarHostState,
                 prefs,
-                fileLoggingSetup
+                fileLoggingSetup,
+                isDebugBuild
             )
         },
         content = {
@@ -79,7 +87,8 @@ private fun DemoDrawerContent(
     drawerState: DebugDrawerState,
     snackbarHostState: SnackbarHostState,
     prefs: DebugDrawerPrefs,
-    fileLoggingSetup: IFileLoggingSetup?
+    fileLoggingSetup: IFileLoggingSetup?,
+    isDebugBuild: Boolean
 ) {
     val scope = rememberCoroutineScope()
 
@@ -92,7 +101,7 @@ private fun DemoDrawerContent(
     )
 
     // 1) Build Infos
-    DemoDrawerBuildInfos(drawerState = drawerState, collapsible = true)
+    DemoDrawerBuildInfos(drawerState = drawerState, isDebugBuild = isDebugBuild, collapsible = true)
 
     // 2) Custom Module
     DebugDrawerCustom(drawerState = drawerState)

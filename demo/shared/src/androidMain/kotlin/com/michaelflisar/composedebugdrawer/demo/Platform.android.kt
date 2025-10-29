@@ -9,9 +9,10 @@ import com.michaelflisar.composedebugdrawer.deviceinfos.DebugDrawerDeviceInfos
 @Composable
 internal actual fun DemoDrawerBuildInfos(
     drawerState: DebugDrawerState,
+    isDebugBuild: Boolean,
     collapsible: Boolean
 ) {
-    DebugDrawerBuildInfos(drawerState = drawerState, collapsible = true) {
+    DebugDrawerBuildInfos(drawerState = drawerState, isDebugBuild = isDebugBuild, collapsible = true) {
         // optional additional debug drawer entries...
         DebugDrawerInfo(title = "Author", info = "MF")
     }

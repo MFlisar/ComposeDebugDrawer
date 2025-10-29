@@ -14,12 +14,16 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.michaelflisar.composedebugdrawer.core.rememberDebugDrawerState
 import com.michaelflisar.composedebugdrawer.demo.classes.DemoLogging
+import com.michaelflisar.kotpreferences.compose.collectAsState
+import com.michaelflisar.kotpreferences.core.value
 import com.michaelflisar.lumberjack.core.L
 import kotlinx.coroutines.launch
 
@@ -36,11 +40,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 val snackbarHostState = remember { SnackbarHostState() }
+                val drawerState = rememberDebugDrawerDemoState(DemoApp.PREFS)
+                val enabled = DemoApp.PREFS.enabled.collectAsState()
                 DemoDrawer(
                     snackbarHostState = snackbarHostState,
                     prefs = DemoApp.PREFS,
-                    enabled = BuildConfig.DEBUG,
-                    fileLoggingSetup = DemoLogging.fileLoggingSetup
+                    enabled = enabled.value == true, //BuildConfig.DEBUG,
+                    fileLoggingSetup = DemoLogging.fileLoggingSetup,
+                    isDebugBuild = BuildConfig.DEBUG,
+                    drawerState = drawerState
                 ) {
                     Scaffold(
                         topBar = {
@@ -61,7 +69,8 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier
                                     .padding(padding)
                                     .padding(16.dp)
-                                    .fillMaxSize()
+                                    .fillMaxSize(),
+                                prefs = DemoApp.PREFS,
                             ) {
                                 scope.launch {
                                     it.drawerState.open()

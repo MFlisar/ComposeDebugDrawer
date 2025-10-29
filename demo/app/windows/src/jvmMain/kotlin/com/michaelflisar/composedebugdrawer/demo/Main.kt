@@ -15,6 +15,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import com.michaelflisar.kotpreferences.compose.collectAsState
 import com.michaelflisar.kotpreferences.storage.datastore.DataStoreStorage
 import com.michaelflisar.kotpreferences.storage.datastore.create
 import kotlinx.coroutines.launch
@@ -43,11 +44,13 @@ fun main() {
         ) {
             MaterialTheme {
                 val snackbarHostState = remember { SnackbarHostState() }
+                val enabled = prefs.enabled.collectAsState()
                 DemoDrawer(
                     snackbarHostState = snackbarHostState,
                     prefs = prefs,
-                    enabled = true,
-                    fileLoggingSetup = null
+                    enabled = enabled.value != null,
+                    fileLoggingSetup = null,
+                    isDebugBuild = false // must be decided somehow by the developer
                 ) {
                     Scaffold(
                         snackbarHost = {
@@ -59,7 +62,8 @@ fun main() {
                                 modifier = Modifier
                                     .padding(padding)
                                     .padding(16.dp)
-                                    .fillMaxSize()
+                                    .fillMaxSize(),
+                                prefs = prefs
                             ) {
                                 scope.launch {
                                     it.drawerState.open()
