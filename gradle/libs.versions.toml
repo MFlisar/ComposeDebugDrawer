@@ -1,14 +1,14 @@
 [versions]
 
 gradle = 				            "8.13.0"
-kotlin = 				            "2.2.20"
+kotlin = 				            "2.2.21"
 desugar =                           "2.1.5"
 dokka =                             "2.0.0"
 gradle-maven-publish-plugin =       "0.34.0"
 binary-compatibility-validator =    "0.18.1"
 
-compose =                           "1.8.2"
-compose-material3 =                 "1.8.2"
+compose =                           "1.9.1"
+compose-material3 =                 "1.9.0"
 compose-icons =                     "1.7.3"
 
 [plugins]

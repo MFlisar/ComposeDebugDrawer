@@ -1,9 +1,9 @@
 [versions]
 
 # mflisar
-kotpreferences =        	"2.0.0"
+kotpreferences =        	"3.0.1"
 lumberjack =                "9.0.0"
-kmp-library =               "2.2.5"
+kmp-library =               "2.2.7"
 
 [plugins]
 
