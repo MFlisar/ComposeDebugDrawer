@@ -6,5 +6,6 @@ import com.michaelflisar.lumberjack.core.interfaces.IFileLoggingSetup
 @Composable
 internal expect fun DebugDrawerFeedback(
     setup: IFileLoggingSetup,
-    mailReceiver: String
+    mailReceiver: String,
+    mailSubject: String
 )

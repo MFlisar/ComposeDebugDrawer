@@ -23,6 +23,7 @@ fun DebugDrawerLumberjack(
     drawerState: DebugDrawerState,
     setup: IFileLoggingSetup,
     mailReceiver: String,
+    mailSubject: String = "Debug Drawer",
     image: @Composable (() -> Unit)? = { Icon(Icons.Default.Description, null) },
     label: String = "Logging",
     id: String = label,
@@ -48,7 +49,8 @@ fun DebugDrawerLumberjack(
         }
         DebugDrawerFeedback(
             setup = setup,
-            mailReceiver = mailReceiver
+            mailReceiver = mailReceiver,
+            mailSubject = mailSubject
         )
         DebugDrawerButton(
             label = "Clear Log File",

@@ -1,20 +1,38 @@
-import com.michaelflisar.kmplibrary.BuildFilePlugin
-import com.michaelflisar.kmplibrary.setupDependencies
-import com.michaelflisar.kmplibrary.Target
-import com.michaelflisar.kmplibrary.Targets
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type
+import com.michaelflisar.kmpdevtools.Targets
+import com.michaelflisar.kmpdevtools.configs.library.AndroidLibraryConfig
+import com.michaelflisar.kmpdevtools.core.Platform
+import com.michaelflisar.kmpdevtools.core.configs.AppConfig
+import com.michaelflisar.kmpdevtools.core.configs.Config
+import com.michaelflisar.kmpdevtools.core.configs.LibraryConfig
+import com.michaelflisar.kmpdevtools.setupDependencies
 
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
+    // kmp + app/library
+    alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.compose)
-    alias(deps.plugins.kmplibrary.buildplugin)
+    // org.jetbrains.kotlin
+    alias(libs.plugins.jetbrains.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.parcelize)
+    // org.jetbrains.compose
+    alias(libs.plugins.jetbrains.compose)
+    // docs, publishing, validation
+    // --
+    // build tools
+    alias(deps.plugins.kmpdevtools.buildplugin)
+    alias(libs.plugins.buildkonfig)
+    // others
+    // ...
 }
 
-// get build logic plugin
-val buildFilePlugin = project.plugins.getPlugin(BuildFilePlugin::class.java)
+// ------------------------
+// Setup
+// ------------------------
 
-// targets
+val config = Config.read(rootProject)
+val libraryConfig = LibraryConfig.read(rootProject)
+val appConfig = AppConfig.read(rootProject)
+
 val buildTargets = Targets(
     // mobile
     android = true,
@@ -26,11 +44,27 @@ val buildTargets = Targets(
     wasm = true
 )
 
-val androidNamespace = "com.michaelflisar.composethemer.demo.shared"
+val androidConfig = AndroidLibraryConfig.createManualNamespace(
+    compileSdk = app.versions.compileSdk,
+    minSdk = app.versions.minSdk,
+    enableAndroidResources = false,
+    namespaceAddon = "demo.shared"
+)
 
-// -------------------
-// Setup
-// -------------------
+// ------------------------
+// Kotlin
+// ------------------------
+
+buildkonfig {
+    packageName = appConfig.packageName
+    exposeObjectWithName = "BuildKonfig"
+    defaultConfigs {
+        buildConfigField(Type.STRING, "versionName", appConfig.versionName)
+        buildConfigField(Type.INT, "versionCode", appConfig.versionCode.toString())
+        buildConfigField(Type.STRING, "packageName", appConfig.packageName)
+        buildConfigField(Type.STRING, "appName", appConfig.name)
+    }
+}
 
 kotlin {
 
@@ -38,7 +72,10 @@ kotlin {
     // Targets
     //-------------
 
-    buildFilePlugin.setupTargetsLibrary(buildTargets)
+    buildTargets.setupTargetsLibrary(project)
+    android {
+        buildTargets.setupTargetsAndroidLibrary(project, config, libraryConfig, androidConfig, this)
+    }
 
     // -------
     // Sources
@@ -53,8 +90,12 @@ kotlin {
         val featureNotAndroid by creating { dependsOn(commonMain.get()) }
         val featureNotWasm by creating { dependsOn(commonMain.get()) }
 
-        featureNotAndroid.setupDependencies(sourceSets, buildTargets, listOf(Target.ANDROID), targetsNotSupported = true)
-        featureNotWasm.setupDependencies(sourceSets, buildTargets, listOf(Target.WASM), targetsNotSupported = true)
+        setupDependencies(buildTargets, sourceSets) {
+
+            featureNotAndroid supportedBy !Platform.ANDROID
+            featureNotWasm supportedBy !Platform.WASM
+
+        }
 
         // ---------------------
         // dependencies
@@ -62,56 +103,45 @@ kotlin {
 
         commonMain.dependencies {
 
-            // Kotlin
-            implementation(kotlinx.coroutines.core)
+            api(libs.jetbrains.kotlinx.coroutines.core)
 
-            // Compose
-            implementation(libs.compose.material3)
-            implementation(libs.compose.material.icons.core)
-            implementation(libs.compose.material.icons.extended)
+            // Compose + AndroidX
+            api(libs.jetbrains.compose.ui)
+            api(libs.jetbrains.compose.material3)
+            api(libs.jetbrains.compose.material.icons.core)
+            api(libs.jetbrains.compose.material.icons.extended)
 
             // ------------------------
             // Libraries
             // ------------------------
 
-            implementation(project(":composedebugdrawer:core"))
-            implementation(project(":composedebugdrawer:plugins:kotpreferences"))
+            api(project(":composedebugdrawer:core"))
+            api(project(":composedebugdrawer:plugins:kotpreferences"))
 
             // preferences via delegates
-            implementation(deps.kotpreferences.core)
-            implementation(deps.kotpreferences.extension.compose)
+            api(deps.kotpreferences.core)
+            api(deps.kotpreferences.extension.compose)
+            api(deps.kotpreferences.storage.keyvalue)
 
             // logging
-            implementation(deps.lumberjack.core)
-            implementation(deps.lumberjack.implementation)
-            implementation(deps.lumberjack.logger.console)
+            api(deps.lumberjack.core)
+            api(deps.lumberjack.implementation)
+            api(deps.lumberjack.logger.console)
 
         }
 
         featureNotWasm.dependencies {
-            implementation(project(":composedebugdrawer:plugins:lumberjack"))
+
+            api(deps.kotpreferences.storage.datastore)
+
+            api(deps.lumberjack.logger.file)
+
+            api(project(":composedebugdrawer:plugins:lumberjack"))
         }
 
         androidMain.dependencies {
-            implementation(project(":composedebugdrawer:modules:buildinfos"))
-            implementation(project(":composedebugdrawer:modules:deviceinfos"))
+            api(project(":composedebugdrawer:modules:buildinfos"))
+            api(project(":composedebugdrawer:modules:deviceinfos"))
         }
     }
 }
-
-// -------------------
-// Configurations
-// -------------------
-
-// android configuration
-android {
-    buildFilePlugin.setupAndroidLibrary(
-        androidNamespace = androidNamespace,
-        compileSdk = app.versions.compileSdk,
-        minSdk = app.versions.minSdk,
-        buildConfig = false
-    )
-}
-
-
-

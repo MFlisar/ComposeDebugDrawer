@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="kotpreferences">
+    <output-path>$PROJECT_DIR$/library/plugins/kotpreferences/build/libs</output-path>
+    <root id="archive" name="kotpreferences.jar">
+      <element id="module-output" name="ComposeDebugDrawer.composedebugdrawer.plugins.kotpreferences.androidMain" />
+    </root>
+  </artifact>
+</component>

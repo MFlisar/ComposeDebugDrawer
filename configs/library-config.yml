@@ -1,0 +1,34 @@
+# Github Library
+github:
+  name: ComposeDebugDrawer
+  release: 2023
+  namespace: com.michaelflisar.composedebugdrawer
+  license:
+    name: Apache License 2.0
+    path: blob/main/LICENSE
+
+# Maven
+maven:
+  group-id: io.github.mflisar.composedebugdrawer
+  primary-artifact-id: core # used to detect latest release version of the library (dynamically on the published homepage)
+
+# Modules - list of modules [artifact-id, description, path]
+modules:
+  - artifact-id: core
+    description: the core module - provides the basic debug drawer
+    path: library/core
+  - artifact-id: infos-build
+    description: provides a simple build infos region
+    path: library/modules/buildinfos
+  - artifact-id: infos-device
+    description: provides a simple device infos region
+    path: library/modules/deviceinfos
+  - artifact-id: plugin-kotpreferences
+    description: adds support to use KotPreferences in the debug drawer
+    path: library/plugins/kotpreferences
+  - artifact-id: plugin-lumberjack
+    description: provides a simple lumberjack region
+    path: library/plugins/lumberjack
+
+# XCFrameworks [name, path, targets (ios, macos)]
+xcframeworks: [ ]
