@@ -113,6 +113,20 @@ fun DebugDrawer(
         return
     }
 
+    // does not work on iOS yet...
+    //val scope = rememberCoroutineScope()
+    //val navState = rememberNavigationEventState(NavigationEventInfo.None)
+    //NavigationBackHandler(
+    //    state = navState,
+    //    isBackEnabled = drawerState.drawerState.isOpen,
+    //    onBackCancelled = { /* ignore */ },
+    //    onBackCompleted = {
+    //        scope.launch {
+    //            drawerState.drawerState.close()
+    //        }
+    //    }
+    //)
+
     val scope = rememberCoroutineScope()
     BackHandler(enabled = drawerState.drawerState.isOpen) {
         scope.launch {

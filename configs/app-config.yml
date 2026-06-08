@@ -1,5 +1,4 @@
 # App
 name: Compose DebugDrawer Demo
-package-name: com.michaelflisar.composedebugdrawer.demo
-version-code: 1
+namespace: com.michaelflisar.composedebugdrawer.demo
 version-name: 1.0.0

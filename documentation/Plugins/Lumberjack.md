@@ -1,7 +1,3 @@
----
-icon: material/puzzle
----
-
 The `plugin-lumberjack` provides a seemless integration of my [Lumberjack](https://mflisar.github.io/Lumberjack) library.
 
 Add following to the drawer to add a lumberjack region to it.

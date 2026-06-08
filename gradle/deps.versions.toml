@@ -1,26 +1,11 @@
 [versions]
 
-# mflisar
-kotpreferences =        	"4.0.0-alpha02"
-lumberjack =                "10.0.0-alpha03"
-
-kmpdevtools =               "7.4.2" # change via "updateDevToolsVersion" gradle task!
+# --
 
 [plugins]
 
-# mflisar
-kmpdevtools-buildplugin =           { id = "io.github.mflisar.kmpdevtools.plugins-build-gradle",        version.ref = "kmpdevtools" }
+# --
 
 [libraries]
 
-# mflisar
-kotpreferences-core =               		{ module = "io.github.mflisar.kotpreferences:core", 					version.ref = "kotpreferences" }
-kotpreferences-storage-datastore =     	    { module = "io.github.mflisar.kotpreferences:storage-datastore",      	version.ref = "kotpreferences" }
-kotpreferences-storage-keyvalue =     	    { module = "io.github.mflisar.kotpreferences:storage-keyvalue",      	version.ref = "kotpreferences" }
-kotpreferences-extension-compose =     		{ module = "io.github.mflisar.kotpreferences:extension-compose",      	version.ref = "kotpreferences" }
-lumberjack-core =			        		{ module = "io.github.mflisar.lumberjack:core", 						version.ref = "lumberjack" }
-lumberjack-implementation =			        { module = "io.github.mflisar.lumberjack:implementation", 	            version.ref = "lumberjack" }
-lumberjack-logger-console =			        { module = "io.github.mflisar.lumberjack:logger-console", 	            version.ref = "lumberjack" }
-lumberjack-logger-file =			        { module = "io.github.mflisar.lumberjack:logger-file", 	                version.ref = "lumberjack" }
-lumberjack-extension-composeviewer =	    { module = "io.github.mflisar.lumberjack:extension-composeviewer", 	    version.ref = "lumberjack" }
-lumberjack-extension-feedback =	            { module = "io.github.mflisar.lumberjack:extension-feedback", 	        version.ref = "lumberjack" }
+# --

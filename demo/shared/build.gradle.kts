@@ -1,11 +1,9 @@
-import com.codingfeline.buildkonfig.compiler.FieldSpec.Type
 import com.michaelflisar.kmpdevtools.Targets
-import com.michaelflisar.kmpdevtools.configs.library.AndroidLibraryConfig
+import com.michaelflisar.kmpdevtools.BuildFileUtil
 import com.michaelflisar.kmpdevtools.core.Platform
-import com.michaelflisar.kmpdevtools.core.configs.AppConfig
-import com.michaelflisar.kmpdevtools.core.configs.Config
-import com.michaelflisar.kmpdevtools.core.configs.LibraryConfig
+import com.michaelflisar.kmpdevtools.configs.*
 import com.michaelflisar.kmpdevtools.setupDependencies
+import com.michaelflisar.kmpdevtools.setupBuildKonfig
 
 plugins {
     // kmp + app/library
@@ -19,7 +17,7 @@ plugins {
     // docs, publishing, validation
     // --
     // build tools
-    alias(deps.plugins.kmpdevtools.buildplugin)
+    alias(mflisar.plugins.kmpdevtools.buildplugin)
     alias(libs.plugins.buildkonfig)
     // others
     // ...
@@ -29,9 +27,7 @@ plugins {
 // Setup
 // ------------------------
 
-val config = Config.read(rootProject)
-val libraryConfig = LibraryConfig.read(rootProject)
-val appConfig = AppConfig.read(rootProject)
+val module = LibraryModuleConfig.readManual(project)
 
 val buildTargets = Targets(
     // mobile
@@ -44,11 +40,11 @@ val buildTargets = Targets(
     wasm = true
 )
 
-val androidConfig = AndroidLibraryConfig.createManualNamespace(
+val androidConfig = AndroidLibraryConfig.createFromPath(
+    libraryModuleConfig = module,
     compileSdk = app.versions.compileSdk,
     minSdk = app.versions.minSdk,
-    enableAndroidResources = false,
-    namespaceAddon = "demo.shared"
+    enableAndroidResources = false
 )
 
 // ------------------------
@@ -56,14 +52,7 @@ val androidConfig = AndroidLibraryConfig.createManualNamespace(
 // ------------------------
 
 buildkonfig {
-    packageName = appConfig.packageName
-    exposeObjectWithName = "BuildKonfig"
-    defaultConfigs {
-        buildConfigField(Type.STRING, "versionName", appConfig.versionName)
-        buildConfigField(Type.INT, "versionCode", appConfig.versionCode.toString())
-        buildConfigField(Type.STRING, "packageName", appConfig.packageName)
-        buildConfigField(Type.STRING, "appName", appConfig.name)
-    }
+    setupBuildKonfig(module.appConfig)
 }
 
 kotlin {
@@ -72,9 +61,9 @@ kotlin {
     // Targets
     //-------------
 
-    buildTargets.setupTargetsLibrary(project)
+    buildTargets.setupTargetsLibrary(module)
     android {
-        buildTargets.setupTargetsAndroidLibrary(project, config, libraryConfig, androidConfig, this)
+        buildTargets.setupTargetsAndroidLibrary(module, androidConfig, this)
     }
 
     // -------
@@ -90,7 +79,7 @@ kotlin {
         val featureNotAndroid by creating { dependsOn(commonMain.get()) }
         val featureNotWasm by creating { dependsOn(commonMain.get()) }
 
-        setupDependencies(buildTargets, sourceSets) {
+        setupDependencies(module, buildTargets, sourceSets) {
 
             featureNotAndroid supportedBy !Platform.ANDROID
             featureNotWasm supportedBy !Platform.WASM
@@ -119,22 +108,22 @@ kotlin {
             api(project(":composedebugdrawer:plugins:kotpreferences"))
 
             // preferences via delegates
-            api(deps.kotpreferences.core)
-            api(deps.kotpreferences.extension.compose)
-            api(deps.kotpreferences.storage.keyvalue)
+            api(mflisar.kotpreferences.core)
+            api(mflisar.kotpreferences.extension.compose)
+            api(mflisar.kotpreferences.storage.keyvalue)
 
             // logging
-            api(deps.lumberjack.core)
-            api(deps.lumberjack.implementation)
-            api(deps.lumberjack.logger.console)
+            api(mflisar.lumberjack.core)
+            api(mflisar.lumberjack.implementation)
+            api(mflisar.lumberjack.logger.console)
 
         }
 
         featureNotWasm.dependencies {
 
-            api(deps.kotpreferences.storage.datastore)
+            api(mflisar.kotpreferences.storage.datastore)
 
-            api(deps.lumberjack.logger.file)
+            api(mflisar.lumberjack.logger.file)
 
             api(project(":composedebugdrawer:plugins:lumberjack"))
         }

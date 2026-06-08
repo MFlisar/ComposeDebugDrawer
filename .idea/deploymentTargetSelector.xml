@@ -4,6 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="demo.app.android">
         <option name="selectionMode" value="DROPDOWN" />
+        <DialogSelection />
       </SelectionState>
     </selectionStates>
   </component>
