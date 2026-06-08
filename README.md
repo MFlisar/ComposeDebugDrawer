@@ -24,34 +24,48 @@ This library provides following main features:
 
 # :camera: Screenshots
 
-![demo4](documentation/screenshots/deviceinfos/demo4.jpg)
-![demo1](documentation/screenshots/buildinfos/demo1.jpg)
-![demo-theme-2](documentation/screenshots/core/demo-theme-2.jpg)
-![demo8](documentation/screenshots/core/demo8.jpg)
-![demo7](documentation/screenshots/core/demo7.jpg)
-![demo2](documentation/screenshots/core/demo2.jpg)
-![demo6](documentation/screenshots/core/demo6.jpg)
-![demo-theme-1](documentation/screenshots/core/demo-theme-1.jpg)
-![demo-theme-3](documentation/screenshots/core/demo-theme-3.jpg)
-![demo3](documentation/screenshots/core/demo3.jpg)
-![demo5](documentation/screenshots/lumberjack/demo5.jpg)
+### buildinfos
+
+|  |  |  |
+|---|---|---|
+| ![demo1](documentation/screenshots/buildinfos/demo1.jpg) |
+
+### core
+
+|  |  |  |
+|---|---|---|
+| ![demo-theme-1](documentation/screenshots/core/demo-theme-1.jpg) | ![demo-theme-2](documentation/screenshots/core/demo-theme-2.jpg) | ![demo-theme-3](documentation/screenshots/core/demo-theme-3.jpg) |
+| ![demo2](documentation/screenshots/core/demo2.jpg) | ![demo3](documentation/screenshots/core/demo3.jpg) | ![demo6](documentation/screenshots/core/demo6.jpg) |
+| ![demo7](documentation/screenshots/core/demo7.jpg) | ![demo8](documentation/screenshots/core/demo8.jpg) |
+
+### deviceinfos
+
+|  |  |  |
+|---|---|---|
+| ![demo4](documentation/screenshots/deviceinfos/demo4.jpg) |
+
+### lumberjack
+
+|  |  |  |
+|---|---|---|
+| ![demo5](documentation/screenshots/lumberjack/demo5.jpg) |
 
 # :computer: Supported Platforms
 
-| Module | android | iOS | windows | macOS | wasm |
-|---|---|---|---|---|---|
-| core | ✅ | ✅ | ✅ | ✅ | ✅ |
-| infos-build | ✅ | ❌ | ❌ | ❌ | ❌ |
-| infos-device | ✅ | ❌ | ❌ | ❌ | ❌ |
-| plugin-kotpreferences | ✅ | ✅ | ✅ | ✅ | ✅ |
-| plugin-lumberjack | ✅ | ✅ | ✅ | ✅ | ❌ |
+| Module | android | iOS | windows | macOS | wasm | Notes |
+|---|---|---|---|---|---|---|
+| core | ✅ | ✅ | ✅ | ✅ | ✅ | the core module - provides the basic debug drawer |
+| infos-build | ✅ | ❌ | ❌ | ❌ | ❌ | provides a simple build infos region |
+| infos-device | ✅ | ❌ | ❌ | ❌ | ❌ | provides a simple device infos region |
+| plugin-kotpreferences | ✅ | ✅ | ✅ | ✅ | ✅ | adds support to use KotPreferences in the debug drawer |
+| plugin-lumberjack | ✅ | ✅ | ✅ | ✅ | ❌ | provides a simple lumberjack region |
 
 # :arrow_right: Versions
 
 | Dependency | Version |
 |---|---|
-| Kotlin | `2.3.20` |
-| Jetbrains Compose | `1.10.3` |
+| Kotlin | `2.4.0` |
+| Jetbrains Compose | `1.11.1` |
 | Jetbrains Compose Material3 | `1.9.0` |
 
 > :warning: Following experimental annotations are used:
