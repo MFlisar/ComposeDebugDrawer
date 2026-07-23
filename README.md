@@ -254,4 +254,8 @@ Check out the [API documentation](https://MFlisar.github.io/ComposeDebugDrawer/)
 
 # :bulb: Other Libraries
 
-You can find more libraries (all multiplatform) of mine that all do work together nicely [here](https://mflisar.github.io/Libraries/).
+You can find more of my multiplatform libraries that work well together [here](https://mflisar.github.io/Libraries/).
+
+# :twisted_rightwards_arrows: Compatibility
+
+When combining my libraries, you can find compatibility information [here](https://mflisar.github.io/Libraries/compatibilities/).
