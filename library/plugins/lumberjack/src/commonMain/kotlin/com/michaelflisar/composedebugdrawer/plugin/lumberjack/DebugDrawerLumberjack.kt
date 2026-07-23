@@ -53,12 +53,12 @@ fun DebugDrawerLumberjack(
             mailSubject = mailSubject
         )
         DebugDrawerButton(
-            label = "Clear Log File",
+            label = "Delete All Log File",
             image = { Icon(Icons.Default.Delete, null) },
             foregroundTint = MaterialTheme.colorScheme.error
         ) {
             scope.launch {
-                setup.clearLogFiles()
+                setup.deleteAllLogFiles()
             }
         }
         content()

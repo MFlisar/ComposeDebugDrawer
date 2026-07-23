@@ -2,11 +2,11 @@
 
 # general (local snapshot: "LOCAL-SNAPSHOT")
 kotpreferences =        	"4.0.0"
-lumberjack =                "10.0.0"
+lumberjack =                "12.0.0"
 
 # plugins only
-kmpicon-plugin =            "1.0.0"
-kmpdevtools =               "7.9.7" # use the "devTools" task to change the version
+kmpicon =                   "1.0.0"
+kmpdevtools =               "8.0.2" # use the "devTools" task to change the version
 
 # demos
 # --
@@ -18,7 +18,7 @@ kmpdevtools =               "7.9.7" # use the "devTools" task to change the vers
 
 # plugins only
 kmpdevtools-buildplugin =           { id = "io.github.mflisar.kmpdevtools.plugins-build-gradle",        version.ref = "kmpdevtools" }
-kmpicon-plugin =                    { id = "io.github.mflisar.kmpicon.plugin",                          version.ref = "kmpicon-plugin" }
+kmpicon-plugin =                    { id = "io.github.mflisar.kmpicon.plugin",                          version.ref = "kmpicon" }
 
 [libraries]
 
@@ -28,7 +28,6 @@ kotpreferences-storage-datastore =     			{ module = "io.github.mflisar.kotprefe
 kotpreferences-storage-keyvalue =     			{ module = "io.github.mflisar.kotpreferences:storage-keyvalue",      				version.ref = "kotpreferences" }
 kotpreferences-extension-compose =     		    { module = "io.github.mflisar.kotpreferences:extension-compose",      				version.ref = "kotpreferences" }
 lumberjack-core =			        			{ module = "io.github.mflisar.lumberjack:core", 									version.ref = "lumberjack" }
-lumberjack-implementation =			            { module = "io.github.mflisar.lumberjack:implementation", 				            version.ref = "lumberjack" }
 lumberjack-logger-console =			        	{ module = "io.github.mflisar.lumberjack:logger-console", 	            			version.ref = "lumberjack" }
 lumberjack-logger-file =			        	{ module = "io.github.mflisar.lumberjack:logger-file", 	            				version.ref = "lumberjack" }
 lumberjack-extension-composeviewer =	    	{ module = "io.github.mflisar.lumberjack:extension-composeviewer", 					version.ref = "lumberjack" }
