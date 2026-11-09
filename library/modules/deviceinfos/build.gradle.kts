@@ -1,7 +1,7 @@
 import com.michaelflisar.kmpdevtools.BuildFileUtil
 import com.michaelflisar.kmpdevtools.Targets
 import com.michaelflisar.kmpdevtools.configs.*
-import com.michaelflisar.kmpdevtools.core.Platform
+import com.michaelflisar.kmpdevtools.core.Target
 import com.michaelflisar.kmpdevtools.setupDependencies
 
 plugins {
@@ -31,13 +31,7 @@ val module = LibraryModuleConfig.read(project)
 // targets
 val buildTargets = Targets(
     // mobile
-    android = true,
-    iOS = false,
-    // desktop
-    windows = false,
-    macOS = false,
-    // web
-    wasm = false
+    Target.ANDROID
 )
 
 val androidConfig = AndroidLibraryConfig.create(
@@ -95,6 +89,4 @@ kotlin {
 // Publish
 // -------------------
 
-// maven publish configuration
-if (BuildFileUtil.checkGradleProperty(project, "publishToMaven") != false)
-    BuildFileUtil.setupMavenPublish(module)
+BuildFileUtil.setupMavenPublish(module)

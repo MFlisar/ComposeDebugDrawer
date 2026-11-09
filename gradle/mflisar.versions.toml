@@ -6,7 +6,8 @@ lumberjack =                "12.0.0"
 
 # plugins only
 kmpicon =                   "1.0.0"
-kmpdevtools =               "8.0.2" # use the "devTools" task to change the version
+kmpdevtools =               "9.3.3" # use the "devTools" task to change the version
+launch4j =                  "3.0.7"
 
 # demos
 # --
@@ -19,6 +20,7 @@ kmpdevtools =               "8.0.2" # use the "devTools" task to change the vers
 # plugins only
 kmpdevtools-buildplugin =           { id = "io.github.mflisar.kmpdevtools.plugins-build-gradle",        version.ref = "kmpdevtools" }
 kmpicon-plugin =                    { id = "io.github.mflisar.kmpicon.plugin",                          version.ref = "kmpicon" }
+launch4j =                          { id = "edu.sc.seis.launch4j",                                      version.ref = "launch4j" }
 
 [libraries]
 

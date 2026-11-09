@@ -1,0 +1,90 @@
+# -------------------
+# Publish
+# -------------------
+
+publish:
+  group-id: io.github.mflisar.composedebugdrawer
+  github:
+    user: MFlisar
+    repo: maven-repository
+    branch: main
+    path: artifacts
+  release-target: maven-central # [none, maven-central, github]
+  test-target: github # [none, maven-central, github]
+
+# -------------------
+# General config
+# -------------------
+
+config:
+  java-version: 17
+  developer:
+    name: Michael Flisar
+    mail: mflisar.development@gmail.com
+    maven-id: mflisar
+    github-user-name: MFlisar
+
+# -------------------
+# Apps
+# -------------------
+
+apps:
+  - name: Compose DebugDrawer Demo
+    namespace: com.michaelflisar.composedebugdrawer.demo
+    version-name: 1.0.0
+    module-paths:
+      - demo/app/android
+      - demo/app/jvm
+      - demo/app/wasm
+      - demo/shared
+    # optional - if set, the app will be published to the homepage and linked in the readme
+    publish:
+      url-path: demo
+      description: Explore the interactive demo
+      module-path: demo/app/wasm
+
+# -------------------
+# Project
+# -------------------
+
+project:
+  namespace: com.michaelflisar.composedebugdrawer
+  repo-name: ComposeDebugDrawer
+  release: 2023
+  license:
+    name: Apache License 2.0
+    path: blob/main/LICENSE
+
+# -------------------
+# Modules
+# -------------------
+
+modules:
+  primary-artifact-id: core
+  modules:
+    - artifact-id: core
+      description: the core module - provides the basic debug drawer
+      path: library/core
+    - artifact-id: infos-build
+      description: provides a simple build infos region
+      path: library/modules/buildinfos
+    - artifact-id: infos-device
+      description: provides a simple device infos region
+      path: library/modules/deviceinfos
+    - artifact-id: plugin-kotpreferences
+      description: adds support to use KotPreferences in the debug drawer
+      path: library/plugins/kotpreferences
+    - artifact-id: plugin-lumberjack
+      description: provides a simple lumberjack region
+      path: library/plugins/lumberjack
+  xcframeworks: []
+
+# -------------------
+# Documentation
+# -------------------
+
+documentation:
+  path: documentation
+  relative-paths:
+    partials: _partials
+    screenshots: screenshots
